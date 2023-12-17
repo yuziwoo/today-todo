@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
 import { toggleDarkMode, darkModeOn } from './store/slice/darkModeSlice';
-
 import { LOCAL_STORAGE_KEY } from './constants/API';
 import Calendar from './pages/Calendar';
 
@@ -18,19 +16,17 @@ const App = () => {
     dispatch(toggleDarkMode());
   };
 
-  const setDarkModeOn = () => {
-    dispatch(darkModeOn());
-  }
-
   useEffect(() => {
     const darkModeInStorage = localStorage.getItem('darkmode');
+    const shouldSetDarkModeOn = darkModeInStorage === 'true';
+
     localStorage.setItem(
       LOCAL_STORAGE_KEY.darkmode,
       darkModeInStorage === null ? `${darkMode}` : darkModeInStorage
     );
 
-    if (darkModeInStorage === 'true') {
-      setDarkModeOn();
+    if (shouldSetDarkModeOn) {
+      dispatch(darkModeOn());
     }
     // eslint-disable-next-line
   }, []);
