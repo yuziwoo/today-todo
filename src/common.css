@@ -1,0 +1,121 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900');
+
+/* Root Variable*/
+:root {
+  --fontFamily-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'sans-serif';
+  --fontWeight-default: 400;
+  --lineHeight-default: 1.4;
+  --lineHeight-short: 1.2;
+  
+  --color-bg: #FEFEFE;
+}
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+  user-select: none;
+  flex-shrink: 0;
+  -webkit-user-drag: none;
+
+  /* device reset */
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+
+  line-height: var(--lineHeight-default);
+  font-weight: var(--fontWeight-default);
+}
+
+body, html {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--fontFamily-default);
+  width: 100%;
+  overflow-x: hidden;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 최소 디바이스 */
+@media screen and (max-width: 300px) {
+  html {
+    -moz-text-size-adjust: 100%;
+    -o-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-width: 300px;
+  }
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+a, a:link, a:hover, a:active, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+input, select, textarea, button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  vertical-align: middle;
+  border-radius: none;
+}
+
+caption {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0
+}
+
+figure {
+  line-height: 0;
+}
+
+blockquote,
+q {
+  quotes: none
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: "";
+  content: none
+}
+
+/* only for this app */
+body {
+  background-color: var(--color-bg);
+}
+
+img {
+  width: 100%;
+  display: block;
+}

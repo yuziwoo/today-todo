@@ -1,7 +1,7 @@
 # Today Todo
 
 - Todo List Application
-- with React, TypeScript, Lottie
+- with React, @reduxjs/toolkit, TypeScript, Lottie
 - project developed by yuziwoo
 
 ## 폴더 규칙

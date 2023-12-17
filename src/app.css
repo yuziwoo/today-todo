@@ -1,0 +1,12 @@
+.App {
+  width: 100%;
+  background-color: var(--color-bg);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 602px;
+  margin: auto;
+  font-size: 10px;
+}
