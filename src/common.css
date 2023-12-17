@@ -7,9 +7,6 @@
   --fontWeight-default: 400;
   --lineHeight-default: 1.4;
   --lineHeight-short: 1.2;
-  
-  --color-bg: #FEFEFE;
-  --color-default: black;
 }
 
 /* Reset CSS */
@@ -44,7 +41,7 @@ body {
 }
 
 /* 최소 디바이스 */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 602px) {
   html {
     -moz-text-size-adjust: 100%;
     -o-text-size-adjust: 100%;
@@ -53,7 +50,7 @@ body {
   }
 
   body {
-    min-width: 300px;
+    min-width: 602px;
   }
 }
 
@@ -112,17 +109,29 @@ q:before {
 }
 
 /* only for this app */
+:root {
+  --transition-hover-default: opacity 0.2s;
+  
+  --color-bg: #FEFEFE;
+  --color-default: black;
+  --color-hover-default: #F3F3F3;
+
+  --color-red: #EB4B67;
+  --color-blue: #4B6EEB;
+}
+
+.darkmode {
+  --color-bg: #121316;
+  --color-default: white;
+  --color-hover-default: #393939;
+}
+
 body {
   background-color: var(--color-bg);
 }
 
 * {
   color: var(--color-default);
-}
-
-.darkmode {
-  --color-bg: #121316;
-  --color-default: white;
 }
 
 img {

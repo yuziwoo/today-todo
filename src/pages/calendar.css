@@ -1,0 +1,69 @@
+.calendar .month-selecter {
+  width: 100%;
+  padding: 2.1em 1.4em 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.calendar .month-selecter button {
+  padding: 1.4em;
+  border-radius: 0.7em;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar .month-selecter button::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  content: '';
+  background-color: var(--color-hover-default);
+  opacity: 0;
+  transition: var(--transition-hover-default);
+}
+
+.calendar .month-selecter button:hover::before {
+  opacity: 1;
+}
+
+.calendar .month-selecter .year-month-label h1 {
+  position: relative;
+  font-size: 3.78em;
+  font-weight: 700;
+}
+
+.calendar .month-selecter button svg {
+  position: relative;
+  width: 1.4em;
+}
+
+.calendar .table {
+  padding: 0 1.96em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar .table .tr {
+  padding: 1.4em 0;
+  width: 6.44em;
+  text-align: center;
+}
+
+.calendar .table .tr span {
+  font-size: 1.54em;
+  font-weight: 500;
+}
+
+.calendar .table .tr:nth-child(1) span {
+  color: var(--color-red);
+}
+
+.calendar .table .tr:last-child span {
+  color: var(--color-blue);
+}
