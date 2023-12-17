@@ -9,6 +9,7 @@
   --lineHeight-short: 1.2;
   
   --color-bg: #FEFEFE;
+  --color-default: black;
 }
 
 /* Reset CSS */
@@ -113,6 +114,15 @@ q:before {
 /* only for this app */
 body {
   background-color: var(--color-bg);
+}
+
+* {
+  color: var(--color-default);
+}
+
+.darkmode {
+  --color-bg: #121316;
+  --color-default: white;
 }
 
 img {
