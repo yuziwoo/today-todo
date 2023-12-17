@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
 import { toggleDarkMode, darkModeOn } from './store/slice/darkModeSlice';
 import { LOCAL_STORAGE_KEY } from './constants/API';
-import Calendar from './pages/Calendar';
+import Calendar from './pages/Calendar/Calendar';
 
 import './common.css';
 import './app.css';
