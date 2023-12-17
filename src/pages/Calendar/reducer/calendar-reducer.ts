@@ -1,3 +1,5 @@
+import { CALENDAR_API } from '../../../constants/API';
+
 type Action =
   | {
       type: 'change';
@@ -18,25 +20,39 @@ export type CalendarDateState = {
   day: number;
 };
 
+const isValuableDate = ({ year, month, day }: CalendarDateState): CalendarDateState => {
+  const valuableState = { year, month, day };
+  if (year < CALENDAR_API.minYear) {
+    valuableState.year = CALENDAR_API.minYear;
+  }
+  if (year > CALENDAR_API.maxYear) {
+    valuableState.year = CALENDAR_API.maxYear;
+  }
+  if (day > CALENDAR_API.getMaxDay(valuableState.year, valuableState.month)) {
+    valuableState.day = CALENDAR_API.getMaxDay(valuableState.year, valuableState.month);
+  }
+  return valuableState;
+};
+
 const calendarReducer = (targetDate: CalendarDateState, action: Action): CalendarDateState => {
   switch (action.type) {
     case 'change': {
       const { year, month, day } = action;
-      return { year, month, day };
+      return isValuableDate({ year, month, day });
     }
     case 'changeToNextMonth': {
       const year = targetDate.month === 11 ? targetDate.year + 1 : targetDate.year;
       const month = targetDate.month === 11 ? 0 : targetDate.month + 1;
       const day = 1;
 
-      return { year, month, day };
+      return isValuableDate({ year, month, day });
     }
     case 'changeToLastMonth': {
       const year = targetDate.month === 0 ? targetDate.year - 1 : targetDate.year;
       const month = targetDate.month === 0 ? 11 : targetDate.month - 1;
       const day = 1;
 
-      return { year, month, day };
+      return isValuableDate({ year, month, day });
     }
   }
 };

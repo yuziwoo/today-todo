@@ -2,6 +2,7 @@ import { useReducer } from 'react';
 import './style/calendar.css';
 import calendarReducer from './reducer/calendar-reducer';
 import MonthSelector from '../../components/calendar/MonthSelector/MonthSelector';
+import CalendarTable from '../../components/calendar/CalendarTable/CalendarTable';
 
 const today = new Date();
 
@@ -31,29 +32,7 @@ const Calendar = ({ darkmode }: { darkmode: boolean }) => {
         onNextMonth={handleNextMonth}
       />
 
-      <section className="table">
-        <div className="tr">
-          <span>일</span>
-        </div>
-        <div className="tr">
-          <span>월</span>
-        </div>
-        <div className="tr">
-          <span>화</span>
-        </div>
-        <div className="tr">
-          <span>수</span>
-        </div>
-        <div className="tr">
-          <span>목</span>
-        </div>
-        <div className="tr">
-          <span>금</span>
-        </div>
-        <div className="tr">
-          <span>토</span>
-        </div>
-      </section>
+      <CalendarTable />
     </div>
   );
 };

@@ -32,14 +32,6 @@
   opacity: 1;
 }
 
-.calendar .month-selecter .year-month-label h1 {
-  position: relative;
-  font-size: 3.78em;
-  font-weight: 700;
-  min-width: 4.5em;
-  text-align: left;
-}
-
 .calendar .month-selecter button svg {
   position: relative;
   width: 1.4em;

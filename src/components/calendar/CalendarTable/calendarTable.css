@@ -1,0 +1,24 @@
+.calendar .table {
+  padding: 0 1.96em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar .table .tr {
+  padding: 1.4em 0;
+  width: 6.44em;
+  text-align: center;
+}
+
+.calendar .table .tr span {
+  font-size: 1.54em;
+  font-weight: 500;
+}
+
+.calendar .table .tr:nth-child(1) span {
+  color: var(--color-red);
+}
+
+.calendar .table .tr:last-child span {
+  color: var(--color-blue);
+}

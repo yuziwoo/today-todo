@@ -111,6 +111,7 @@ q:before {
 /* only for this app */
 :root {
   --transition-hover-default: opacity 0.2s;
+  --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
   
   --color-bg: #FEFEFE;
   --color-default: black;
