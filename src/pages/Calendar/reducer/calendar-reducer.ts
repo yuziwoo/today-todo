@@ -18,7 +18,9 @@ export type CalendarDateState = {
   year: number;
   month: number;
   day: number;
-};
+}
+
+
 
 const isValuableDate = ({ year, month, day }: CalendarDateState): CalendarDateState => {
   const valuableState = { year, month, day };
@@ -38,21 +40,25 @@ const calendarReducer = (targetDate: CalendarDateState, action: Action): Calenda
   switch (action.type) {
     case 'change': {
       const { year, month, day } = action;
-      return isValuableDate({ year, month, day });
+
+      const date = isValuableDate({ year, month, day });
+      return date;
     }
     case 'changeToNextMonth': {
       const year = targetDate.month === 11 ? targetDate.year + 1 : targetDate.year;
       const month = targetDate.month === 11 ? 0 : targetDate.month + 1;
       const day = 1;
 
-      return isValuableDate({ year, month, day });
+      const date = isValuableDate({ year, month, day });
+      return date;
     }
     case 'changeToLastMonth': {
       const year = targetDate.month === 0 ? targetDate.year - 1 : targetDate.year;
       const month = targetDate.month === 0 ? 11 : targetDate.month - 1;
       const day = 1;
 
-      return isValuableDate({ year, month, day });
+      const date = isValuableDate({ year, month, day });
+      return date;
     }
   }
 };

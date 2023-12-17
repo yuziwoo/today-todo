@@ -119,6 +119,9 @@ q:before {
 
   --color-red: #EB4B67;
   --color-blue: #4B6EEB;
+  --color-today: #FF6A84;
+
+  --borderRadius-button: 0.7em;
 }
 
 .darkmode {
@@ -138,4 +141,39 @@ body {
 img {
   width: 100%;
   display: block;
+}
+
+.canHover {
+  position: relative;
+  overflow: hidden;
+}
+
+.canHover::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  content: '';
+  background-color: var(--color-hover-default);
+  opacity: 0;
+  transition: var(--transition-hover-default);
+  box-sizing: border-box;
+}
+
+.canHover:hover::before {
+  opacity: 1;
+}
+
+.canHover * {
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

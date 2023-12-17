@@ -17,7 +17,7 @@ const getMonthOneDigitNumber = (month: number): number => Math.floor(month % 10)
 const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelectorType) => {
   return (
     <section className="month-selecter">
-      <button className="year-month-label">
+      <button className="year-month-label canHover">
         <NumberRotate translate={getDigitNumber(date.year, 0)} />
         <NumberRotate translate={getDigitNumber(date.year, 1)} />
         <NumberRotate translate={getDigitNumber(date.year, 2)} />
@@ -26,7 +26,7 @@ const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelect
         <NumberRotate translate={getMonthOneDigitNumber(date.month + 1)} />
       </button>
       <button
-        className="last-month"
+        className="last-month canHover"
         onClick={() => {
           onLastMonth();
         }}
@@ -34,7 +34,7 @@ const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelect
         <IconArrowLeft color={darkmode ? 'white' : 'black'} />
       </button>
       <button
-        className="next-month"
+        className="next-month canHover"
         onClick={() => {
           onNextMonth();
         }}

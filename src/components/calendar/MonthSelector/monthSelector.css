@@ -8,28 +8,10 @@
 
 .calendar .month-selecter button {
   padding: 1.4em;
-  border-radius: 0.7em;
-  position: relative;
-  overflow: hidden;
+  border-radius: var(--borderRadius-button);
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.calendar .month-selecter button::before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  content: '';
-  background-color: var(--color-hover-default);
-  opacity: 0;
-  transition: var(--transition-hover-default);
-}
-
-.calendar .month-selecter button:hover::before {
-  opacity: 1;
 }
 
 .calendar .month-selecter button svg {
