@@ -5,6 +5,7 @@ import MonthSelector from '../../components/calendar/MonthSelector/MonthSelector
 import CalendarTable from '../../components/calendar/CalendarTable/CalendarTable';
 import { CalendarDateProps, MonthArray } from '../../types/calendar';
 import { compileDateToCalendarDateProps, getThreeMonth } from '../../utills/calendar';
+import CalendarLoading from '../../components/effect/CalendarLoading';
 
 const initialTargetDate: CalendarDateProps = compileDateToCalendarDateProps(new Date());
 const initialMonthArray: MonthArray = [{ day: 1, restDay: null }];
@@ -16,24 +17,32 @@ const Calendar = () => {
     initialMonthArray,
     initialMonthArray,
   ]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const resetThreeMonth = async () => {
-      const newThreeMonth = await getThreeMonth(targetDate.year, targetDate.month);
-      setThreeMonth(newThreeMonth);
+      try {
+        const newThreeMonth = await getThreeMonth(targetDate.year, targetDate.month);
+        setThreeMonth(newThreeMonth);
+      } finally {
+        setLoading(false);
+      }
     };
     resetThreeMonth();
   }, [targetDate.month, targetDate.year]);
 
   const handleChangeDate = ({ year, month, day }: CalendarDateProps) => {
+    setLoading(true);
     dispatchDate({ type: 'change', year, month, day });
   };
 
   const handleNextMonth = () => {
+    setLoading(true);
     dispatchDate({ type: 'changeToNextMonth' });
   };
 
   const handleLastMonth = () => {
+    setLoading(true);
     dispatchDate({ type: 'changeToLastMonth' });
   };
 
@@ -45,7 +54,11 @@ const Calendar = () => {
         onNextMonth={handleNextMonth}
       />
 
-      <CalendarTable date={targetDate} threeMonth={threeMonth} onChangeDate={handleChangeDate} />
+      {loading ? (
+        <CalendarLoading />
+      ) : (
+        <CalendarTable date={targetDate} threeMonth={threeMonth} onChangeDate={handleChangeDate} />
+      )}
     </div>
   );
 };
