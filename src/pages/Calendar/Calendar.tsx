@@ -82,7 +82,7 @@ const Calendar = () => {
         <CalendarTable date={targetDate} threeMonth={threeMonth} onChangeDate={handleChangeDate} />
       )}
 
-      <DayInfo date={targetDate} threeMonth={threeMonth}/>
+      <DayInfo date={targetDate} monthData={threeMonth[1]}/>
     </div>
   );
 };

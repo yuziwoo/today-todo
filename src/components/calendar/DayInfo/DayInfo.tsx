@@ -4,13 +4,13 @@ import { CalendarDateProps, MonthArray } from '../../../types/calendar';
 
 interface DayInfoProps {
   date: CalendarDateProps;
-  threeMonth: MonthArray[];
+  monthData: MonthArray;
 }
 
-const DayInfo = ({ date, threeMonth }: DayInfoProps) => {
+const DayInfo = ({ date, monthData }: DayInfoProps) => {
   return (
     <section className="dayInfo">
-      <DayInfoHead date={date} threeMonth={threeMonth} />
+      <DayInfoHead date={date} monthData={monthData} />
     </section>
   );
 };

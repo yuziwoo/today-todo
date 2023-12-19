@@ -21,7 +21,7 @@ export const getThreeMonth = async (year: number, month: number): Promise<MonthA
 };
 
 const getMonthArray = ({ year, month }: CalendarYearMonthProps): MonthArray => {
-  const monthArray = Array.from({ length: getMaxDay({year, month}) }, (_, index) => ({
+  const monthArray = Array.from({ length: getMaxDay({ year, month }) }, (_, index) => ({
     day: index + 1,
     restDay: null,
   }));
@@ -67,7 +67,13 @@ const getRestDay = async ({ year, month }: CalendarYearMonthProps): Promise<DayI
   //   });
 
   // 묵음 처리용 임시 선언
-  const restDaysArray: DayInfoProps[] = [];
+  const restDaysArray: DayInfoProps[] = [
+    {
+      day: 25,
+      restDay: true,
+      dateName: '크리스마스',
+    },
+  ];
   return restDaysArray;
 };
 
@@ -81,4 +87,3 @@ const addRestDayData = async (targetYear: number, targetMonth: number, monthArra
 
   return newMonthArray;
 };
-

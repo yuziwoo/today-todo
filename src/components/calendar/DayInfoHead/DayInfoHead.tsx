@@ -1,14 +1,16 @@
 import './dayInfoHead.css';
 import { CalendarDateProps, MonthArray } from '../../../types/calendar';
 import { getDayOfWeek, getDayOfWeekString } from '../../../utills/calendar';
+import { getDDayString } from '../../../api/calendar/getDDayString';
 
 interface DayInfoHeadProps {
   date: CalendarDateProps;
-  threeMonth: MonthArray[];
+  monthData: MonthArray;
 }
 
-const DayInfoHead = ({ date, threeMonth }: DayInfoHeadProps) => {
-  const restDayInfo = threeMonth[1][date.day - 1]?.restDay;
+const DayInfoHead = ({ date, monthData }: DayInfoHeadProps) => {
+  const restDayInfo = monthData[date.day - 1]?.restDay;
+  const dateName = monthData[date.day - 1]?.dateName;
   const dayOfWeekNum = getDayOfWeek(date);
   const dayOfWeek = getDayOfWeekString(date);
 
@@ -22,10 +24,11 @@ const DayInfoHead = ({ date, threeMonth }: DayInfoHeadProps) => {
         >
           {date.day} {dayOfWeek}
         </h1>
+        <p>{dateName !== undefined ? `${dateName}` : ''}</p>
       </div>
 
       <div className="ddayBox">
-        <span>D + 1</span>
+        <span>{getDDayString({ year: date.year, month: date.month, day: date.day })}</span>
       </div>
     </div>
   );

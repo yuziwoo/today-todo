@@ -1,14 +1,25 @@
 .dayInfoHead {
   width: 100%;
-  padding: 2.8em 0;
+  padding: 2.8rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.dayInfoHead .dayInfoBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .dayInfoHead .dayInfoBox h1 {
-  font-size: 3.36em;
+  font-size: 3.36rem;
   font-weight: 700;
+  margin-right: 1.5rem;
+}
+
+.dayInfoHead .dayInfoBox p {
+  font-size: 1.68rem;
 }
 
 .dayInfoHead .dayInfoBox .saturday {
@@ -21,14 +32,18 @@
 }
 
 .dayInfoHead .ddayBox {
-  padding: 0.7em 1.05em;
-  background-color: var(--color-box-bg);
-  border-radius: var(--borderRadius-button);
-  color: black;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dayInfoHead .ddayBox span {
+  background-color: var(--color-box-bg);
+  border-radius: var(--borderRadius-button);
+  display: block;
   color: black;
-  font-size: 1.54em;
+  padding: 0.7rem 1.05rem;
+  font-size: 1.54rem;
   font-weight: 700;
 }
