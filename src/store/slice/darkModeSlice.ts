@@ -14,7 +14,7 @@ export const darkModeSlice = createSlice({
     darkModeOn: (state) => {
       localStorage.setItem(LOCAL_STORAGE_KEY.darkmode, `true`);
       state.value = true;
-    }
+    },
   },
 });
 

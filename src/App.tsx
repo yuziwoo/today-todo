@@ -7,17 +7,19 @@ import Calendar from './pages/Calendar/Calendar';
 
 import './common.css';
 import './app.css';
+import { importExistingValues } from './store/slice/todoSlice';
 
 const App = () => {
   const dispatch = useDispatch();
   const darkMode = useSelector((state: RootState) => state.darkMode.value);
+  const todo = useSelector((state: RootState) => state.todo);
 
   const switchDarkMode = () => {
     dispatch(toggleDarkMode());
   };
 
   useEffect(() => {
-    const darkModeInStorage = localStorage.getItem('darkmode');
+    const darkModeInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.darkmode);
     const shouldSetDarkModeOn = darkModeInStorage === 'true';
 
     localStorage.setItem(
@@ -28,8 +30,24 @@ const App = () => {
     if (shouldSetDarkModeOn) {
       dispatch(darkModeOn());
     }
+
+    const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
+    if (todoInStorage === null) {
+      localStorage.setItem(LOCAL_STORAGE_KEY.todo, JSON.stringify(todo));
+    };
+
+    if (todoInStorage !== null) {
+      dispatch(importExistingValues(JSON.parse(todoInStorage)));
+    }
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
+    if (todoInStorage !== null) {
+      const todoList = JSON.parse(todoInStorage);
+    };
+  }, [todo])
 
   return (
     <div className={`App${darkMode ? ' darkmode' : ''}`}>

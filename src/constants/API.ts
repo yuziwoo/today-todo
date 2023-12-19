@@ -1,5 +1,11 @@
-export const LOCAL_STORAGE_KEY = {
+interface LOCAL_STORAGE_KEYProps {
   darkmode: 'darkmode',
+  todo: 'todo',
+}
+
+export const LOCAL_STORAGE_KEY: LOCAL_STORAGE_KEYProps = {
+  darkmode: 'darkmode',
+  todo: 'todo',
 } as const;
 
 export const CALENDAR_API = {
