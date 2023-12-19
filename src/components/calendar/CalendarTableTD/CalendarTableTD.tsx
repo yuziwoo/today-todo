@@ -32,8 +32,8 @@ const CalendarTableTD = ({
       </div>
       <div className="schedule">
         {Array.isArray(todo)
-          ? todo.map((task) => (
-              <span className={`circle${task.complete ? ' complete' : ''}`}></span>
+          ? todo.map((task, index) => (
+              <span key={index} className={`circle${task.complete ? ' complete' : ''}`}></span>
             ))
           : ''}
       </div>
