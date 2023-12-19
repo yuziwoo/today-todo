@@ -1,16 +1,16 @@
 import './dayInfoHead.css';
-import { CalendarDateProps, MonthArray } from '../../../types/calendar';
+import { CalendarDateProps, DateInfoProps } from '../../../types/calendar';
 import { getDayOfWeek, getDayOfWeekString } from '../../../utills/calendar';
 import { getDDayString } from '../../../api/calendar/getDDayString';
 
 interface DayInfoHeadProps {
   date: CalendarDateProps;
-  monthData: MonthArray;
+  dateInfo: DateInfoProps;
 }
 
-const DayInfoHead = ({ date, monthData }: DayInfoHeadProps) => {
-  const restDayInfo = monthData[date.day - 1]?.restDay;
-  const dateName = monthData[date.day - 1]?.dateName;
+const DayInfoHead = ({ date, dateInfo }: DayInfoHeadProps) => {
+  const restDayInfo = dateInfo?.restDay;
+  const dateName = dateInfo?.dateName;
   const dayOfWeekNum = getDayOfWeek(date);
   const dayOfWeek = getDayOfWeekString(date);
 
