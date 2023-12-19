@@ -10,6 +10,7 @@ import CalendarLoading from '../../components/effect/CalendarLoading';
 
 import { compileDateToCalendarDateProps } from '../../api/calendar/compileToCalendarDateProps';
 import { getThreeMonth } from '../../api/calendar/getThreeMonth';
+import DayInfo from '../../components/calendar/DayInfo/DayInfo';
 
 const Calendar = () => {
   // state initalize
@@ -80,6 +81,8 @@ const Calendar = () => {
       ) : (
         <CalendarTable date={targetDate} threeMonth={threeMonth} onChangeDate={handleChangeDate} />
       )}
+
+      <DayInfo />
     </div>
   );
 };
