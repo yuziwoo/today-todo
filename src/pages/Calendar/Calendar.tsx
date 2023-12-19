@@ -18,6 +18,7 @@ const Calendar = () => {
     initialMonthArray,
   ]);
   const [loading, setLoading] = useState(true);
+  const [tableHeight, setTableHeight] = useState(0);
 
   useEffect(() => {
     const resetThreeMonth = async () => {
@@ -33,17 +34,29 @@ const Calendar = () => {
 
   const handleChangeDate = ({ year, month, day }: CalendarDateProps) => {
     if (targetDate.year !== year || targetDate.month !== month) {
+      const height = document.getElementsByClassName('table')[0]?.clientHeight;
+      if (height !== undefined) {
+        setTableHeight(height);
+      }
       setLoading(true);
     }
     dispatchDate({ type: 'change', year, month, day });
   };
 
   const handleNextMonth = () => {
+    const height = document.getElementsByClassName('table')[0]?.clientHeight;
+    if (height !== undefined) {
+      setTableHeight(height);
+    }
     setLoading(true);
     dispatchDate({ type: 'changeToNextMonth' });
   };
 
   const handleLastMonth = () => {
+    const height = document.getElementsByClassName('table')[0]?.clientHeight;
+    if (height !== undefined) {
+      setTableHeight(height);
+    }
     setLoading(true);
     dispatchDate({ type: 'changeToLastMonth' });
   };
@@ -57,7 +70,7 @@ const Calendar = () => {
       />
 
       {loading ? (
-        <CalendarLoading />
+        <CalendarLoading minHeight={tableHeight} />
       ) : (
         <CalendarTable date={targetDate} threeMonth={threeMonth} onChangeDate={handleChangeDate} />
       )}
