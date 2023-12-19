@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   MonthArray,
   CalendarYearMonthProps,
-  DayInfoProps,
+  DateInfoProps,
   RestDayInfosTypes,
   RestDayInfoTypes,
 } from '../../types/calendar';
@@ -28,13 +28,13 @@ const getMonthArray = ({ year, month }: CalendarYearMonthProps): MonthArray => {
 
   return monthArray;
 };
-const formatRestDayResponseToDayInfoObject = (restDayInfo: RestDayInfoTypes): DayInfoProps => ({
+const formatRestDayResponseToDayInfoObject = (restDayInfo: RestDayInfoTypes): DateInfoProps => ({
   day: restDayInfo.locdate % 100,
   restDay: restDayInfo.isHoliday === 'Y' ? true : false,
   dateName: restDayInfo.dateName,
 });
 
-const getRestDay = async ({ year, month }: CalendarYearMonthProps): Promise<DayInfoProps[]> => {
+const getRestDay = async ({ year, month }: CalendarYearMonthProps): Promise<DateInfoProps[]> => {
   // githubpages 이용을 위해 서비스키를 숨기지 않았습니다. 무단 사용을 금지합니다.
   const serviceKey = `vhiGSXX2IfjHqLKxhhwTnvEkr6r%2Blz7PiU%2BBnbHtTu5dQVP2q9e%2FKGzH67tsY0gZORKAYyQwmPd4T4AR5Yz0Aw%3D%3D`;
 
@@ -47,7 +47,7 @@ const getRestDay = async ({ year, month }: CalendarYearMonthProps): Promise<DayI
   //   )
   //   .then((res) => {
   //     const restDayInfos: RestDayInfosTypes = res.data.response.body?.items.item;
-  //     const restDays: DayInfoProps[] = [];
+  //     const restDays: DateInfoProps[] = [];
 
   //     if (Array.isArray(restDayInfos)) {
   //       restDayInfos.forEach((restDayInfo) => {
@@ -67,7 +67,7 @@ const getRestDay = async ({ year, month }: CalendarYearMonthProps): Promise<DayI
   //   });
 
   // 묵음 처리용 임시 선언
-  const restDaysArray: DayInfoProps[] = [
+  const restDaysArray: DateInfoProps[] = [
     {
       day: 25,
       restDay: true,

@@ -6,13 +6,13 @@ export type CalendarDateProps = {
 
 export type CalendarYearMonthProps = Pick<CalendarDateProps, 'year' | 'month'>;
 
-export type DayInfoProps = {
+export type DateInfoProps = {
   day: number;
   restDay: null | boolean;
   dateName?: string;
 }
 
-export type MonthArray = DayInfoProps[];
+export type MonthArray = DateInfoProps[];
 
 export type RestDayInfoTypes = {
   dateKind: string;
