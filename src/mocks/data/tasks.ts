@@ -22,12 +22,8 @@ export const tasks = {
     day: [
       {
         id: 1001,
-        start: {
-          year: 2023,
-          month: 11,
-          day: 19,
-        },
-        end: null,
+        start: 20231119,
+        end: 20231126,
         workToDo: '책 읽기',
         complete: [
           {
@@ -46,17 +42,9 @@ export const tasks = {
     week: [
       {
         id: 1002,
-        start: {
-          year: 2023,
-          month: 11,
-          day: 19,
-        },
+        start: 20231119,
         repeat: [2, 4],
-        end: {
-          year: 2023,
-          month: 11,
-          day: 30,
-        },
+        end: 20231130,
         workToDo: '도서관 가기',
         complete: [
           {
@@ -75,11 +63,7 @@ export const tasks = {
     month: [
       {
         id: 1003,
-        start: {
-          year: 2023,
-          month: 11,
-          day: 1,
-        },
+        start: 20231101,
         repeat: {
           day: 1,
         },
@@ -91,11 +75,7 @@ export const tasks = {
     year: [
       {
         id: 1004,
-        start: {
-          year: 2023,
-          month: 11,
-          day: 24,
-        },
+        start: 20231124,
         repeat: {
           month: 11,
           day: 24,

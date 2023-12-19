@@ -1,4 +1,4 @@
-type TaskProps = {
+export type TaskProps = {
   id: number;
   year: number;
   month: number;
@@ -9,15 +9,14 @@ type TaskProps = {
 
 type TaskDateProps = Pick<TaskProps, 'year' | 'month' | 'day'>;
 
-type RepeatDayTaskProps = Pick<TaskProps, 'id' | 'workToDo'> & {
-  start: TaskDateProps;
-  end: null | TaskDateProps;
+export type RepeatDayTaskProps = Pick<TaskProps, 'id' | 'workToDo'> & {
+  start: number;
+  end: null | number;
   complete: TaskDateProps[];
 };
-
-type RepeatWeekTaskProps = RepeatDayTaskProps & { repeat: number[] };
-type RepeatMonthTaskProps = RepeatDayTaskProps & { repeat: { day: number } };
-type RepeatYearTaskProps = RepeatDayTaskProps & { repeat: { month: number; day: number } };
+export type RepeatWeekTaskProps = RepeatDayTaskProps & { repeat: number[] };
+export type RepeatMonthTaskProps = RepeatDayTaskProps & { repeat: { day: number } };
+export type RepeatYearTaskProps = RepeatDayTaskProps & { repeat: { month: number; day: number } };
 
 export type CompiledTaskProps = Pick<TaskProps, 'id' | 'day' | 'workToDo' | 'complete'> & {
   repeat: boolean;

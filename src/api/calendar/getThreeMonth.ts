@@ -6,8 +6,21 @@ import {
   RestDayInfosTypes,
   RestDayInfoTypes,
 } from '../../types/calendar';
-import { calcYearMonth, convertToTwoDigitString, getMaxDay } from '../../utills/calendar';
-import { CompiledTaskProps, TasksProps } from '../../types/todo';
+import {
+  calcYearMonth,
+  convertDateToNumber,
+  convertToTwoDigitString,
+  getMaxDay,
+} from '../../utills/calendar';
+import {
+  CompiledTaskProps,
+  TasksProps,
+  TaskProps,
+  RepeatDayTaskProps,
+  RepeatMonthTaskProps,
+  RepeatWeekTaskProps,
+  RepeatYearTaskProps,
+} from '../../types/todo';
 
 export const getThreeMonth = async (
   year: number,
@@ -122,16 +135,11 @@ const addRestDayData = async (targetYear: number, targetMonth: number, monthArra
   return newMonthArray;
 };
 
-const getTodoThisMonth = (
-  targetYear: number,
-  targetMonth: number,
-  todo: TasksProps
-): CompiledTaskProps[] => {
-  const todoThisMonth: CompiledTaskProps[] = [];
-
-  todo.tasks.forEach((task) => {
-    if (task.year === targetYear && task.month === targetMonth) {
-      todoThisMonth.push({
+const getBasicTaskList = (year: number, month: number, tasks: TaskProps[]) => {
+  const todoList: CompiledTaskProps[] = [];
+  tasks.forEach((task) => {
+    if (task.year === year && task.month === month) {
+      todoList.push({
         id: task.id,
         day: task.day,
         workToDo: task.workToDo,
@@ -140,8 +148,101 @@ const getTodoThisMonth = (
       });
     }
   });
+  return todoList;
+};
 
-  return todoThisMonth;
+const getDayRepeatTaskList = (
+  year: number,
+  month: number,
+  tasks: RepeatDayTaskProps[]
+): CompiledTaskProps[] => {
+  const lastDay = convertDateToNumber({ year, month, day: getMaxDay({ year, month }) });
+  const firstDay = convertDateToNumber({ year, month, day: 1 });
+
+  let todoList: CompiledTaskProps[] = [];
+
+  tasks.forEach((task) => {
+    // 시작일은 마지막날보다 작고, 종료일은 첫날보다 크거나 null이어야한다.
+    if (task.start <= lastDay && (task.end === null || task.end > firstDay)) {
+      // 데이터를 추가할 첫 날짜는 시작일과 첫날 중 큰 날짜로한다.
+      let date = Math.max(task.start, firstDay) % 100;
+      const maxDate = Math.min(task.end !== null ? task.end : lastDay, lastDay) % 100;
+
+      const currentTodoList: CompiledTaskProps[] = [];
+      const completeList = task.complete.filter(
+        (date) => date.year === year && date.month === month
+      );
+
+      while (date <= maxDate) {
+        const day = date % 100;
+        currentTodoList.push({
+          id: task.id,
+          day,
+          workToDo: task.workToDo,
+          complete: completeList.findIndex((dateInfo) => dateInfo.day === day) >= 0,
+          repeat: true,
+        });
+        date += 1;
+      }
+      todoList = todoList.concat(currentTodoList);
+    }
+  });
+  return todoList;
+};
+
+const getWeekRepeatTaskList = (
+  year: number,
+  month: number,
+  tasks: RepeatWeekTaskProps[]
+): CompiledTaskProps[] => {
+  const todoList: CompiledTaskProps[] = [];
+
+  return todoList;
+};
+
+const getMonthRepeatTaskList = (
+  year: number,
+  month: number,
+  tasks: RepeatMonthTaskProps[]
+): CompiledTaskProps[] => {
+  const todoList: CompiledTaskProps[] = [];
+
+  return todoList;
+};
+
+const getYearRepeatTaskList = (
+  year: number,
+  month: number,
+  tasks: RepeatYearTaskProps[]
+): CompiledTaskProps[] => {
+  const todoList: CompiledTaskProps[] = [];
+
+  return todoList;
+};
+
+const getTodoThisMonth = (
+  targetYear: number,
+  targetMonth: number,
+  todo: TasksProps
+): CompiledTaskProps[] => {
+  const basicTaskList = getBasicTaskList(targetYear, targetMonth, todo.tasks);
+  const dayRepeatTaskList = getDayRepeatTaskList(targetYear, targetMonth, todo.repeatTasks.day);
+  // console.log(dayRepeatTaskList, todo.repeatTasks.day);
+  const weekRepeatTaskList = getWeekRepeatTaskList(targetYear, targetMonth, todo.repeatTasks.week);
+  const monthRepeatTaskList = getMonthRepeatTaskList(
+    targetYear,
+    targetMonth,
+    todo.repeatTasks.month
+  );
+  const yearRepeatTaskList = getYearRepeatTaskList(targetYear, targetMonth, todo.repeatTasks.year);
+  const todoList = [
+    ...basicTaskList,
+    ...dayRepeatTaskList,
+    ...weekRepeatTaskList,
+    ...monthRepeatTaskList,
+    ...yearRepeatTaskList,
+  ];
+  return todoList;
 };
 
 const addTodoData = (
