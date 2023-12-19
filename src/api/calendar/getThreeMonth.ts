@@ -265,7 +265,20 @@ const getYearRepeatTaskList = ({
   tasks,
 }: monthInfoPropsWithTask<RepeatYearTaskProps[]>): CompiledTaskProps[] => {
   const todoList: CompiledTaskProps[] = [];
-
+  tasks.forEach((task) => {
+    // 시작일은 마지막날보다 작고, 종료일은 첫날보다 크거나 null이어야한다.
+    if (task.start <= lastDay && (task.end === null || task.end > firstDay)) {
+      if (task.repeat.month === month) {
+        todoList.push({
+          id: task.id,
+          day: task.repeat.day,
+          workToDo: task.workToDo,
+          complete: task.complete.filter((date) => date.year === year).length === 1,
+          repeat: true,
+        });
+      }
+    }
+  });
   return todoList;
 };
 
