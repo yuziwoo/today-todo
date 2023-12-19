@@ -7,10 +7,10 @@ import { CalendarDateProps, MonthArray } from '../../types/calendar';
 import MonthSelector from '../../components/calendar/MonthSelector/MonthSelector';
 import CalendarTable from '../../components/calendar/CalendarTable/CalendarTable';
 import CalendarLoading from '../../components/effect/CalendarLoading';
+import DayInfo from '../../components/calendar/DayInfo/DayInfo';
 
 import { compileDateToCalendarDateProps } from '../../api/calendar/compileToCalendarDateProps';
 import { getThreeMonth } from '../../api/calendar/getThreeMonth';
-import DayInfo from '../../components/calendar/DayInfo/DayInfo';
 
 const Calendar = () => {
   // state initalize
@@ -82,7 +82,7 @@ const Calendar = () => {
         <CalendarTable date={targetDate} threeMonth={threeMonth} onChangeDate={handleChangeDate} />
       )}
 
-      <DayInfo />
+      <DayInfo date={targetDate} threeMonth={threeMonth}/>
     </div>
   );
 };

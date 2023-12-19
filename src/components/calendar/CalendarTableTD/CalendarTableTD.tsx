@@ -17,9 +17,9 @@ const CalendarTableTD = ({
 }: CalendarTableTDProps) => {
   return (
     <button
-      className={`td canHover ${isCurrentMonth ? 'currentMonth' : 'notCurrentMonth'} ${
-        restDay && 'restday'
-      } ${isToday && 'today'} ${isTargetDay && 'active'}`}
+      className={`td canHover${isCurrentMonth ? ' currentMonth' : ' notCurrentMonth'}${
+        restDay ? ' restday' : ''
+      }${isToday ? ' today' : ''}${isTargetDay ? ' active' : ''}`}
       onClick={onClickHandler}
     >
       <div className="numberBox">

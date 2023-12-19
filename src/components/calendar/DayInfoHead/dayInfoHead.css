@@ -6,19 +6,28 @@
   align-items: center;
 }
 
-.dayInfoHead h1 {
+.dayInfoHead .dayInfoBox h1 {
   font-size: 3.36em;
   font-weight: 700;
 }
 
-.dayInfoHead .dday-box {
+.dayInfoHead .dayInfoBox .saturday {
+  color: var(--color-blue);
+}
+
+.dayInfoHead .dayInfoBox .restDay,
+.dayInfoHead .dayInfoBox .sunday {
+  color: var(--color-red);
+}
+
+.dayInfoHead .ddayBox {
   padding: 0.7em 1.05em;
   background-color: var(--color-box-bg);
   border-radius: var(--borderRadius-button);
   color: black;
 }
 
-.dayInfoHead .dday-box span {
+.dayInfoHead .ddayBox span {
   color: black;
   font-size: 1.54em;
   font-weight: 700;

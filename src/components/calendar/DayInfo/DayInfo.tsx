@@ -1,10 +1,16 @@
 import './dayInfo.css';
 import DayInfoHead from '../DayInfoHead/DayInfoHead';
+import { CalendarDateProps, MonthArray } from '../../../types/calendar';
 
-const DayInfo = () => {
+interface DayInfoProps {
+  date: CalendarDateProps;
+  threeMonth: MonthArray[];
+}
+
+const DayInfo = ({ date, threeMonth }: DayInfoProps) => {
   return (
     <section className="dayInfo">
-      <DayInfoHead />
+      <DayInfoHead date={date} threeMonth={threeMonth} />
     </section>
   );
 };
