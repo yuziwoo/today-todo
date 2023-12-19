@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 
 import './style/calendar.css';
 import calendarReducer from './reducer/calendar-reducer';
-import { CalendarDateProps, MonthArray } from '../../types/calendar';
+import { CalendarDateProps, CalendarYearMonthProps, MonthArray } from '../../types/calendar';
 
 import MonthSelector from '../../components/calendar/MonthSelector/MonthSelector';
 import CalendarTable from '../../components/calendar/CalendarTable/CalendarTable';
@@ -10,9 +10,14 @@ import CalendarLoading from '../../components/effect/CalendarLoading';
 import DayInfo from '../../components/calendar/DayInfo/DayInfo';
 
 import { compileDateToCalendarDateProps } from '../../api/calendar/compileToCalendarDateProps';
-import { getThreeMonth } from '../../api/calendar/getThreeMonth';
+import { getThreeMonth, resetOnlyTodo } from '../../api/calendar/getThreeMonth';
+import { TasksProps } from '../../types/todo';
 
-const Calendar = () => {
+interface CalendarProps {
+  todo: TasksProps;
+}
+
+const Calendar = ({ todo }: CalendarProps) => {
   // state initalize
   const initialTargetDate: CalendarDateProps = compileDateToCalendarDateProps(new Date());
   const initialMonthArray: MonthArray = [{ day: 1, restDay: null }];
@@ -24,6 +29,10 @@ const Calendar = () => {
     initialMonthArray,
   ]);
   const [targetDate, dispatchDate] = useReducer(calendarReducer, initialTargetDate);
+  const [targetMonthYear, setTargetMonthYear] = useState<CalendarYearMonthProps>({
+    year: 0,
+    month: 0,
+  });
 
   // 로딩 애니메이션을 보여주기 위한 상태 관리
   const [loading, setLoading] = useState(true);
@@ -33,14 +42,27 @@ const Calendar = () => {
   useEffect(() => {
     const resetThreeMonth = async () => {
       try {
-        const newThreeMonth = await getThreeMonth(targetDate.year, targetDate.month);
+        if (
+          targetMonthYear.year !== targetDate.year ||
+          targetMonthYear.month !== targetDate.month
+        ) {
+          const newThreeMonth = await getThreeMonth(targetDate.year, targetDate.month, todo);
+          setThreeMonth(newThreeMonth);
+          setTargetMonthYear({
+            year: targetDate.year,
+            month: targetDate.month,
+          });
+          return;
+        }
+        const newThreeMonth = resetOnlyTodo(targetDate.year, targetDate.month, todo, threeMonth);
         setThreeMonth(newThreeMonth);
       } finally {
         setLoading(false);
       }
     };
     resetThreeMonth();
-  }, [targetDate.month, targetDate.year]);
+    // eslint-disable-next-line
+  }, [targetDate.month, targetDate.year, todo]);
 
   // 로딩 화면을 보여주기 위한 함수
   const reloadLoading = () => {

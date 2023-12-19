@@ -6,16 +6,49 @@ import {
   RestDayInfosTypes,
   RestDayInfoTypes,
 } from '../../types/calendar';
-import { convertToTwoDigitString, getMaxDay } from '../../utills/calendar';
+import { calcYearMonth, convertToTwoDigitString, getMaxDay } from '../../utills/calendar';
+import { CompiledTaskProps, TasksProps } from '../../types/todo';
 
-export const getThreeMonth = async (year: number, month: number): Promise<MonthArray[]> => {
+export const getThreeMonth = async (
+  year: number,
+  month: number,
+  todo: TasksProps
+): Promise<MonthArray[]> => {
   const newThreeMonth = [];
 
   for (let i = -1; i <= 1; i++) {
-    const monthArray = getMonthArray({ year, month: month + i });
-    const monthArrayWithRestDayData = await addRestDayData(year, month + i, monthArray);
-    newThreeMonth.push(monthArrayWithRestDayData);
+    const yearAndMonth = calcYearMonth(year, month, i);
+    const monthArray = getMonthArray({ ...yearAndMonth });
+    const monthArrayWithRestDayData = await addRestDayData(
+      yearAndMonth.year,
+      yearAndMonth.month,
+      monthArray
+    );
+    const monthArrayWithTodoData = addTodoData(
+      yearAndMonth.year,
+      yearAndMonth.month,
+      monthArrayWithRestDayData,
+      todo
+    );
+    newThreeMonth.push(monthArrayWithTodoData);
   }
+  return newThreeMonth;
+};
+
+const restoreTodo = (monthArray: MonthArray): MonthArray => {
+  return monthArray.map((data) => ({ ...data, todo: undefined }));
+};
+
+export const resetOnlyTodo = (
+  year: number,
+  month: number,
+  todo: TasksProps,
+  threeMonth: MonthArray[]
+) => {
+  const newThreeMonth = threeMonth.map((monthArray, index) => {
+    const newMonthArray = restoreTodo([...monthArray]);
+    return addTodoData(year, month, newMonthArray, todo);
+  });
 
   return newThreeMonth;
 };
@@ -24,6 +57,7 @@ const getMonthArray = ({ year, month }: CalendarYearMonthProps): MonthArray => {
   const monthArray = Array.from({ length: getMaxDay({ year, month }) }, (_, index) => ({
     day: index + 1,
     restDay: null,
+    todo: undefined,
   }));
 
   return monthArray;
@@ -83,6 +117,49 @@ const addRestDayData = async (targetYear: number, targetMonth: number, monthArra
 
   restDays.forEach(({ day, restDay, dateName }) => {
     newMonthArray[day - 1] = { ...newMonthArray[day - 1], day, restDay, dateName };
+  });
+
+  return newMonthArray;
+};
+
+const getTodoThisMonth = (
+  targetYear: number,
+  targetMonth: number,
+  todo: TasksProps
+): CompiledTaskProps[] => {
+  const todoThisMonth: CompiledTaskProps[] = [];
+
+  todo.tasks.forEach((task) => {
+    if (task.year === targetYear && task.month === targetMonth) {
+      todoThisMonth.push({
+        id: task.id,
+        day: task.day,
+        workToDo: task.workToDo,
+        complete: task.complete,
+        repeat: false,
+      });
+    }
+  });
+
+  return todoThisMonth;
+};
+
+const addTodoData = (
+  targetYear: number,
+  targetMonth: number,
+  monthArray: MonthArray,
+  todo: TasksProps
+) => {
+  const newMonthArray = [...monthArray];
+  const todoThisMonth = getTodoThisMonth(targetYear, targetMonth, todo);
+
+  todoThisMonth.forEach((task) => {
+    if (Array.isArray(newMonthArray[task.day - 1].todo)) {
+      newMonthArray[task.day - 1].todo?.push(task);
+    }
+    if (newMonthArray[task.day - 1].todo === undefined) {
+      newMonthArray[task.day - 1].todo = [task];
+    }
   });
 
   return newMonthArray;

@@ -1,3 +1,5 @@
+import { CompiledTaskProps } from './todo';
+
 export type CalendarDateProps = {
   year: number;
   month: number;
@@ -10,16 +12,17 @@ export type DateInfoProps = {
   day: number;
   restDay: null | boolean;
   dateName?: string;
-}
+  todo?: undefined | CompiledTaskProps[]
+};
 
 export type MonthArray = DateInfoProps[];
 
 export type RestDayInfoTypes = {
   dateKind: string;
   dateName: string;
-  isHoliday: "Y" | "N";
+  isHoliday: 'Y' | 'N';
   locdate: number;
   seq: number;
-}
+};
 
 export type RestDayInfosTypes = undefined | RestDayInfoTypes | RestDayInfoTypes[];

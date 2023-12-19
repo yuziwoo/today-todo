@@ -34,7 +34,7 @@ const App = () => {
     const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
     if (todoInStorage === null) {
       localStorage.setItem(LOCAL_STORAGE_KEY.todo, JSON.stringify(todo));
-    };
+    }
 
     if (todoInStorage !== null) {
       dispatch(importExistingValues(JSON.parse(todoInStorage)));
@@ -46,13 +46,13 @@ const App = () => {
     const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
     if (todoInStorage !== null) {
       const todoList = JSON.parse(todoInStorage);
-    };
-  }, [todo])
+    }
+  }, [todo]);
 
   return (
     <div className={`App${darkMode ? ' darkmode' : ''}`}>
       <main className="stage">
-        <Calendar />
+        <Calendar todo={todo} />
         <p onClick={switchDarkMode}>{`${darkMode}`}</p>
       </main>
     </div>

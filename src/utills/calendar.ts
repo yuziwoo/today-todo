@@ -9,6 +9,27 @@ export const getMaxDay = ({ year, month }: CalendarYearMonthProps): number => {
   return new Date(year, month + 1, 0).getDate();
 };
 
+export const calcYearMonth = (
+  year: number,
+  month: number,
+  offset: number
+): CalendarYearMonthProps => {
+  let newMonth = month + offset;
+  let newYear = year;
+
+  while (newMonth < 0) {
+    newMonth += 12;
+    newYear -= 1;
+  }
+
+  while (newMonth > 11) {
+    newMonth -= 12;
+    newYear += 1;
+  }
+
+  return { year: newYear, month: newMonth };
+};
+
 export const getDayOfWeek = ({ year, month, day }: CalendarDateProps): number => {
   return new Date(year, month, day).getDay();
 };

@@ -36,10 +36,11 @@ const CalendarTable = ({ date, threeMonth, onChangeDate }: CalendarTableProps) =
       {CALENDAR_API.dayOfWeek.map((day, index) => (
         <CalendarTableTH day={day} key={index} />
       ))}
-      {lastMonthDisplayDates.map(({ day, restDay }) => (
+      {lastMonthDisplayDates.map(({ day, restDay, todo }) => (
         <CalendarTableTD
           day={day}
           restDay={restDay}
+          todo={todo}
           isToday={compareIsToday({ ...lastMonth, day })}
           isTargetDay={false}
           isCurrentMonth={false}
@@ -49,10 +50,11 @@ const CalendarTable = ({ date, threeMonth, onChangeDate }: CalendarTableProps) =
           key={day}
         />
       ))}
-      {threeMonth[1].map(({ day, restDay }) => (
+      {threeMonth[1].map(({ day, restDay, todo }) => (
         <CalendarTableTD
           day={day}
           restDay={restDay}
+          todo={todo}
           isToday={compareIsToday({ year: date.year, month: date.month, day })}
           isTargetDay={day === date.day}
           isCurrentMonth={true}
@@ -62,10 +64,11 @@ const CalendarTable = ({ date, threeMonth, onChangeDate }: CalendarTableProps) =
           key={day}
         />
       ))}
-      {nextMonthDisplayDates.map(({ day, restDay }) => (
+      {nextMonthDisplayDates.map(({ day, restDay, todo }) => (
         <CalendarTableTD
           day={day}
           restDay={restDay}
+          todo={todo}
           isToday={compareIsToday({ ...nextMonth, day })}
           isTargetDay={false}
           isCurrentMonth={false}

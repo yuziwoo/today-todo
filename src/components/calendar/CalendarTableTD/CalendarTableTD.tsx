@@ -1,6 +1,10 @@
+import './calendarTableTD.css';
+import { CompiledTaskProps } from '../../../types/todo';
+
 interface CalendarTableTDProps {
   day: number;
   restDay: null | boolean;
+  todo: undefined | CompiledTaskProps[];
   isToday: boolean;
   isTargetDay: boolean;
   isCurrentMonth: boolean;
@@ -10,6 +14,7 @@ interface CalendarTableTDProps {
 const CalendarTableTD = ({
   day,
   restDay,
+  todo,
   isToday,
   isTargetDay,
   isCurrentMonth,
@@ -25,7 +30,13 @@ const CalendarTableTD = ({
       <div className="numberBox">
         <span>{day}</span>
       </div>
-      <div className="schedule"></div>
+      <div className="schedule">
+        {Array.isArray(todo)
+          ? todo.map((task) => (
+              <span className={`circle${task.complete ? ' complete' : ''}`}></span>
+            ))
+          : ''}
+      </div>
     </button>
   );
 };
