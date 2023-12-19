@@ -1,5 +1,6 @@
 import { CalendarDateProps } from './../../../types/calendar';
 import { CALENDAR_API } from '../../../constants/API';
+import { getMaxDay } from '../../../utills/calendar';
 
 type calendarReducerAction =
   | {
@@ -20,8 +21,8 @@ const isValuableDate = ({ year, month, day }: CalendarDateProps): CalendarDatePr
   if (year > CALENDAR_API.maxYear) {
     valuableState.year = CALENDAR_API.maxYear;
   }
-  if (day > CALENDAR_API.getMaxDay(valuableState.year, valuableState.month)) {
-    valuableState.day = CALENDAR_API.getMaxDay(valuableState.year, valuableState.month);
+  if (day > getMaxDay({year: valuableState.year, month: valuableState.month})) {
+    valuableState.day = getMaxDay({year: valuableState.year, month: valuableState.month});
   }
   return valuableState;
 };

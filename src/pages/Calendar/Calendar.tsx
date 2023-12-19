@@ -8,7 +8,8 @@ import MonthSelector from '../../components/calendar/MonthSelector/MonthSelector
 import CalendarTable from '../../components/calendar/CalendarTable/CalendarTable';
 import CalendarLoading from '../../components/effect/CalendarLoading';
 
-import { compileDateToCalendarDateProps, getThreeMonth } from '../../utills/calendar';
+import { compileDateToCalendarDateProps } from '../../api/calendar/compileToCalendarDateProps';
+import { getThreeMonth } from '../../api/calendar/getThreeMonth';
 
 const Calendar = () => {
   // state initalize

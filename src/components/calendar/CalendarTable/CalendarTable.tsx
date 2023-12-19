@@ -1,15 +1,13 @@
 import './calendarTable.css';
 import { CALENDAR_API } from '../../../constants/API';
-import {
-  getLastMonth,
-  getLastMonthDisplayDates,
-  getNextMonth,
-  getNextMonthDisplayDates,
-  compareIsToday,
-} from '../../../utills/calendar';
 import CalendarTableTH from '../CalendarTableTH/CalendarTableTH';
-import { CalendarDateProps, MonthArray } from '../../../types/calendar';
 import CalendarTableTD from '../CalendarTableTD/CalendarTableTD';
+import { CalendarDateProps, MonthArray } from '../../../types/calendar';
+import { compareIsToday } from '../../../api/calendar/compareIsToday';
+import { getLastMonth } from '../../../api/calendar/getLastMonth';
+import { getNextMonth } from '../../../api/calendar/getNextMonth';
+import { getLastMonthDisplayDates } from '../../../api/calendar/getLastMonthDisplayDates';
+import { getNextMonthDisplayDates } from '../../../api/calendar/getNextMonthDisplayDates';
 
 interface CalendarTableProps {
   date: CalendarDateProps;
