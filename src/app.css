@@ -1,13 +1,15 @@
 .App {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg2);
 }
 
 .stage {
+  background-color: var(--color-bg);
   position: relative;
   width: 100%;
   max-width: 602px;
   margin: auto;
   font-size: 10px;
+  min-height: 100vh;
 }

@@ -114,6 +114,7 @@ q:before {
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
   
   --color-bg: #FEFEFE;
+  --color-bg2: #F3F3F3;
   --color-default: black;
   --color-hover-default: #F3F3F3;
 
@@ -126,6 +127,7 @@ q:before {
 
 .darkmode {
   --color-bg: #121316;
+  --color-bg2: #393939;
   --color-default: white;
   --color-hover-default: #393939;
 }
