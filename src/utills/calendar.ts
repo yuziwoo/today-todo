@@ -9,8 +9,14 @@ import {
   RestDayInfosTypes,
 } from '../types/calendar';
 
-export const isSameDate = (a: CalendarDateProps, b: Date) =>
-  a.year === b.getFullYear() && a.month === b.getMonth() && a.day === b.getDate();
+const isSameDate = (a: CalendarDateProps, b: Date) => {
+  return a.year === b.getFullYear() && a.month === b.getMonth() && a.day === b.getDate();
+};
+
+export const compareIsToday = (a: CalendarDateProps) => {
+  const today = new Date();
+  return isSameDate({...a}, today);
+}
 
 export const getLastMonth = (givenYear: number, givenMonth: number): CalendarYearMonthProps => {
   const year = givenMonth === 0 ? givenYear - 1 : givenYear;
@@ -107,4 +113,43 @@ export const getThreeMonth = async (year: number, month: number): Promise<MonthA
   }
 
   return newThreeMonth;
+};
+
+const getStartDayOfWeek = ({ year, month }: CalendarYearMonthProps) => {
+  return new Date(year, month, 1).getDay();
+};
+
+interface getLastMonthDisplayDatesProps {
+  year: number;
+  month: number;
+  lastMonthArray: MonthArray;
+}
+interface getNextMonthDisplayDatesProps {
+  year: number;
+  month: number;
+  currentMonthArray: MonthArray;
+  nextMonthArray: MonthArray;
+}
+
+export const getLastMonthDisplayDates = ({
+  year,
+  month,
+  lastMonthArray,
+}: getLastMonthDisplayDatesProps): MonthArray => {
+  const startDayOfWeek = getStartDayOfWeek({ year, month });
+  return startDayOfWeek !== 0 ? lastMonthArray.slice(-startDayOfWeek) : [];
+};
+
+export const getNextMonthDisplayDates = ({
+  year,
+  month,
+  currentMonthArray,
+  nextMonthArray,
+}: getNextMonthDisplayDatesProps): MonthArray => {
+  const startDayOfWeek = getStartDayOfWeek({ year, month });
+  const nextMonthDisplayDatesLength = 7 - ((startDayOfWeek + currentMonthArray.length) % 7);
+  return nextMonthArray.slice(
+    0,
+    nextMonthDisplayDatesLength === 7 ? 0 : nextMonthDisplayDatesLength
+  );
 };

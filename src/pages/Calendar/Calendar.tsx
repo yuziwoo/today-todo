@@ -51,8 +51,8 @@ const Calendar = () => {
 
   const handleChangeDate = ({ year, month, day }: CalendarDateProps) => {
     if (targetDate.year !== year || targetDate.month !== month) {
+      reloadLoading();
     }
-    reloadLoading();
     dispatchDate({ type: 'change', year, month, day });
   };
 

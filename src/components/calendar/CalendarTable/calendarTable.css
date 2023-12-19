@@ -77,10 +77,8 @@
   padding-bottom: 1.4em;
 }
 
-.calendar .table .lastMonth .numberBox span,
-.calendar .table .nextMonth .numberBox span,
-.calendar .table .lastMonth .schedule,
-.calendar .table .nextMonth .schedule {
+.calendar .table .notCurrentMonth .numberBox span,
+.calendar .table .notCurrentMonth .schedule {
   opacity: 0.1;
 }
 
