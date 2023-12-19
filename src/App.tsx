@@ -8,6 +8,7 @@ import Calendar from './pages/Calendar/Calendar';
 import './common.css';
 import './app.css';
 import { importExistingValues } from './store/slice/todoSlice';
+import DayInfo from './components/calendar/DayInfo/DayInfo';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const App = () => {
     <div className={`App${darkMode ? ' darkmode' : ''}`}>
       <main className="stage">
         <Calendar />
+        <DayInfo />
         <p onClick={switchDarkMode}>{`${darkMode}`}</p>
       </main>
     </div>

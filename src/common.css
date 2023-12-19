@@ -117,10 +117,12 @@ q:before {
   --color-bg2: #F3F3F3;
   --color-default: black;
   --color-hover-default: #F3F3F3;
+  --color-box-bg: #D9D9D9;
 
   --color-red: #EB4B67;
   --color-blue: #4B6EEB;
   --color-today: #FF6A84;
+  --color-line: rgba(244, 107, 107, 0.3);
 
   --borderRadius-button: 0.7em;
 }
@@ -130,6 +132,7 @@ q:before {
   --color-bg2: #393939;
   --color-default: white;
   --color-hover-default: #393939;
+  --color-box-bg: #777777;
 }
 
 body {
