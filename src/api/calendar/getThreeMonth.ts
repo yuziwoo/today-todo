@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { monthInfoProps, monthInfoPropsWithTask } from '../../types/todo';
 import {
   MonthArray,
   CalendarYearMonthProps,
@@ -151,14 +152,13 @@ const getBasicTaskList = (year: number, month: number, tasks: TaskProps[]) => {
   return todoList;
 };
 
-const getDayRepeatTaskList = (
-  year: number,
-  month: number,
-  tasks: RepeatDayTaskProps[]
-): CompiledTaskProps[] => {
-  const lastDay = convertDateToNumber({ year, month, day: getMaxDay({ year, month }) });
-  const firstDay = convertDateToNumber({ year, month, day: 1 });
-
+const getDayRepeatTaskList = ({
+  year,
+  month,
+  firstDay,
+  lastDay,
+  tasks,
+}: monthInfoPropsWithTask<RepeatDayTaskProps[]>): CompiledTaskProps[] => {
   let todoList: CompiledTaskProps[] = [];
 
   tasks.forEach((task) => {
@@ -174,7 +174,7 @@ const getDayRepeatTaskList = (
       );
 
       while (date <= maxDate) {
-        const day = date % 100;
+        const day = date;
         currentTodoList.push({
           id: task.id,
           day,
@@ -190,31 +190,37 @@ const getDayRepeatTaskList = (
   return todoList;
 };
 
-const getWeekRepeatTaskList = (
-  year: number,
-  month: number,
-  tasks: RepeatWeekTaskProps[]
-): CompiledTaskProps[] => {
+const getWeekRepeatTaskList = ({
+  year,
+  month,
+  firstDay,
+  lastDay,
+  tasks,
+}: monthInfoPropsWithTask<RepeatWeekTaskProps[]>): CompiledTaskProps[] => {
   const todoList: CompiledTaskProps[] = [];
 
   return todoList;
 };
 
-const getMonthRepeatTaskList = (
-  year: number,
-  month: number,
-  tasks: RepeatMonthTaskProps[]
-): CompiledTaskProps[] => {
+const getMonthRepeatTaskList = ({
+  year,
+  month,
+  firstDay,
+  lastDay,
+  tasks,
+}: monthInfoPropsWithTask<RepeatMonthTaskProps[]>): CompiledTaskProps[] => {
   const todoList: CompiledTaskProps[] = [];
 
   return todoList;
 };
 
-const getYearRepeatTaskList = (
-  year: number,
-  month: number,
-  tasks: RepeatYearTaskProps[]
-): CompiledTaskProps[] => {
+const getYearRepeatTaskList = ({
+  year,
+  month,
+  firstDay,
+  lastDay,
+  tasks,
+}: monthInfoPropsWithTask<RepeatYearTaskProps[]>): CompiledTaskProps[] => {
   const todoList: CompiledTaskProps[] = [];
 
   return todoList;
@@ -225,16 +231,25 @@ const getTodoThisMonth = (
   targetMonth: number,
   todo: TasksProps
 ): CompiledTaskProps[] => {
+  const monthInfo: monthInfoProps = {
+    year: targetYear,
+    month: targetMonth,
+    firstDay: convertDateToNumber({ year: targetYear, month: targetMonth, day: 1 }),
+    lastDay: convertDateToNumber({
+      year: targetYear,
+      month: targetMonth,
+      day: getMaxDay({ year: targetYear, month: targetMonth }),
+    }),
+  };
   const basicTaskList = getBasicTaskList(targetYear, targetMonth, todo.tasks);
-  const dayRepeatTaskList = getDayRepeatTaskList(targetYear, targetMonth, todo.repeatTasks.day);
+  const dayRepeatTaskList = getDayRepeatTaskList({ ...monthInfo, tasks: todo.repeatTasks.day });
   // console.log(dayRepeatTaskList, todo.repeatTasks.day);
-  const weekRepeatTaskList = getWeekRepeatTaskList(targetYear, targetMonth, todo.repeatTasks.week);
-  const monthRepeatTaskList = getMonthRepeatTaskList(
-    targetYear,
-    targetMonth,
-    todo.repeatTasks.month
-  );
-  const yearRepeatTaskList = getYearRepeatTaskList(targetYear, targetMonth, todo.repeatTasks.year);
+  const weekRepeatTaskList = getWeekRepeatTaskList({ ...monthInfo, tasks: todo.repeatTasks.week });
+  const monthRepeatTaskList = getMonthRepeatTaskList({
+    ...monthInfo,
+    tasks: todo.repeatTasks.month,
+  });
+  const yearRepeatTaskList = getYearRepeatTaskList({ ...monthInfo, tasks: todo.repeatTasks.year });
   const todoList = [
     ...basicTaskList,
     ...dayRepeatTaskList,

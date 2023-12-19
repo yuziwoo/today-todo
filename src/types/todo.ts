@@ -32,3 +32,12 @@ export type TasksProps = {
     year: RepeatYearTaskProps[];
   };
 };
+
+export type monthInfoProps = {
+  year: number;
+  month: number;
+  firstDay: number;
+  lastDay: number;
+};
+
+export type monthInfoPropsWithTask<T> = monthInfoProps & { tasks: T };
