@@ -11,6 +11,7 @@ import {
   calcYearMonth,
   convertDateToNumber,
   convertToTwoDigitString,
+  getDayOfWeek,
   getMaxDay,
 } from '../../utills/calendar';
 import {
@@ -197,8 +198,37 @@ const getWeekRepeatTaskList = ({
   lastDay,
   tasks,
 }: monthInfoPropsWithTask<RepeatWeekTaskProps[]>): CompiledTaskProps[] => {
-  const todoList: CompiledTaskProps[] = [];
+  let todoList: CompiledTaskProps[] = [];
 
+  tasks.forEach((task) => {
+    // 시작일은 마지막날보다 작고, 종료일은 첫날보다 크거나 null이어야한다.
+    if (task.start <= lastDay && (task.end === null || task.end > firstDay)) {
+      // 데이터를 추가할 첫 날짜는 시작일과 첫날 중 큰 날짜로한다.
+      let date = Math.max(task.start, firstDay) % 100;
+      const maxDate = Math.min(task.end !== null ? task.end : lastDay, lastDay) % 100;
+
+      const currentTodoList: CompiledTaskProps[] = [];
+      const completeList = task.complete.filter(
+        (date) => date.year === year && date.month === month
+      );
+
+      while (date <= maxDate) {
+        const day = date;
+        const dayOfWeek = getDayOfWeek({ year, month, day });
+        if (task.repeat.includes(dayOfWeek)) {
+          currentTodoList.push({
+            id: task.id,
+            day,
+            workToDo: task.workToDo,
+            complete: completeList.findIndex((dateInfo) => dateInfo.day === day) >= 0,
+            repeat: true,
+          });
+        }
+        date += 1;
+      }
+      todoList = todoList.concat(currentTodoList);
+    }
+  });
   return todoList;
 };
 

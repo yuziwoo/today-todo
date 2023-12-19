@@ -24,7 +24,7 @@ export const tasks = {
         id: 1001,
         start: 20231119,
         end: 20231126,
-        workToDo: '책 읽기',
+        workToDo: '매일 책 읽기',
         complete: [
           {
             year: 2023,
