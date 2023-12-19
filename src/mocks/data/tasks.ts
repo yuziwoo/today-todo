@@ -67,7 +67,7 @@ export const tasks = {
         repeat: {
           day: 1,
         },
-        end: null,
+        end: 20241101,
         workToDo: '이번 달 계획 세우기',
         complete: [],
       },
@@ -80,7 +80,7 @@ export const tasks = {
           month: 11,
           day: 24,
         },
-        end: null,
+        end: 20261124,
         workToDo: '크리스마스 케익 준비하기',
         complete: [],
       },
