@@ -32,7 +32,9 @@ const Calendar = () => {
   }, [targetDate.month, targetDate.year]);
 
   const handleChangeDate = ({ year, month, day }: CalendarDateProps) => {
-    setLoading(true);
+    if (targetDate.year !== year || targetDate.month !== month) {
+      setLoading(true);
+    }
     dispatchDate({ type: 'change', year, month, day });
   };
 
