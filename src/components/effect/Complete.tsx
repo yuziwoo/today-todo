@@ -6,7 +6,7 @@ const Complete = () => {
       <Player
         autoplay
         loop
-        src="https://lottie.host/c07a75ea-9210-4683-97b8-3a48cf3c5f42/MXdfhSaAT8.json"
+        src="https://yuziwoo.github.io/today-todo/lottie/complete.json"
         style={{ height: '300px', width: '300px' }}
       >
       </Player>
