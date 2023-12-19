@@ -6,7 +6,7 @@ const CalendarLoading = () => {
       <Player
         autoplay
         loop
-        src="https://yuziwoo.github.io/today-todo/lottie/calendarLoading.json"
+        src="https://yuziwoo.github.io/today-todo/public/lottie/calendarLoading.json"
         style={{ height: '300px', width: '300px' }}
       >
       </Player>
