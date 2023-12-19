@@ -1,20 +1,19 @@
-import { CalendarDateState } from '../../../pages/Calendar/reducer/calendar-reducer';
 import { IconArrowLeft, IconArrowRight } from '../../icons/icons';
 import './monthSelector.css';
 import NumberRotate from '../NumberRotate/NumberRotate';
+import { CalendarDateProps } from '../../../types/calendar';
 
 type MonthSelectorType = {
-  darkmode: boolean;
-  date: CalendarDateState;
+  date: CalendarDateProps;
   onLastMonth: () => void;
   onNextMonth: () => void;
 };
 
 const getDigitNumber = (num: number, index: number): string => `${num}`[index];
 const getMonthTenDigitNumber = (month: number): number => (month >= 10 ? 1 : 0);
-const getMonthOneDigitNumber = (month: number): number => Math.floor(month % 10);
+const getMonthOneDigitNumber = (month: number): number => month % 10;
 
-const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelectorType) => {
+const MonthSelector = ({ date, onLastMonth, onNextMonth }: MonthSelectorType) => {
   return (
     <section className="month-selecter">
       <button className="year-month-label canHover">
@@ -22,6 +21,7 @@ const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelect
         <NumberRotate translate={getDigitNumber(date.year, 1)} />
         <NumberRotate translate={getDigitNumber(date.year, 2)} />
         <NumberRotate translate={getDigitNumber(date.year, 3)} />
+        <h1>.</h1>
         <NumberRotate translate={getMonthTenDigitNumber(date.month + 1)} />
         <NumberRotate translate={getMonthOneDigitNumber(date.month + 1)} />
       </button>
@@ -31,7 +31,7 @@ const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelect
           onLastMonth();
         }}
       >
-        <IconArrowLeft color={darkmode ? 'white' : 'black'} />
+        <IconArrowLeft color="black" />
       </button>
       <button
         className="next-month canHover"
@@ -39,7 +39,7 @@ const MonthSelector = ({ darkmode, date, onLastMonth, onNextMonth }: MonthSelect
           onNextMonth();
         }}
       >
-        <IconArrowRight color={darkmode ? 'white' : 'black'} />
+        <IconArrowRight color="black" />
       </button>
     </section>
   );

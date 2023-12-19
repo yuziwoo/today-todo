@@ -1,3 +1,4 @@
+import { CalendarDateProps } from './../../../types/calendar';
 import { CALENDAR_API } from '../../../constants/API';
 
 type Action =
@@ -14,15 +15,7 @@ type Action =
       type: 'changeToLastMonth';
     };
 
-export type CalendarDateState = {
-  year: number;
-  month: number;
-  day: number;
-}
-
-
-
-const isValuableDate = ({ year, month, day }: CalendarDateState): CalendarDateState => {
+const isValuableDate = ({ year, month, day }: CalendarDateProps): CalendarDateProps => {
   const valuableState = { year, month, day };
   if (year < CALENDAR_API.minYear) {
     valuableState.year = CALENDAR_API.minYear;
@@ -36,7 +29,7 @@ const isValuableDate = ({ year, month, day }: CalendarDateState): CalendarDateSt
   return valuableState;
 };
 
-const calendarReducer = (targetDate: CalendarDateState, action: Action): CalendarDateState => {
+const calendarReducer = (targetDate: CalendarDateProps, action: Action): CalendarDateProps => {
   switch (action.type) {
     case 'change': {
       const { year, month, day } = action;

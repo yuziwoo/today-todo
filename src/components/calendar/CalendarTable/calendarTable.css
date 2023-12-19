@@ -47,7 +47,8 @@
   color: var(--color-blue);
 }
 
-.calendar .table .restday .numberBox span {
+.calendar .table .restday .numberBox span,
+.calendar .table .restday:nth-child(7n) .numberBox span {
   color: var(--color-red);
 }
 
@@ -88,7 +89,7 @@
 }
 
 .calendar .table .today .numberBox span {
-  color: white!important;
+  color: white !important;
 }
 
 .calendar .table .td .numberBox::before {
@@ -101,7 +102,7 @@
   content: '';
   border: 0.21em solid var(--color-today);
   opacity: 0;
-  transition: all 0.3s;
+  transition: all 0.15s;
   box-sizing: border-box;
 }
 
@@ -111,4 +112,8 @@
 
 .calendar .table .today .numberBox::before {
   opacity: 1;
+}
+
+.calendar .table .today[class*='active'] .numberBox span {
+  text-decoration: underline;
 }

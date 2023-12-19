@@ -18,3 +18,12 @@
   position: relative;
   width: 1.4em;
 }
+
+.darkmode .calendar .month-selecter button svg path {
+  stroke: white;
+}
+
+.calendar .month-selecter .year-month-label h1 {
+  font-size: 3.78em;
+  font-weight: 700;
+}

@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div className={`App${darkMode ? ' darkmode' : ''}`}>
       <main className="stage">
-        <Calendar darkmode={darkMode}/>
+        <Calendar />
         <p onClick={switchDarkMode}>{`${darkMode}`}</p>
       </main>
     </div>
