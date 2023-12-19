@@ -37,32 +37,37 @@ const formatRestDayResponseToDayInfoObject = (restDayInfo: RestDayInfoTypes): Da
 const getRestDay = async ({ year, month }: CalendarYearMonthProps): Promise<DayInfoProps[]> => {
   // githubpages 이용을 위해 서비스키를 숨기지 않았습니다. 무단 사용을 금지합니다.
   const serviceKey = `vhiGSXX2IfjHqLKxhhwTnvEkr6r%2Blz7PiU%2BBnbHtTu5dQVP2q9e%2FKGzH67tsY0gZORKAYyQwmPd4T4AR5Yz0Aw%3D%3D`;
-  const restDaysArray = axios
-    .get(
-      `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&solMonth=${convertToTwoDigitString(
-        month
-      )}&_type=json&ServiceKey=${serviceKey}`
-    )
-    .then((res) => {
-      const restDayInfos: RestDayInfosTypes = res.data.response.body?.items.item;
-      const restDays: DayInfoProps[] = [];
 
-      if (Array.isArray(restDayInfos)) {
-        restDayInfos.forEach((restDayInfo) => {
-          restDays.push(formatRestDayResponseToDayInfoObject(restDayInfo));
-        });
-        return restDays;
-      }
+  // 테스트를 위해 API 통신 묵음처리
+  // const restDaysArray = axios
+  //   .get(
+  //     `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&solMonth=${convertToTwoDigitString(
+  //       month
+  //     )}&_type=json&ServiceKey=${serviceKey}`
+  //   )
+  //   .then((res) => {
+  //     const restDayInfos: RestDayInfosTypes = res.data.response.body?.items.item;
+  //     const restDays: DayInfoProps[] = [];
 
-      if (typeof restDayInfos !== 'undefined') {
-        restDays.push(formatRestDayResponseToDayInfoObject(restDayInfos));
-      }
+  //     if (Array.isArray(restDayInfos)) {
+  //       restDayInfos.forEach((restDayInfo) => {
+  //         restDays.push(formatRestDayResponseToDayInfoObject(restDayInfo));
+  //       });
+  //       return restDays;
+  //     }
 
-      return restDays;
-    })
-    .catch((e) => {
-      throw e;
-    });
+  //     if (typeof restDayInfos !== 'undefined') {
+  //       restDays.push(formatRestDayResponseToDayInfoObject(restDayInfos));
+  //     }
+
+  //     return restDays;
+  //   })
+  //   .catch((e) => {
+  //     throw e;
+  //   });
+
+  // 묵음 처리용 임시 선언
+  const restDaysArray: DayInfoProps[] = [];
   return restDaysArray;
 };
 
