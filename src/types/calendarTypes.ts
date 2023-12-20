@@ -21,6 +21,8 @@ type BasicOneDayData = {
   day: number;
 };
 
+export type BasicDateData = BasicMonthData & BasicOneDayData;
+
 export type RestDayData = BasicOneDayData & {
   restDay: null | boolean;
   dateName: null | string;
