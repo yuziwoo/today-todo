@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { tasks } from '../../mocks/data/tasks';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
 import { saveLocalStorage } from '../../api/todo/saveLocalStorage';
+import { Tasks } from '../../types/todo';
 
 export const todoSlice = createSlice({
   name: 'todo',

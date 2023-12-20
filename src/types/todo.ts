@@ -41,3 +41,42 @@ export type monthInfoProps = {
 };
 
 export type monthInfoPropsWithTask<T> = monthInfoProps & { tasks: T };
+
+// 여기부터 리뉴얼된 값 위에는 다 지우기
+export type Task = {
+  id: number;
+  year: number;
+  month: number;
+  day: number;
+  works: string;
+  complete: boolean;
+};
+
+export type DayRepeatTask = Pick<Task, 'id' | 'works'> & {
+  start: number;
+  end: null | number;
+  complete: Pick<Task, 'year' | 'month' | 'day'>[];
+};
+
+type RepeatTask<T> = DayRepeatTask & {
+  repeat: T;
+};
+
+export type WeekRepeatTask = RepeatTask<number[]>;
+export type MonthRepeatTask = RepeatTask<{ day: number }>;
+export type YearRepeatTask = RepeatTask<{ month: number; day: number }>;
+
+export type Tasks = {
+  initialId: number;
+  tasks: Task[];
+  repeatTasks: {
+    day: DayRepeatTask[];
+    week: WeekRepeatTask[];
+    month: MonthRepeatTask[];
+    year: YearRepeatTask[];
+  };
+};
+
+export type CompiledTask = Pick<Task, 'id' | 'day' | 'works' | 'complete'> & {
+  repeat: boolean;
+};

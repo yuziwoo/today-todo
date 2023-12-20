@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialCalendarData } from '../../mocks/data/calendar';
 import { setDefaultCalendarData } from '../../api/calendarAPI/setDefaultCalendarData';
-import { setCalendarData } from '../../api/calendarAPI/fetchCalendarData';
-import { CalendarDataType, RestDayData, RestDayPayloadData } from '../../types/calendarTypes';
+import { setCalendarData } from '../../api/calendarAPI/setCalendarData';
+import { CalendarDataType, RestDayPayloadData } from '../../types/calendarTypes';
 import { addRestDayData } from '../../api/calendarAPI/addRestDayData';
+import { addTodoData } from '../../api/calendarAPI/addTodoData';
 
 const handleSetCalendarDatas = (
   state: CalendarDataType[],
@@ -16,13 +17,13 @@ const handleSetCalendarDatas = (
 
   const defaultData = setDefaultCalendarData(currentMonth);
   const restDayFilledData = addRestDayData(defaultData, payload.data);
+  const finalData = addTodoData(restDayFilledData, payload.todo);
 };
 
 export const calendarSlice = createSlice({
   name: 'calendarData',
   initialState: initialCalendarData,
   reducers: {
-    setCalendarDatas: handleSetCalendarDatas,
   },
   extraReducers: (builder) => {
     builder.addCase(setCalendarData.pending, (state, action) => {});
@@ -35,5 +36,5 @@ export const calendarSlice = createSlice({
   },
 });
 
-export const { setCalendarDatas } = calendarSlice.actions;
+// export const { } = calendarSlice.actions;
 export default calendarSlice.reducer;

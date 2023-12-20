@@ -6,7 +6,7 @@ export const tasks = {
       year: 2023,
       month: 11,
       day: 30,
-      workToDo: '공부하기',
+      works: '공부하기',
       complete: false,
     },
     {
@@ -14,7 +14,7 @@ export const tasks = {
       year: 2023,
       month: 11,
       day: 30,
-      workToDo: '공부하기2',
+      works: '공부하기2',
       complete: true,
     },
   ],
@@ -24,7 +24,7 @@ export const tasks = {
         id: 1001,
         start: 20231119,
         end: 20231126,
-        workToDo: '매일 책 읽기',
+        works: '매일 책 읽기',
         complete: [
           {
             year: 2023,
@@ -45,7 +45,7 @@ export const tasks = {
         start: 20231119,
         repeat: [2, 4],
         end: 20231130,
-        workToDo: '도서관 가기',
+        works: '도서관 가기',
         complete: [
           {
             year: 2023,
@@ -68,7 +68,7 @@ export const tasks = {
           day: 1,
         },
         end: 20241101,
-        workToDo: '이번 달 계획 세우기',
+        works: '이번 달 계획 세우기',
         complete: [],
       },
     ],
@@ -81,7 +81,7 @@ export const tasks = {
           day: 24,
         },
         end: 20261124,
-        workToDo: '크리스마스 케익 준비하기',
+        works: '크리스마스 케익 준비하기',
         complete: [],
       },
     ],

@@ -1,3 +1,5 @@
+import { Tasks } from './todo';
+
 export type BasicMonthData = {
   year: number;
   month: number;
@@ -34,6 +36,7 @@ export type CalendarDataType = BasicMonthData & {
 
 export type RestDayPayloadData = BasicMonthData & {
   data: RestDayData[][];
+  todo: Tasks;
 };
 
 export type PublicRestDayData = {
