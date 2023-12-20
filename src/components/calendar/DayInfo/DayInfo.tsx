@@ -12,7 +12,7 @@ const DayInfo = ({ date, dateInfo }: DayInfoProps) => {
   return (
     <section className="dayInfo">
       <DayInfoHead date={date} dateInfo={dateInfo} />
-      <CalendarTodoList date={date} />
+      <CalendarTodoList date={date} todo={dateInfo?.todo} />
     </section>
   );
 };
