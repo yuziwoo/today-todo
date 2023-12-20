@@ -1,29 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const initialCalendar = [
-  {
-    day: 1,
-    restDay: null,
-    dateName: null,
-    todo: [
-      {
-        id: 0,
-        day: 1,
-        workToDo: 'sample',
-        complete: true,
-        repeat: false,
-      },
-    ],
-  },
-];
+import { initialCalendarData } from '../../mocks/data/calendar';
+import { setDefaultCalendarData } from '../../api/calendarAPI/setDefaultCalendarData';
 
 export const calendarSlice = createSlice({
   name: 'calendarData',
-  initialState: initialCalendar,
+  initialState: initialCalendarData,
   reducers: {
-    setCalendarData() {},
+    setCalendarDatas(state, { type, payload }) {
+      const currentMonth = {
+        year: payload.year,
+        month: payload.month,
+      };
+
+      const defaultData = setDefaultCalendarData(currentMonth);
+      console.log(defaultData);
+    },
   },
 });
 
-export const { setCalendarData } = calendarSlice.actions;
+export const { setCalendarDatas } = calendarSlice.actions;
 export default calendarSlice.reducer;
