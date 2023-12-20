@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { tasks } from '../../mocks/data/tasks';
-import { saveLocalStorage } from '../../api/todo/saveLocalStorage';
 
 export const todoSlice = createSlice({
   name: 'todo',
   initialState: tasks,
   reducers: {
-    importExistingValues: (state, action) => {
+    importExistingValues(state, action) {
       state = action.payload;
     },
-    toggleSingleTask: (state, action) => {
+    toggleSingleTask(state, action) {
       const toggle = !action.payload.task.complete;
       const index = state.tasks.findIndex((task) => task.id === action.payload.task.id);
       const newTask = { ...state.tasks[index], complete: toggle };
