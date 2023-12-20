@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './store/store';
+import { RootState, AppDispatch } from './store/store';
 import { toggleDarkMode, setDarkMode } from './store/slice/darkModeSlice';
 import Calendar from './pages/Calendar/Calendar';
 
@@ -9,10 +9,10 @@ import './app.css';
 import { setTodo } from './store/slice/todoSlice';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import { getMonthInfo } from './api/calendarAPI/getMonthInfo';
-import { setCalendarDatas } from './store/slice/calendarSlice';
+import { fetchCalendarData } from './api/calendarAPI/fetchCalendarData';
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const darkMode = useSelector((state: RootState) => state.darkMode.value);
   const todo = useSelector((state: RootState) => state.todo);
 
@@ -26,7 +26,7 @@ const App = () => {
 
     // 오늘 날짜로 달력을 초기 세팅
     const { year, month } = getMonthInfo(new Date());
-    dispatch(setCalendarDatas({ year, month }));
+    dispatch(fetchCalendarData({ year, month }));
 
     // eslint-disable-next-line
   }, []);
