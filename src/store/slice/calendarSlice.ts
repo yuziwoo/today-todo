@@ -2,21 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initialCalendarData } from '../../mocks/data/calendar';
 import { setDefaultCalendarData } from '../../api/calendarAPI/setDefaultCalendarData';
 import { fetchCalendarData } from '../../api/calendarAPI/fetchCalendarData';
-import { CalendarDataType, RestDayData } from '../../types/calendarTypes';
+import { CalendarDataType, RestDayData, RestDayPayloadData } from '../../types/calendarTypes';
+import { addRestDayData } from '../../api/calendarAPI/addRestDayData';
 
 const handleSetCalendarDatas = (
   state: CalendarDataType[],
-  {
-    type,
-    payload,
-  }: { type: string; payload: { year: number; month: number; data?: RestDayData[] } }
+  { type, payload }: { type: string; payload: RestDayPayloadData }
 ) => {
   const currentMonth = {
     year: payload.year,
     month: payload.month,
   };
-  console.log(payload);
+
   const defaultData = setDefaultCalendarData(currentMonth);
+  const restDayFilledData = addRestDayData(defaultData, payload.data);
 };
 
 export const calendarSlice = createSlice({

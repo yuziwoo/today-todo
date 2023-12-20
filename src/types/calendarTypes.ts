@@ -32,6 +32,10 @@ export type CalendarDataType = BasicMonthData & {
   datas: OneDayData[];
 };
 
+export type RestDayPayloadData = BasicMonthData & {
+  data: RestDayData[][];
+};
+
 export type PublicRestDayData = {
   dateKind: string;
   dateName: string;

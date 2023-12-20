@@ -18,7 +18,7 @@ const getDefaultCalendarData = ({ year, month }: BasicMonthData): CalendarDataTy
   return data;
 };
 
-export const setDefaultCalendarData = ({ year, month }: BasicMonthData): BasicMonthData[] => {
+export const setDefaultCalendarData = ({ year, month }: BasicMonthData): CalendarDataType[] => {
   const lastMonth = getDefaultCalendarData(calcLastMonth({ year, month }));
   const currentMonth = getDefaultCalendarData({ year, month });
   const NextMonth = getDefaultCalendarData(calcNextMonth({ year, month }));
