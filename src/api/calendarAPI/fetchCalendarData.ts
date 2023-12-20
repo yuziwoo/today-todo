@@ -4,7 +4,7 @@ import { BasicMonthData, RestDayData, RestDayPayloadData } from '../../types/cal
 import { calcLastMonth } from './calcLastMonth';
 import { calcNextMonth } from './calcNextMonth';
 
-export const fetchCalendarData = createAsyncThunk(
+export const setCalendarData = createAsyncThunk(
   'calendarSlice/fetchCalendarData',
   async ({ year, month }: BasicMonthData): Promise<RestDayPayloadData> => {
     // const lastMonthData = await getRestDayData(calcLastMonth({ year, month }));

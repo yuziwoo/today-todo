@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialCalendarData } from '../../mocks/data/calendar';
 import { setDefaultCalendarData } from '../../api/calendarAPI/setDefaultCalendarData';
-import { fetchCalendarData } from '../../api/calendarAPI/fetchCalendarData';
+import { setCalendarData } from '../../api/calendarAPI/fetchCalendarData';
 import { CalendarDataType, RestDayData, RestDayPayloadData } from '../../types/calendarTypes';
 import { addRestDayData } from '../../api/calendarAPI/addRestDayData';
 
@@ -25,11 +25,11 @@ export const calendarSlice = createSlice({
     setCalendarDatas: handleSetCalendarDatas,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchCalendarData.pending, (state, action) => {});
-    builder.addCase(fetchCalendarData.fulfilled, (state, action) => {
+    builder.addCase(setCalendarData.pending, (state, action) => {});
+    builder.addCase(setCalendarData.fulfilled, (state, action) => {
       handleSetCalendarDatas(state, { type: 'deep reset', payload: action.payload });
     });
-    builder.addCase(fetchCalendarData.rejected, (state, action) => {
+    builder.addCase(setCalendarData.rejected, (state, action) => {
       console.log('공휴일 API를 가져오는 과정에서 오류가 발생했습니다.');
     });
   },

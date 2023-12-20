@@ -9,12 +9,13 @@ import './app.css';
 import { setTodo } from './store/slice/todoSlice';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import { getMonthInfo } from './api/calendarAPI/getMonthInfo';
-import { fetchCalendarData } from './api/calendarAPI/fetchCalendarData';
+import { setCalendarData } from './api/calendarAPI/fetchCalendarData';
+import { TasksProps } from './types/todo';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const darkMode = useSelector((state: RootState) => state.darkMode.value);
-  const todo = useSelector((state: RootState) => state.todo);
+  const todo: TasksProps = useSelector((state: RootState) => state.todo);
 
   const switchDarkMode = () => {
     dispatch(toggleDarkMode());
@@ -26,7 +27,7 @@ const App = () => {
 
     // 오늘 날짜로 달력을 초기 세팅
     const { year, month } = getMonthInfo(new Date());
-    dispatch(fetchCalendarData({ year, month }));
+    dispatch(setCalendarData({ year, month }));
 
     // eslint-disable-next-line
   }, []);
