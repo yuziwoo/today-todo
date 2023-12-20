@@ -8,15 +8,30 @@ export const darkModeSlice = createSlice({
   },
   reducers: {
     toggleDarkMode: (state) => {
-      localStorage.setItem(LOCAL_STORAGE_KEY.darkmode, `${!state.value}`);
-      state.value = !state.value;
+      const newState = !state.value;
+
+      localStorage.setItem(LOCAL_STORAGE_KEY.darkmode, `${newState}`);
+      state.value = newState;
     },
-    darkModeOn: (state) => {
-      localStorage.setItem(LOCAL_STORAGE_KEY.darkmode, `true`);
-      state.value = true;
+
+    setDarkMode: (state) => {
+      switch (localStorage.getItem(LOCAL_STORAGE_KEY.darkmode)) {
+        case 'true': {
+          state.value = true;
+          break;
+        }
+        case 'false': {
+          state.value = false;
+          break;
+        }
+        default: {
+          state.value = false;
+          localStorage.setItem(LOCAL_STORAGE_KEY.darkmode, 'false');
+        }
+      }
     },
   },
 });
 
-export const { toggleDarkMode, darkModeOn } = darkModeSlice.actions;
+export const { toggleDarkMode, setDarkMode } = darkModeSlice.actions;
 export default darkModeSlice.reducer;
