@@ -1,7 +1,7 @@
 import './dayInfo.css';
 import DayInfoHead from '../DayInfoHead/DayInfoHead';
 import { CalendarDateProps, DateInfoProps } from '../../../types/calendar';
-import CalendarTodoList from '../CalendarTodoList/CalendarTodoList';
+import CalendarTodoList from '../CalendarTodoListUL/CalendarTodoListUL';
 
 interface DayInfoProps {
   date: CalendarDateProps;

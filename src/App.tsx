@@ -8,6 +8,7 @@ import Calendar from './pages/Calendar/Calendar';
 import './common.css';
 import './app.css';
 import { importExistingValues } from './store/slice/todoSlice';
+import { saveLocalStorage } from './api/todo/saveLocalStorage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,21 +34,21 @@ const App = () => {
 
     const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
     if (todoInStorage === null) {
-      localStorage.setItem(LOCAL_STORAGE_KEY.todo, JSON.stringify(todo));
+      saveLocalStorage(todo);
     }
 
     if (todoInStorage !== null) {
-      dispatch(importExistingValues(JSON.parse(todoInStorage)));
+      const parsedTodo = JSON.parse(todoInStorage);
+      dispatch(importExistingValues(parsedTodo));
+      console.log(parsedTodo.tasks[0].complete, 'outside');
     }
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
-    if (todoInStorage !== null) {
-      const todoList = JSON.parse(todoInStorage);
-    }
-  }, [todo]);
+  // useEffect(() => {
+  //   saveLocalStorage(todo);
+  //   console.log(todo.tasks[0].complete, 'update')
+  // }, [todo]);
 
   return (
     <div className={`App${darkMode ? ' darkmode' : ''}`}>

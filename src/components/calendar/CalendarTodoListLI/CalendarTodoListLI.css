@@ -1,4 +1,4 @@
-.todoList ul li {
+.todoListLI {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -6,7 +6,7 @@
   margin-bottom: 1rem;
 }
 
-.todoList ul li .label {
+.todoListLI .label {
   width: calc(100% - 5.74rem);
   max-width: calc(100% - 5.74rem);
   display: flex;
@@ -16,7 +16,7 @@
   border-radius: var(--borderRadius-button);
 }
 
-.todoList ul li .label .checkbox {
+.todoListLI .label .checkbox {
   width: 2.8em;
   height: 2.8em;
   border-radius: 0.7em;
@@ -28,29 +28,29 @@
   transition: opacity 0.3s;
 }
 
-.todoList ul li .label .checkbox svg {
+.todoListLI .label .checkbox svg {
   width: 80%;
   height: 80%;
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-.todoList ul li .label .workToDo {
+.todoListLI .label .workToDo {
   font-size: 2.52em;
   font-weight: 600;
   padding-left: 2.1rem;
 }
 
-.todoList ul li .label[class*='complete'] .workToDo {
+.todoListLI .label[class*='complete'] .workToDo {
   opacity: 0.3;
 }
 
-.todoList ul li .label[class*='complete'] .checkbox,
-.todoList ul li .label[class*='complete'] .checkbox svg {
+.todoListLI .label[class*='complete'] .checkbox,
+.todoListLI .label[class*='complete'] .checkbox svg {
   opacity: 1;
 }
 
-.todoList ul li .edit {
+.todoListLI .edit {
   padding: 1.4em;
   margin-left: 0.7em;
   display: flex;
@@ -59,13 +59,13 @@
   border-radius: var(--borderRadius-button);
 }
 
-.todoList ul li .edit .circleGroup {
+.todoListLI .edit .circleGroup {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.todoList ul li .edit .circleGroup .circle {
+.todoListLI .edit .circleGroup .circle {
   width: 0.56rem;
   height: 0.56rem;
   background-color: #bcbcbc;
@@ -74,6 +74,6 @@
   display: block;
 }
 
-.todoList ul li .edit .circleGroup .circle:last-child {
+.todoListLI .edit .circleGroup .circle:last-child {
   margin-right: 0;
 }
