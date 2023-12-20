@@ -1,13 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { tasks } from '../../mocks/data/tasks';
+import { LOCAL_STORAGE_KEY } from '../../constants/API';
+import { saveLocalStorage } from '../../api/todo/saveLocalStorage';
 
 export const todoSlice = createSlice({
   name: 'todo',
   initialState: tasks,
   reducers: {
-    importExistingValues(state, action) {
-      state = action.payload;
+    setTodo(state) {
+      const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
+
+      if (todoInStorage === null) {
+        saveLocalStorage(state);
+        return;
+      }
+
+      const parsedTodo = JSON.parse(todoInStorage);
+      state = parsedTodo;
     },
+
     toggleSingleTask(state, action) {
       const toggle = !action.payload.task.complete;
       const index = state.tasks.findIndex((task) => task.id === action.payload.task.id);
@@ -17,5 +28,5 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { importExistingValues, toggleSingleTask } = todoSlice.actions;
+export const { setTodo, toggleSingleTask } = todoSlice.actions;
 export default todoSlice.reducer;
