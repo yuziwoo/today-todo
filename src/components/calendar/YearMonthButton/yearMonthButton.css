@@ -1,0 +1,9 @@
+.year-month-button {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.year-month-button h1 {
+  font-size: 3.78rem;
+  font-weight: 700;
+}

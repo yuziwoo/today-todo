@@ -1,0 +1,46 @@
+.rotate-number {
+  position: relative;
+  overflow: hidden;
+}
+
+.rotate-number .wrapper {
+  position: relative;
+  transition: all 0.2s;
+}
+
+.rotate-number .wrapper h1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+}
+
+.rotate-number .wrapper h1:first-child {
+  position: relative;
+}
+
+.nine-zero .wrapper {
+  animation: nine-zeroRotate 0.2s 1 none;
+}
+
+.zero-nine .wrapper {
+  animation: zero-nineRotate 0.2s 1 none;
+}
+
+@keyframes nine-zeroRotate {
+  from {
+    transform: translateY(-900%);
+  }
+  to {
+    transform: translateY(-1000%);
+  }
+}
+
+@keyframes zero-nineRotate {
+  from {
+    transform: translateY(-1000%);
+  }
+  to {
+    transform: translateY(-900%);
+  }
+}

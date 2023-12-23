@@ -1,13 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getRestDayData } from './getRestDayData';
-import { BasicMonthData, RestDayData, RestDayPayloadData } from '../../types/calendarTypes';
+import { ChangeMonthProps, RestDayData, RestDayPayloadData } from '../../types/calendarTypes';
 import { calcLastMonth } from './calcLastMonth';
 import { calcNextMonth } from './calcNextMonth';
-import { Tasks } from '../../types/todo';
 
-type SetCalendarDataProps = BasicMonthData & {
-  todo: Tasks;
-};
+type SetCalendarDataProps = ChangeMonthProps;
 
 export const setCalendarData = createAsyncThunk(
   'calendarSlice/setCalendarData',

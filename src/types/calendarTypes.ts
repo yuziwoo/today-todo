@@ -10,6 +10,10 @@ export type DetailedMonthData = BasicMonthData & {
   maximumDate: number;
 };
 
+export type ChangeMonthProps = BasicMonthData & {
+  todo: Tasks;
+}
+
 export type BasicTodoData = {
   id: number;
   works: string;
