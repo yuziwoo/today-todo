@@ -14,6 +14,7 @@ const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const darkMode = useSelector((state: RootState) => state.darkMode.value);
   const todo = useSelector((state: RootState) => state.todo);
+  const calendar = useSelector((state: RootState) => state.calendarData);
 
   const switchDarkMode = () => {
     dispatch(toggleDarkMode());

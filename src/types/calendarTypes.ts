@@ -37,7 +37,7 @@ export type CalendarDataType = BasicMonthData & {
 };
 
 export type RestDayPayloadData = BasicMonthData & {
-  data: RestDayData[][];
+  restDayData: RestDayData[][];
   todo: Tasks;
 };
 

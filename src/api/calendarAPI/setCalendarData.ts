@@ -7,7 +7,7 @@ import { Tasks } from '../../types/todo';
 
 type SetCalendarDataProps = BasicMonthData & {
   todo: Tasks;
-}
+};
 
 export const setCalendarData = createAsyncThunk(
   'calendarSlice/setCalendarData',
@@ -17,7 +17,11 @@ export const setCalendarData = createAsyncThunk(
     // const nextMonthData = await getRestDayData(calcNextMonth({ year, month }));
 
     // const restDayData = [lastMonthData, currentMonthData, nextMonthData];
-    const restDayData: RestDayData[] = [{ day: 25, restDay: true, dateName: '기독탄신일' }];
-    return { year, month, data: [restDayData, restDayData, restDayData], todo };
+    const restDayData: RestDayData[][] = [
+      [{ day: 25, restDay: true, dateName: '기독탄신일' }],
+      [{ day: 25, restDay: true, dateName: '기독탄신일' }],
+      [{ day: 25, restDay: true, dateName: '기독탄신일' }],
+    ];
+    return { year, month, restDayData, todo };
   }
 );
