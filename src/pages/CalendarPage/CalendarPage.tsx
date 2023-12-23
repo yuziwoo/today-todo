@@ -6,6 +6,7 @@ import { getMonthInfo } from '../../api/calendarAPI/getMonthInfo';
 import { setCalendarData } from '../../api/calendarAPI/setCalendarData';
 import { setTodo } from '../../store/slice/todoSlice';
 import { ChangeMonthProps } from '../../types/calendarTypes';
+import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -40,6 +41,7 @@ const CalendarPage = () => {
         onChangeMonth={handleChangeMonth}
         todo={todo}
       />
+      <CalendarBody calendar={calendar} />
     </div>
   );
 };
