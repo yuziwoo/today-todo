@@ -9,7 +9,7 @@ export const addRestDayData = (
   for (let i = 0; i < restDayData.length; i++) {
     restDayData[i].forEach((data) => {
       const newObject = { ...newData[i].datas[data.day - 1], ...data };
-      newData[0].datas[data.day - 1] = newObject;
+      newData[i].datas[data.day - 1] = newObject;
     });
   }
   
