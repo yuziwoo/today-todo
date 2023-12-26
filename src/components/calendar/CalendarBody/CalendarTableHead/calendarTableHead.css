@@ -1,0 +1,28 @@
+.calendar-table .calendar-table-head {
+  width: 100%;
+  padding: 1.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-table .calendar-table-head .calendar-th {
+  width: 7.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-table .calendar-table-head .calendar-th span {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.54rem;
+}
+
+.calendar-table .calendar-table-head .calendar-th:first-child span {
+  color: var(--color-red);
+}
+
+.calendar-table .calendar-table-head .calendar-th:last-child span {
+  color: var(--color-blue);
+}

@@ -8,6 +8,7 @@ export type BasicMonthData = {
 export type DetailedMonthData = BasicMonthData & {
   day: number;
   maximumDate: number;
+  startDayOfWeek: number;
 };
 
 export type ChangeMonthProps = BasicMonthData & {

@@ -1,5 +1,5 @@
 import './yearMonthButton.css';
-import { BasicMonthData, CalendarDataType } from '../../../types/calendarTypes';
+import { BasicMonthData, CalendarDataType } from '../../../../types/calendarTypes';
 import RotateNumber from '../RotateNumber/RotateNumber';
 
 interface YearMonthButtonProps {

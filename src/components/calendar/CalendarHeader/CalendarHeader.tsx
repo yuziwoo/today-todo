@@ -1,6 +1,6 @@
 import './calendarHeader.css';
 
-import YearMonthButton from '../YearMonthButton/YearMonthButton';
+import YearMonthButton from './YearMonthButton/YearMonthButton';
 import { IconArrowLeft, IconArrowRight } from '../../icons/icons';
 import { BasicMonthData, CalendarDataType, ChangeMonthProps } from '../../../types/calendarTypes';
 import { Tasks } from '../../../types/todo';
