@@ -11,10 +11,12 @@ interface CalendarHeaderProps {
   calendar: CalendarDataType[];
   prevMonth: BasicMonthData;
   onChangeMonth: ({ year, month, todo }: ChangeMonthProps) => void;
+  onChangeToNextMonth: ({ year, month, todo }: ChangeMonthProps) => void;
+  onChangeToLastMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   todo: Tasks;
 }
 
-const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, todo }: CalendarHeaderProps) => {
+const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, onChangeToNextMonth, onChangeToLastMonth, todo }: CalendarHeaderProps) => {
   const { year, month } = calendar[1];
   
   return (
@@ -25,7 +27,7 @@ const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, todo }: CalendarHe
         className="last-month-button arrow-button canHover"
         onClick={() => {
           const lastMonth = calcLastMonth({ year, month });
-          onChangeMonth({ year: lastMonth.year, month: lastMonth.month, todo });
+          onChangeToLastMonth({ year: lastMonth.year, month: lastMonth.month, todo });
         }}
       >
         <IconArrowLeft color="black" />
@@ -35,7 +37,7 @@ const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, todo }: CalendarHe
         className="next-month-button arrow-button canHover"
         onClick={() => {
           const nextMonth = calcNextMonth({ year, month });
-          onChangeMonth({ year: nextMonth.year, month: nextMonth.month, todo });
+          onChangeToNextMonth({ year: nextMonth.year, month: nextMonth.month, todo });
         }}
       >
         <IconArrowRight color="black" />

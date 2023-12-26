@@ -46,6 +46,11 @@ export type RestDayPayloadData = BasicMonthData & {
   todo: Tasks;
 };
 
+export type RestDayOneMonthPayloadData = BasicMonthData & {
+  restDayData: RestDayData[];
+  todo: Tasks;
+};
+
 export type PublicRestDayData = {
   dateKind: string;
   dateName: string;

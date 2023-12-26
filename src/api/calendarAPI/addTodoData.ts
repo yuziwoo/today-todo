@@ -191,6 +191,13 @@ const setTodoData = (data: CalendarDataType, todo: Tasks): CalendarDataType => {
   return newData;
 };
 
+export const addOneMonthTodoData = (datas: CalendarDataType, todo: Tasks): CalendarDataType => {
+  const restoredData = restoreTodoData(datas);
+  const newData = setTodoData(restoredData, todo);
+
+  return newData;
+};
+
 export const addTodoData = (datas: CalendarDataType[], todo: Tasks): CalendarDataType[] => {
   const restoredDatas = datas.map((data) => restoreTodoData(data));
   const newDatas = restoredDatas.map((data) => setTodoData(data, todo));

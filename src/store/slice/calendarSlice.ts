@@ -1,10 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, original } from '@reduxjs/toolkit';
 import { initialCalendarData } from '../../mocks/data/calendar';
-import { setDefaultCalendarData } from '../../api/calendarAPI/setDefaultCalendarData';
-import { setCalendarData } from '../../api/calendarAPI/setCalendarData';
-import { CalendarDataType, RestDayPayloadData } from '../../types/calendarTypes';
-import { addRestDayData } from '../../api/calendarAPI/addRestDayData';
-import { addTodoData } from '../../api/calendarAPI/addTodoData';
+import {
+  getDefaultCalendarData,
+  setDefaultCalendarData,
+} from '../../api/calendarAPI/setDefaultCalendarData';
+import {
+  setCalendarData,
+  setLastMonthCalendarData,
+  setNextMonthCalendarData,
+} from '../../api/calendarAPI/setCalendarData';
+import {
+  CalendarDataType,
+  RestDayPayloadData,
+  RestDayOneMonthPayloadData,
+} from '../../types/calendarTypes';
+import { addOneRestDayData, addRestDayData } from '../../api/calendarAPI/addRestDayData';
+import { addOneMonthTodoData, addTodoData } from '../../api/calendarAPI/addTodoData';
 
 const handleSetCalendarDatas = ({
   type,
@@ -12,7 +23,7 @@ const handleSetCalendarDatas = ({
 }: {
   type: string;
   payload: RestDayPayloadData;
-}) => {
+}): CalendarDataType[] => {
   const currentMonth = {
     year: payload.year,
     month: payload.month,
@@ -24,18 +35,72 @@ const handleSetCalendarDatas = ({
   return finalData;
 };
 
+const handleSetNextMonthCalendarData = ({
+  type,
+  payload,
+  prevState,
+}: {
+  type: string;
+  payload: RestDayOneMonthPayloadData;
+  prevState: CalendarDataType[];
+}): CalendarDataType[] => {
+  const newState = prevState.slice(-2);
+
+  const defaultData = getDefaultCalendarData({ year: payload.year, month: payload.month });
+  const restDayFilledData = addOneRestDayData(defaultData, payload.restDayData);
+  const finalData = addOneMonthTodoData(restDayFilledData, payload.todo);
+  return [...newState, finalData];
+};
+
+const handleSetLastMonthCalendarData = ({
+  type,
+  payload,
+  prevState,
+}: {
+  type: string;
+  payload: RestDayOneMonthPayloadData;
+  prevState: CalendarDataType[];
+}): CalendarDataType[] => {
+  const newState = prevState.slice(0, 2);
+
+  const defaultData = getDefaultCalendarData({ year: payload.year, month: payload.month });
+  const restDayFilledData = addOneRestDayData(defaultData, payload.restDayData);
+  const finalData = addOneMonthTodoData(restDayFilledData, payload.todo);
+  return [finalData, ...newState];
+};
+
 export const calendarSlice = createSlice({
   name: 'calendarData',
   initialState: initialCalendarData,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(setCalendarData.pending, (state, action) => {});
+    // builder.addCase(setCalendarData.pending, (state, action) => {});
     builder.addCase(setCalendarData.fulfilled, (state, action) => {
       state = handleSetCalendarDatas({ type: 'deep reset', payload: action.payload });
       return state;
     });
     builder.addCase(setCalendarData.rejected, (state, action) => {
       console.log('공휴일 API를 가져오는 과정에서 오류가 발생했습니다.');
+    });
+
+    builder.addCase(setNextMonthCalendarData.fulfilled, (state, action) => {
+      const prevState = JSON.parse(JSON.stringify(state));
+      state = handleSetNextMonthCalendarData({
+        type: 'deep reset',
+        payload: action.payload,
+        prevState,
+      });
+      return state;
+    });
+
+    builder.addCase(setLastMonthCalendarData.fulfilled, (state, action) => {
+      const prevState = JSON.parse(JSON.stringify(state));
+      state = handleSetLastMonthCalendarData({
+        type: 'deep reset',
+        payload: action.payload,
+        prevState,
+      });
+      return state;
     });
   },
 });

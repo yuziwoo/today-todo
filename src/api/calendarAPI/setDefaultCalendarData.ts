@@ -3,7 +3,7 @@ import { getMaximumDate } from '../../utills/calendarUtils';
 import { calcLastMonth } from './calcLastMonth';
 import { calcNextMonth } from './calcNextMonth';
 
-const getDefaultCalendarData = ({ year, month }: BasicMonthData): CalendarDataType => {
+export const getDefaultCalendarData = ({ year, month }: BasicMonthData): CalendarDataType => {
   const maximumDate = getMaximumDate({ year, month });
   const data = {
     year,

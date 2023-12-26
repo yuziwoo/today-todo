@@ -3,7 +3,7 @@ import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHea
 import { RootState, AppDispatch } from '../../store/store';
 import { useEffect, useState } from 'react';
 import { getMonthInfo } from '../../api/calendarAPI/getMonthInfo';
-import { setCalendarData } from '../../api/calendarAPI/setCalendarData';
+import { setCalendarData, setLastMonthCalendarData, setNextMonthCalendarData } from '../../api/calendarAPI/setCalendarData';
 import { setTodo } from '../../store/slice/todoSlice';
 import { ChangeMonthProps } from '../../types/calendarTypes';
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
@@ -30,6 +30,16 @@ const CalendarPage = () => {
     setCurrentDay(1);
   };
 
+  const handleChangeToNextMonth = ({ year, month, todo }: ChangeMonthProps) => {
+    dispatch(setNextMonthCalendarData({ year, month, todo }));
+    setCurrentDay(1);
+  };
+
+  const handleChangeToLastMonth = ({ year, month, todo }: ChangeMonthProps) => {
+    dispatch(setLastMonthCalendarData({ year, month, todo }));
+    setCurrentDay(1);
+  };
+
   // 어플리케이션 기본값 세팅
   useEffect(() => {
     dispatch(setTodo());
@@ -50,6 +60,8 @@ const CalendarPage = () => {
         calendar={calendar}
         prevMonth={prevMonth}
         onChangeMonth={handleChangeMonth}
+        onChangeToLastMonth={handleChangeToLastMonth}
+        onChangeToNextMonth={handleChangeToNextMonth}
         todo={todo}
       />
       <CalendarBody calendar={calendar} />
