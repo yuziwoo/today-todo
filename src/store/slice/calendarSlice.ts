@@ -1,4 +1,4 @@
-import { createSlice, original } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { initialCalendarData } from '../../mocks/data/calendar';
 import {
   getDefaultCalendarData,

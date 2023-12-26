@@ -3,7 +3,11 @@ import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHea
 import { RootState, AppDispatch } from '../../store/store';
 import { useEffect, useState } from 'react';
 import { getMonthInfo } from '../../api/calendarAPI/getMonthInfo';
-import { setCalendarData, setLastMonthCalendarData, setNextMonthCalendarData } from '../../api/calendarAPI/setCalendarData';
+import {
+  setCalendarData,
+  setLastMonthCalendarData,
+  setNextMonthCalendarData,
+} from '../../api/calendarAPI/setCalendarData';
 import { setTodo } from '../../store/slice/todoSlice';
 import { ChangeMonthProps } from '../../types/calendarTypes';
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
@@ -64,7 +68,12 @@ const CalendarPage = () => {
         onChangeToNextMonth={handleChangeToNextMonth}
         todo={todo}
       />
-      <CalendarBody calendar={calendar} />
+      <CalendarBody
+        calendar={calendar}
+        onChangeToLastMonth={handleChangeToLastMonth}
+        onChangeToNextMonth={handleChangeToNextMonth}
+        setCurrentDay={setCurrentDay}
+      />
       <CalendarDayInfo data={currentDayData} />
     </div>
   );
