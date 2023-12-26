@@ -4,7 +4,7 @@ import RotateNumber from '../RotateNumber/RotateNumber';
 
 interface YearMonthButtonProps {
   calendar: CalendarDataType[];
-  prevDate: BasicMonthData;
+  prevMonth: BasicMonthData;
 }
 
 const getYearDigits = (year: number): number[] => {
@@ -22,14 +22,14 @@ const getMonthDigits = (monthIndex: number): number[] => {
   return [digitTen, digitOne];
 };
 
-const YearMonthButton = ({ calendar, prevDate }: YearMonthButtonProps) => {
+const YearMonthButton = ({ calendar, prevMonth }: YearMonthButtonProps) => {
   const { year, month } = calendar[1];
 
   const yearDigits = getYearDigits(year);
-  const prevYearDigits = getYearDigits(prevDate.year);
+  const prevYearDigits = getYearDigits(prevMonth.year);
 
   const monthDigits = getMonthDigits(month);
-  const prevMonthDigits = getMonthDigits(prevDate.month);
+  const prevMonthDigits = getMonthDigits(prevMonth.month);
 
   return (
     <button className="year-month-button canHover">

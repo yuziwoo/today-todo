@@ -11,7 +11,7 @@ import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const calendar = useSelector((state: RootState) => state.calendarData);
-  const [prevDate, setPrevDate] = useState({ year: 0, month: 0 });
+  const [prevMonth, setPrevMonth] = useState({ year: 0, month: 0 });
   const todo = useSelector((state: RootState) => state.todo);
 
   const handleChangeMonth = ({ year, month, todo }: ChangeMonthProps) => {
@@ -29,7 +29,7 @@ const CalendarPage = () => {
 
   useEffect(() => {
     return () => {
-      setPrevDate({ year: calendar[1].year, month: calendar[1].month });
+      setPrevMonth({ year: calendar[1].year, month: calendar[1].month });
     };
   }, [calendar]);
 
@@ -37,7 +37,7 @@ const CalendarPage = () => {
     <div className="calendar">
       <CalendarHeader
         calendar={calendar}
-        prevDate={prevDate}
+        prevMonth={prevMonth}
         onChangeMonth={handleChangeMonth}
         todo={todo}
       />

@@ -9,17 +9,17 @@ import { calcNextMonth } from '../../../api/calendarAPI/calcNextMonth';
 
 interface CalendarHeaderProps {
   calendar: CalendarDataType[];
-  prevDate: BasicMonthData;
+  prevMonth: BasicMonthData;
   onChangeMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   todo: Tasks;
 }
 
-const CalendarHeader = ({ calendar, prevDate, onChangeMonth, todo }: CalendarHeaderProps) => {
+const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, todo }: CalendarHeaderProps) => {
   const { year, month } = calendar[1];
   
   return (
     <section className="calendar-header">
-      <YearMonthButton calendar={calendar} prevDate={prevDate} />
+      <YearMonthButton calendar={calendar} prevMonth={prevMonth} />
 
       <button
         className="last-month-button arrow-button canHover"
