@@ -6,6 +6,7 @@ interface CalendarBodyProps {
   onChangeToNextMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   onChangeToLastMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   setCurrentDay: (day: number) => void;
+  currentDay: number;
 }
 
 const CalendarBody = ({
@@ -13,6 +14,7 @@ const CalendarBody = ({
   onChangeToNextMonth,
   onChangeToLastMonth,
   setCurrentDay,
+  currentDay,
 }: CalendarBodyProps) => {
   return (
     <section className="calendar-body">
@@ -21,6 +23,7 @@ const CalendarBody = ({
         onChangeToLastMonth={onChangeToLastMonth}
         onChangeToNextMonth={onChangeToNextMonth}
         setCurrentDay={setCurrentDay}
+        currentDay={currentDay}
       />
     </section>
   );

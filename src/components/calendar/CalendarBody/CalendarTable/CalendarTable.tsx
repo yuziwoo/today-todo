@@ -5,12 +5,14 @@ import CalendarTableHead from '../CalendarTableHead/CalendarTableHead';
 import CalendarTableCell from '../CalendarTableCell/CalendarTableCell';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
+import { isToday } from '../../../../utills/calendarUtils';
 
 interface CalendarTableProps {
   calendar: CalendarDataType[];
   onChangeToNextMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   onChangeToLastMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   setCurrentDay: (day: number) => void;
+  currentDay: number;
 }
 
 const CalendarTable = ({
@@ -18,6 +20,7 @@ const CalendarTable = ({
   onChangeToNextMonth,
   onChangeToLastMonth,
   setCurrentDay,
+  currentDay,
 }: CalendarTableProps) => {
   const startDayOfWeek = new Date(calendar[1].year, calendar[1].month, 1).getDay();
   const lastMonth = startDayOfWeek > 0 ? calendar[0].datas.slice(-startDayOfWeek) : [];
@@ -48,6 +51,8 @@ const CalendarTable = ({
             restDay={restDay}
             todo={todo}
             isCurrentMonth={false}
+            isCurrentDay={false}
+            isToday={false}
             onClickTable={lastMonthClickHandler}
           />
         ))}
@@ -58,6 +63,8 @@ const CalendarTable = ({
             restDay={restDay}
             todo={todo}
             isCurrentMonth={true}
+            isCurrentDay={day === currentDay}
+            isToday={isToday({ year: calendar[1].year, month: calendar[1].month, day: day })}
             onClickTable={setCurrentDay}
           />
         ))}
@@ -68,6 +75,8 @@ const CalendarTable = ({
             restDay={restDay}
             todo={todo}
             isCurrentMonth={false}
+            isCurrentDay={false}
+            isToday={false}
             onClickTable={nextMonthClickHandler}
           />
         ))}

@@ -20,3 +20,10 @@ export const calcDday = ({ year, month, day }: BasicDateData): number => {
 
   return dday;
 };
+
+export const isToday = ({ year, month, day }: BasicDateData): boolean => {
+  const today = new Date();
+  let isSame =
+    today.getFullYear() === year && today.getMonth() === month && today.getDate() === day;
+  return isSame
+};

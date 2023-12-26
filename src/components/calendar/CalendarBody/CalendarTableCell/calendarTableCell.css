@@ -29,13 +29,46 @@
 
 .calendar-table-cell button .date {
   border-radius: 50%;
-  width: 5.2rem;
-  height: 5.2rem;
+  width: 5rem;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 0.5rem;
-  /* background-color: pink; */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.calendar-table-cell button .date::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  content: '';
+  border: 0.21em solid var(--color-today);
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.15s;
+  box-sizing: border-box;
+}
+
+.calendar-table-cell[class*='today'] button .date {
+  background-color: var(--color-today);
+}
+
+.calendar-table-cell[class*='today'] button .date::before {
+  border: 0.21em solid var(--color-currentDay);
+}
+
+.calendar-table-cell[class*='today'] button .date span {
+  color: white;
+}
+
+.calendar-table-cell[class*='current-day'] button .date::before {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .calendar-table-cell button .date span {

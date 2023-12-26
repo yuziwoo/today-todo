@@ -116,12 +116,14 @@ q:before {
   --color-bg: #FEFEFE;
   --color-bg2: #F3F3F3;
   --color-default: black;
+  --color-reverse: white;
   --color-hover-default: #FFEEEE;
   --color-box-bg: #D9D9D9;
 
   --color-red: #EB4B67;
   --color-blue: #4B6EEB;
   --color-today: #FF6A84;
+  --color-currentDay: #6D0016;
   --color-checkbox: #F46B6B;
   --color-line: rgba(244, 107, 107, 0.3);
 
@@ -132,8 +134,10 @@ q:before {
   --color-bg: #121316;
   --color-bg2: #393939;
   --color-default: white;
+  --color-reverse: black;
   --color-hover-default: #724A4A;
   --color-box-bg: #777777;
+  --color-currentDay: #FBCFD8;
 }
 
 body {

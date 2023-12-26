@@ -73,6 +73,7 @@ const CalendarPage = () => {
         onChangeToLastMonth={handleChangeToLastMonth}
         onChangeToNextMonth={handleChangeToNextMonth}
         setCurrentDay={setCurrentDay}
+        currentDay={currentDay}
       />
       <CalendarDayInfo data={currentDayData} />
     </div>

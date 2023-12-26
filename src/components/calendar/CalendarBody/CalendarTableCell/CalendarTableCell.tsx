@@ -6,6 +6,8 @@ interface CalendarTableCellProps {
   restDay: null | boolean;
   todo: BasicTodoData[];
   isCurrentMonth: boolean;
+  isCurrentDay: boolean;
+  isToday: boolean;
   onClickTable: (day: number) => void;
 }
 
@@ -14,6 +16,8 @@ const CalendarTableCell = ({
   restDay,
   todo,
   isCurrentMonth,
+  isCurrentDay,
+  isToday,
   onClickTable,
 }: CalendarTableCellProps) => {
   const completeTask = todo.filter((task) => task?.complete === true);
@@ -21,13 +25,12 @@ const CalendarTableCell = ({
   const onClickHandler = () => {
     onClickTable(day);
   };
+  const className = `calendar-table-cell${isCurrentMonth ? ' current-month' : ''}${
+    restDay === true ? ' restday' : ''
+  }${isCurrentDay ? ' current-day' : ''}${isToday ? ' today' : ''}`;
 
   return (
-    <div
-      className={`calendar-table-cell${isCurrentMonth ? ' current-month' : ''}${
-        restDay === true ? ' restday' : ''
-      }`}
-    >
+    <div className={className}>
       <button className="canHover" onClick={onClickHandler}>
         <div className="date">
           <span>{day}</span>
