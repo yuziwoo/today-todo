@@ -21,6 +21,6 @@
   width: 1.4rem;
 }
 
-.darkmode .calendar-header .arrow-button svg {
+.darkmode .calendar-header .arrow-button svg path {
   stroke: white;
 }

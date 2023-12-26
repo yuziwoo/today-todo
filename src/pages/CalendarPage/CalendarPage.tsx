@@ -7,21 +7,32 @@ import { setCalendarData } from '../../api/calendarAPI/setCalendarData';
 import { setTodo } from '../../store/slice/todoSlice';
 import { ChangeMonthProps } from '../../types/calendarTypes';
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
+import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const calendar = useSelector((state: RootState) => state.calendarData);
-  const [prevMonth, setPrevMonth] = useState({ year: 0, month: 0 });
   const todo = useSelector((state: RootState) => state.todo);
+
+  // target month 전후로 한 달씩 총 3달의 달력 정보를 저장한다.
+  const calendar = useSelector((state: RootState) => state.calendarData);
+
+  // CalendarHeader의 자연스러운 rotateNumber 이펙트를 위해 prevMonth 데이터를 사용
+  const [prevMonth, setPrevMonth] = useState({ year: 0, month: 0 });
+  const [currentDay, setCurrentDay] = useState(new Date().getDate());
+  const currentDayData = {
+    ...calendar[1].datas[currentDay - 1],
+    year: calendar[1].year,
+    month: calendar[1].month,
+  };
 
   const handleChangeMonth = ({ year, month, todo }: ChangeMonthProps) => {
     dispatch(setCalendarData({ year, month, todo }));
+    setCurrentDay(1);
   };
 
+  // 어플리케이션 기본값 세팅
   useEffect(() => {
     dispatch(setTodo());
-
-    // 오늘 날짜로 달력을 초기 세팅
     const { year, month } = getMonthInfo(new Date());
     dispatch(setCalendarData({ year, month, todo }));
     // eslint-disable-next-line
@@ -42,6 +53,7 @@ const CalendarPage = () => {
         todo={todo}
       />
       <CalendarBody calendar={calendar} />
+      <CalendarDayInfo data={currentDayData} />
     </div>
   );
 };

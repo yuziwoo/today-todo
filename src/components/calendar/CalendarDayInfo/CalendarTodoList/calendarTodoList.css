@@ -1,0 +1,90 @@
+.todo-list {
+  width: 100%;
+}
+
+.todo-list li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.todo-list li:first-child {
+  margin-top: 0;
+}
+
+.todo-list li .task {
+  padding: 1.4rem;
+  width: calc(100% - 5.7rem);
+  max-width: calc(100% - 5.7rem);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: var(--borderRadius-button);
+  box-sizing: border-box;
+}
+
+.todo-list li .task .checkbox {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-checkbox);
+  border-radius: var(--borderRadius-button);
+  opacity: 0.3;
+}
+
+.todo-list li .task .checkbox svg {
+  width: 80%;
+  height: 80%;
+  opacity: 0;
+}
+
+.todo-list li .task[class*='complete'] .checkbox,
+.todo-list li .task[class*='complete'] .checkbox svg {
+  opacity: 1;
+}
+
+.todo-list li .task p {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-left: 1.4rem;
+  width: 90%;
+  text-align: left;
+}
+
+.todo-list li .task[class*='complete'] p {
+  opacity: 0.3;
+}
+
+.todo-list li .edit {
+  border-radius: var(--borderRadius-button);
+  width: 5rem;
+  height: 6.3rem;
+  min-height: 100%;
+  padding: 2.1rem 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list li .edit .circle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-list li .edit .circle span {
+  width: 0.56rem;
+  height: 0.56rem;
+  border-radius: 50%;
+  background-color: #BCBCBC;
+  display: block;
+  margin-right: 0.21rem;
+}
+
+.todo-list li .edit .circle span:last-child {
+  margin-right: 0;
+}
