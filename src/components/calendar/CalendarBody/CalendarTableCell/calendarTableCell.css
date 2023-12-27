@@ -58,10 +58,6 @@
   background-color: var(--color-today);
 }
 
-.calendar-table-cell[class*='today'] button .date::before {
-  border: 0.21em solid var(--color-currentDay);
-}
-
 .calendar-table-cell[class*='today'] button .date span {
   color: white;
 }
@@ -69,6 +65,11 @@
 .calendar-table-cell[class*='current-day'] button .date::before {
   opacity: 1;
   transform: scale(1);
+}
+
+.calendar-table-cell[class*='today'] button .date::before {
+  border: 0.21em solid white;
+  transform: scale(0.9);
 }
 
 .calendar-table-cell button .date span {
