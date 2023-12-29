@@ -1,6 +1,8 @@
 .year-month-button {
   display: flex;
   justify-content: flex-start;
+  position: relative;
+  z-index: 10;
 }
 
 .year-month-button h1 {

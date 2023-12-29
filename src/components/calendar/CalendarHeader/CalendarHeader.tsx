@@ -16,9 +16,16 @@ interface CalendarHeaderProps {
   todo: Tasks;
 }
 
-const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, onChangeToNextMonth, onChangeToLastMonth, todo }: CalendarHeaderProps) => {
+const CalendarHeader = ({
+  calendar,
+  prevMonth,
+  onChangeMonth,
+  onChangeToNextMonth,
+  onChangeToLastMonth,
+  todo,
+}: CalendarHeaderProps) => {
   const { year, month } = calendar[1];
-  
+
   return (
     <section className="calendar-header">
       <YearMonthButton calendar={calendar} prevMonth={prevMonth} />
@@ -26,8 +33,7 @@ const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, onChangeToNextMont
       <button
         className="last-month-button arrow-button canHover"
         onClick={() => {
-          const lastMonth = calcLastMonth({ year, month });
-          onChangeToLastMonth({ year: lastMonth.year, month: lastMonth.month, todo });
+          onChangeToLastMonth({ ...calcLastMonth({ year, month }), todo });
         }}
       >
         <IconArrowLeft color="black" />
@@ -36,8 +42,7 @@ const CalendarHeader = ({ calendar, prevMonth, onChangeMonth, onChangeToNextMont
       <button
         className="next-month-button arrow-button canHover"
         onClick={() => {
-          const nextMonth = calcNextMonth({ year, month });
-          onChangeToNextMonth({ year: nextMonth.year, month: nextMonth.month, todo });
+          onChangeToNextMonth({ ...calcNextMonth({ year, month }), todo });
         }}
       >
         <IconArrowRight color="black" />

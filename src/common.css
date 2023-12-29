@@ -110,6 +110,8 @@ q:before {
 
 /* only for this app */
 :root {
+  --zIndex-header: 200;
+
   --transition-hover-default: opacity 0.2s;
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
   

@@ -1,26 +1,12 @@
 import './yearMonthButton.css';
 import { BasicMonthData, CalendarDataType } from '../../../../types/calendarTypes';
 import RotateNumber from '../RotateNumber/RotateNumber';
+import { getMonthDigits, getYearDigits } from '../../../../api/calendarAPI/getDateDigits';
 
 interface YearMonthButtonProps {
   calendar: CalendarDataType[];
   prevMonth: BasicMonthData;
 }
-
-const getYearDigits = (year: number): number[] => {
-  const digitThousand = Math.floor(year / 1000);
-  const digitHundred = Math.floor((year % 1000) / 100);
-  const digitTen = Math.floor((year % 100) / 10);
-  const digitOne = year % 10;
-  return [digitThousand, digitHundred, digitTen, digitOne];
-};
-
-const getMonthDigits = (monthIndex: number): number[] => {
-  const month = monthIndex + 1;
-  const digitTen = Math.floor(month / 10);
-  const digitOne = month % 10;
-  return [digitTen, digitOne];
-};
 
 const YearMonthButton = ({ calendar, prevMonth }: YearMonthButtonProps) => {
   const { year, month } = calendar[1];
