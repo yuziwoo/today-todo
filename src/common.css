@@ -3,7 +3,8 @@
 
 /* Root Variable*/
 :root {
-  --fontFamily-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'sans-serif';
+  --fontFamily-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+    'sans-serif';
   --fontWeight-default: 400;
   --lineHeight-default: 1.4;
   --lineHeight-short: 1.2;
@@ -28,7 +29,8 @@
   font-weight: var(--fontWeight-default);
 }
 
-body, html {
+body,
+html {
   min-height: 100%;
 }
 
@@ -54,25 +56,43 @@ body {
   }
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-  display: block
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
 table {
   border-collapse: collapse;
-  border-spacing: 0
+  border-spacing: 0;
 }
 
-a, a:link, a:hover, a:active, a:visited {
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
   color: inherit;
   text-decoration: none;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   background-color: transparent;
   outline: none;
   border: none;
@@ -88,7 +108,7 @@ caption {
   width: 0;
   height: 0;
   font-size: 0;
-  line-height: 0
+  line-height: 0;
 }
 
 figure {
@@ -97,36 +117,38 @@ figure {
 
 blockquote,
 q {
-  quotes: none
+  quotes: none;
 }
 
 blockquote:after,
 blockquote:before,
 q:after,
 q:before {
-  content: "";
-  content: none
+  content: '';
+  content: none;
 }
 
 /* only for this app */
 :root {
-  --zIndex-header: 200;
+  --zIndex-header: 50;
+  --zIndex-aside: 100;
+  --zIndex-aside-trigger: 150;
 
   --transition-hover-default: opacity 0.2s;
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
-  
-  --color-bg: #FEFEFE;
-  --color-bg2: #F3F3F3;
+
+  --color-bg: #fefefe;
+  --color-bg2: #f3f3f3;
   --color-default: black;
   --color-reverse: white;
-  --color-hover-default: #FFEEEE;
-  --color-box-bg: #D9D9D9;
+  --color-hover-default: #ffeeee;
+  --color-box-bg: #d9d9d9;
 
-  --color-red: #EB4B67;
-  --color-blue: #4B6EEB;
-  --color-today: #FF6A84;
-  --color-currentDay: #6D0016;
-  --color-checkbox: #F46B6B;
+  --color-red: #eb4b67;
+  --color-blue: #4b6eeb;
+  --color-today: #ff6a84;
+  --color-currentDay: #6d0016;
+  --color-checkbox: #f46b6b;
   --color-line: rgba(244, 107, 107, 0.3);
 
   --borderRadius-button: 0.7em;
@@ -137,9 +159,9 @@ q:before {
   --color-bg2: #393939;
   --color-default: white;
   --color-reverse: black;
-  --color-hover-default: #724A4A;
+  --color-hover-default: #724a4a;
   --color-box-bg: #777777;
-  --color-currentDay: #FBCFD8;
+  --color-currentDay: #fbcfd8;
 }
 
 body {
@@ -187,5 +209,36 @@ img {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(15px);
   }
 }

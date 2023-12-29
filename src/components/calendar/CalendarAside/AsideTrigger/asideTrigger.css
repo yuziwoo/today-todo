@@ -1,0 +1,40 @@
+.calendar-aside-trigger {
+  position: absolute;
+  z-index: var(--zIndex-aside-trigger);
+  right: 0;
+  bottom: 0;
+  margin-right: 2.8rem;
+  margin-bottom: 5.6rem;
+  width: 8.4rem;
+  height: 8.4rem;
+  border-radius: 50%;
+  background-color: var(--color-checkbox);
+  transition: transform 0.3s;
+  overflow: hidden;
+}
+
+.calendar-aside-trigger::before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: '';
+  background-color: white;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  transition: opacity 0.2s;
+}
+
+.calendar-aside-trigger:hover::before {
+  opacity: 0.2;
+}
+
+.calendar-aside-trigger[class*='calendar-aside-on'] {
+  transform: rotate(135deg);
+}
+
+@media screen and (max-width: 602px) {
+  .calendar-aside-trigger {
+    position: fixed;
+  }
+}

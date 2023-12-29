@@ -13,6 +13,7 @@ import { ChangeMonthProps } from '../../types/calendarTypes';
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
 import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
+import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -72,7 +73,7 @@ const CalendarPage = () => {
   }, [todo]);
 
   return (
-    <div className="calendar">
+    <div className="calendar" style={{ position: 'relative', minHeight: '100vh' }}>
       <CalendarHeader
         calendar={calendar}
         prevMonth={prevMonth}
@@ -89,6 +90,7 @@ const CalendarPage = () => {
         currentDay={currentDay}
       />
       <CalendarDayInfo data={currentDayData} />
+      <CalendarAside />
     </div>
   );
 };

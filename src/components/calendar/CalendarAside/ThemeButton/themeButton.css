@@ -1,0 +1,168 @@
+.calendar-aside .section-division .button-wrap[class*='theme-button'] .text-wrap {
+  margin: 0 2.1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.calendar-aside .section-division .button-wrap[class*='theme-button'] .text-wrap .text {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-aside .section-division .button-wrap[class*='theme-button'] .text-wrap .text span {
+  font-weight: 700;
+  font-size: 2.52rem;
+  color: white;
+  display: block;
+}
+
+.calendar-aside .section-division .button-wrap[class*='theme-button'] button .img-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.calendar-aside .section-division .button-wrap[class*='theme-button'] button .img-wrap img {
+  width: 100%;
+  display: block;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button'][class*='lightmode']
+  button
+  .img-wrap {
+  animation: darkmodeImg2 0.3s 1 forwards;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button'][class*='darkmode']
+  button
+  .img-wrap {
+  animation: darkmodeImg 0.3s 1 forwards;
+}
+
+@keyframes darkmodeImg {
+  from {
+    transform: translateY(-0%);
+  }
+  to {
+    transform: translateY(-33.33%);
+  }
+}
+
+@keyframes darkmodeImg2 {
+  from {
+    transform: translateY(-33.33%);
+  }
+  to {
+    transform: translateY(-66.66%);
+  }
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text
+  span:last-child {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text:last-child
+  span {
+  min-width: 2.18rem;
+  min-height: 3.528rem;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button'][class*='darkmode']
+  .text-wrap
+  .text
+  span {
+  animation: darkmodeText 0.3s 1 forwards;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button'][class*='lightmode']
+  .text-wrap
+  .text
+  span {
+  animation: darkmodeText2 0.3s 1 forwards;
+}
+
+@keyframes darkmodeText {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes darkmodeText2 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text:nth-child(1)
+  span {
+  animation-delay: 0.04s;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text:nth-child(2)
+  span {
+  animation-delay: 0.08s;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text:nth-child(3)
+  span {
+  animation-delay: 0.12s;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text:nth-child(4)
+  span {
+  animation-delay: 0.16s;
+}
+
+.calendar-aside
+  .section-division
+  .button-wrap[class*='theme-button']
+  .text-wrap
+  .text:nth-child(5)
+  span {
+  animation-delay: 0.2s;
+}
