@@ -8,10 +8,11 @@ import {
   setLastMonthCalendarData,
   setNextMonthCalendarData,
 } from '../../api/calendarAPI/setCalendarData';
-import { setTodo } from '../../store/slice/todoSlice';
+import { saveTodo, setTodo } from '../../store/slice/todoSlice';
 import { ChangeMonthProps } from '../../types/calendarTypes';
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
 import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
+import { LOCAL_STORAGE_KEY } from '../../constants/API';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,11 +45,18 @@ const CalendarPage = () => {
     setCurrentDay(1);
   };
 
+  const initialize = async () => {
+    await dispatch(setTodo());
+    const { year, month } = getMonthInfo(new Date());
+    const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
+    const initialTodo = todoInStorage === null ? todo : JSON.parse(todoInStorage);
+
+    dispatch(setCalendarData({ year, month, todo: initialTodo }));
+  };
+
   // 어플리케이션 기본값 세팅
   useEffect(() => {
-    dispatch(setTodo());
-    const { year, month } = getMonthInfo(new Date());
-    dispatch(setCalendarData({ year, month, todo }));
+    initialize();
     // eslint-disable-next-line
   }, []);
 
@@ -57,6 +65,11 @@ const CalendarPage = () => {
       setPrevMonth({ year: calendar[1].year, month: calendar[1].month });
     };
   }, [calendar]);
+
+  useEffect(() => {
+    dispatch(saveTodo());
+    // eslint-disable-next-line
+  }, [todo]);
 
   return (
     <div className="calendar">

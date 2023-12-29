@@ -72,7 +72,16 @@ const handleSetLastMonthCalendarData = ({
 export const calendarSlice = createSlice({
   name: 'calendarData',
   initialState: initialCalendarData,
-  reducers: {},
+  reducers: {
+    toggleTaskInCalendar(state, action) {
+      const toggle = !action.payload.complete;
+      const index = state[1].datas[action.payload.day - 1].todo.findIndex(
+        (task) => task.id === action.payload.id
+      );
+      const newTask = { ...state[1].datas[action.payload.day - 1].todo[index], complete: toggle };
+      state[1].datas[action.payload.day - 1].todo[index] = newTask;
+    },
+  },
   extraReducers: (builder) => {
     // builder.addCase(setCalendarData.pending, (state, action) => {});
     builder.addCase(setCalendarData.fulfilled, (state, action) => {
@@ -105,5 +114,5 @@ export const calendarSlice = createSlice({
   },
 });
 
-// export const { } = calendarSlice.actions;
+export const { toggleTaskInCalendar } = calendarSlice.actions;
 export default calendarSlice.reducer;

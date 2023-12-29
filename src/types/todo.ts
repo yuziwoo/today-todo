@@ -65,18 +65,20 @@ type RepeatTask<T> = DayRepeatTask & {
 export type WeekRepeatTask = RepeatTask<number[]>;
 export type MonthRepeatTask = RepeatTask<{ day: number }>;
 export type YearRepeatTask = RepeatTask<{ month: number; day: number }>;
-
+type RepeatTasksProps = {
+  day: DayRepeatTask[];
+  week: WeekRepeatTask[];
+  month: MonthRepeatTask[];
+  year: YearRepeatTask[];
+};
 export type Tasks = {
   initialId: number;
   tasks: Task[];
-  repeatTasks: {
-    day: DayRepeatTask[];
-    week: WeekRepeatTask[];
-    month: MonthRepeatTask[];
-    year: YearRepeatTask[];
-  };
+  repeatTasks: RepeatTasksProps;
 };
 
 export type CompiledTask = Pick<Task, 'id' | 'day' | 'works' | 'complete'> & {
   repeat: boolean;
 };
+
+export type RepeatCycle = 'day' | 'week' | 'month' | 'year' | null;

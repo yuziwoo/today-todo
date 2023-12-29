@@ -2,7 +2,7 @@ import './CalendarTodoListLI.css';
 import { IconCheck } from '../../../icons/icons';
 import { CompiledTaskProps } from '../../../../types/todo';
 import { useDispatch } from 'react-redux';
-import { toggleSingleTask } from '../../../../store/slice/todoSlice';
+// import { toggleSingleTask } from '../../../../store/slice/todoSlice';
 
 interface CalendarTodoListLIProps {
   task: CompiledTaskProps;
@@ -13,7 +13,7 @@ const CalendarTodoListLI = ({ task }: CalendarTodoListLIProps) => {
   const handleToggleTask = (task: CompiledTaskProps) => {
     const isRepeat = task.repeat;
     if (!isRepeat) {
-      dispatch(toggleSingleTask({ task }));
+      // dispatch(toggleSingleTask({ task }));
       return;
     }
   };
