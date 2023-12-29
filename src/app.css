@@ -17,3 +17,10 @@
   font-size: 10px;
   min-height: 100vh;
 }
+
+@media screen and (max-width: 602px) {
+  :root,
+  .stage {
+    font-size: 1.661vw;
+  }
+}

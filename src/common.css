@@ -44,7 +44,7 @@ body {
 
 /* 최소 디바이스 */
 @media screen and (max-width: 602px) {
-  html {
+  /* html {
     -moz-text-size-adjust: 100%;
     -o-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -53,7 +53,7 @@ body {
 
   body {
     min-width: 602px;
-  }
+  } */
 }
 
 article,

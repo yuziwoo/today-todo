@@ -11,10 +11,6 @@ const App = () => {
   const dispatch = useDispatch();
   const darkMode = useSelector((state: RootState) => state.darkMode.value);
 
-  const switchDarkMode = () => {
-    dispatch(toggleDarkMode());
-  };
-
   useEffect(() => {
     dispatch(setDarkMode());
     // eslint-disable-next-line
@@ -24,7 +20,6 @@ const App = () => {
     <div className={`App${darkMode ? ' darkmode' : ''}`}>
       <main className="stage">
         <CalendarPage />
-        <p onClick={switchDarkMode}>{`${darkMode}`}</p>
       </main>
     </div>
   );

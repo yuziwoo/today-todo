@@ -28,13 +28,13 @@ const ThemeButton = () => {
       <div className="text-wrap">
         {darkmode
           ? text.darkmode.map((letter, index) => (
-              <div className="text">
+              <div className="text" key={index}>
                 <span>{letter}</span>
                 <span>{text.lightmode[index]}</span>
               </div>
             ))
           : text.lightmode.map((letter, index) => (
-              <div className="text">
+              <div className="text" key={index}>
                 <span>{letter}</span>
                 <span>{text.darkmode[index]}</span>
               </div>
