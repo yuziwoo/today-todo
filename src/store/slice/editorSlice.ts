@@ -18,7 +18,10 @@ export const editorSlice = createSlice({
 
     resetEditorTask(state) {
       state.repeatCycle = 'single';
-      state.startday = initialState.startday;
+      state.startDay = initialState.startDay;
+      state.endDay = initialState.endDay;
+      state.useEndDay = false;
+      state.RepeatDayOfWeek = [];
       state.task = { ...initialState.task };
     },
 
@@ -27,11 +30,20 @@ export const editorSlice = createSlice({
     },
 
     updateEditorTaskStartDay(state, action) {
-      state.startday = action.payload;
+      state.startDay = action.payload;
+    },
+
+    updateEditorTaskCycle(state, action) {
+      state.repeatCycle = action.payload;
     },
   },
 });
 
-export const { toggleEditor, resetEditorTask, updateEditorTaskWorks, updateEditorTaskStartDay } =
-  editorSlice.actions;
+export const {
+  toggleEditor,
+  resetEditorTask,
+  updateEditorTaskWorks,
+  updateEditorTaskStartDay,
+  updateEditorTaskCycle,
+} = editorSlice.actions;
 export default editorSlice.reducer;

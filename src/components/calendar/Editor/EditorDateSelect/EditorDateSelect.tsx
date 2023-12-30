@@ -12,13 +12,13 @@ const EditorDateSelect = () => {
   const editorState = useSelector((state: RootState) => state.editor);
   const dispatch = useDispatch();
 
-  const { year, month, day } = convertNumberToDateData(editorState.startday);
+  const { year, month, day } = convertNumberToDateData(editorState.startDay);
   const [date, setDate] = useState({ year, month, day });
 
   useEffect(() => {
-    const { year, month, day } = convertNumberToDateData(editorState.startday);
+    const { year, month, day } = convertNumberToDateData(editorState.startDay);
     setDate({ year, month, day });
-  }, [editorState.startday]);
+  }, [editorState.startDay]);
 
   const setYear = (newYear: number) => {
     setDate({ ...date, year: newYear });
@@ -31,8 +31,8 @@ const EditorDateSelect = () => {
   };
 
   useEffect(() => {
-    const startday = convertDateToNumber({ year: date.year, month: date.month, day: date.day });
-    dispatch(updateEditorTaskStartDay(startday));
+    const startDay = convertDateToNumber({ year: date.year, month: date.month, day: date.day });
+    dispatch(updateEditorTaskStartDay(startDay));
     // eslint-disable-next-line
   }, [date]);
 

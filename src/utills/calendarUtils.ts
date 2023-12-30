@@ -25,5 +25,26 @@ export const isToday = ({ year, month, day }: BasicDateData): boolean => {
   const today = new Date();
   let isSame =
     today.getFullYear() === year && today.getMonth() === month && today.getDate() === day;
-  return isSame
+  return isSame;
+};
+
+export const getToday = (): BasicDateData => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const day = today.getDate();
+
+  return { year, month, day };
+};
+
+export const getTommorow = (): BasicDateData => {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const year = tomorrow.getFullYear();
+  const month = tomorrow.getMonth();
+  const day = tomorrow.getDate();
+
+  return { year, month, day };
 };

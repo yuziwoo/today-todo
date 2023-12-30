@@ -1,17 +1,25 @@
 import { convertDateToNumber } from 'src/utills/converter';
 import { EditorStateProps } from '../../types/editorTypes';
+import { getToday, getTommorow } from 'src/utills/calendarUtils';
 
-const today = new Date();
-const year = today.getFullYear();
-const month = today.getMonth();
-const day = today.getDate();
-const startday = convertDateToNumber({ year, month, day });
+const { year, month, day } = getToday();
+const startDay = convertDateToNumber({ year, month, day });
+
+const tommorow = getTommorow();
+const endDay = convertDateToNumber({
+  year: tommorow.year,
+  month: tommorow.month,
+  day: tommorow.day,
+});
 
 export const editorState: EditorStateProps = {
   editing: false,
   firstEdit: true,
   repeatCycle: 'single',
-  startday,
+  startDay,
+  endDay,
+  useEndDay: false,
+  RepeatDayOfWeek: [],
   task: {
     id: 0,
     year,

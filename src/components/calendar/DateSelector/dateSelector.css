@@ -1,6 +1,7 @@
 .date-selector {
   height: 27.3rem;
   padding: 0 1.4rem;
+  cursor: pointer;
 }
 
 .date-selector .swiper {

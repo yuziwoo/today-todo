@@ -140,20 +140,22 @@ q:before {
 
   --color-bg: #fefefe;
   --color-bg2: #f3f3f3;
-  --color-bg3: #ECECEC;
+  --color-bg3: #ececec;
   --color-default: black;
   --color-reverse: white;
   --color-hover-default: #ffeeee;
   --color-box-bg: #d9d9d9;
-  --color-box-bg2: #FFFFFF;
-  --color-box-bg3: #FFFFFF;
+  --color-box-bg2: #ffffff;
+  --color-box-bg3: #ffffff;
 
   --color-red: #eb4b67;
   --color-blue: #4b6eeb;
   --color-today: #ff6a84;
-  --color-today-bg: #FFB2BF;
+  --color-today-bg: #ffb2bf;
   --color-currentDay: #6d0016;
   --color-checkbox: #f46b6b;
+  --color-radio-bg: #fbd2d2;
+  --color-radio-highlight: #f46b6b;
   --color-line: rgba(244, 107, 107, 0.3);
 
   --borderRadius-button: 0.7em;
@@ -169,9 +171,11 @@ q:before {
   --color-hover-default: #724a4a;
   --color-box-bg: #777777;
   --color-box-bg2: #444444;
-  --color-box-bg3: #4E4E4E;
+  --color-box-bg3: #4e4e4e;
   --color-currentDay: #fbcfd8;
-  --color-today-bg: #F29DAC;
+  --color-today-bg: #f29dac;
+  --color-radio-bg: #8d4c4c;
+  --color-radio-highlight: #fec8c8;
 }
 
 body {

@@ -1,0 +1,14 @@
+.task-editor .editor-content .editor-repeat {
+  width: 100%;
+  padding: 0 2.8rem;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap {
+  width: 100%;
+  padding: 1.4rem 0 2.8rem;
+  border-bottom: 2px solid rgba(208, 208, 208, 0.3);
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap:last-child {
+  border-bottom: none;
+}

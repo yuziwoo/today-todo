@@ -4,6 +4,9 @@ export type EditorStateProps = {
   editing: boolean;
   firstEdit: boolean;
   repeatCycle: 'single' | 'day' | 'week' | 'month' | 'year';
-  startday: number;
+  startDay: number;
+  endDay: number;
+  useEndDay: boolean;
+  RepeatDayOfWeek: string[];
   task: Task | DayRepeatTask | WeekRepeatTask | MonthRepeatTask | YearRepeatTask;
 };
