@@ -55,7 +55,7 @@
 }
 
 .calendar-table-cell[class*='today'] button .date {
-  background-color: var(--color-today);
+  background-color: var(--color-today-bg);
 }
 
 .calendar-table-cell[class*='today'] button .date span {

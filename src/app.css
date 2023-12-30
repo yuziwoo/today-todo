@@ -15,7 +15,7 @@
   max-width: 602px;
   margin: auto;
   font-size: 10px;
-  min-height: 100vh;
+  min-height: calc(100vh + 14rem);
 }
 
 @media screen and (max-width: 602px) {

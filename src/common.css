@@ -147,6 +147,7 @@ q:before {
   --color-red: #eb4b67;
   --color-blue: #4b6eeb;
   --color-today: #ff6a84;
+  --color-today-bg: #FFB2BF;
   --color-currentDay: #6d0016;
   --color-checkbox: #f46b6b;
   --color-line: rgba(244, 107, 107, 0.3);
@@ -162,6 +163,7 @@ q:before {
   --color-hover-default: #724a4a;
   --color-box-bg: #777777;
   --color-currentDay: #fbcfd8;
+  --color-today-bg: #F29DAC;
 }
 
 body {
