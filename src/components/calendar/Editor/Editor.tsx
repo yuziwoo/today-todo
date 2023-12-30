@@ -2,17 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './editor.css';
 import { RootState } from 'src/store/store';
 import EditorHeader from './EditorHeader/EditorHeader';
-import { resetEditorTask, toggleEditor } from 'src/store/slice/editorSlice';
 import EditorWorksInput from './EditorWorksInput/EditorWorksInput';
+import EditorDateSelect from './EditorDateSelect/EditorDateSelect';
 
 const Editor = () => {
-  const dispatch = useDispatch();
   const editorState = useSelector((state: RootState) => state.editor);
-
-  const handleExitButton = () => {
-    dispatch(toggleEditor());
-    dispatch(resetEditorTask());
-  };
 
   return (
     <section
@@ -21,8 +15,9 @@ const Editor = () => {
       }`}
     >
       <div className="editor-content">
-        <EditorHeader onExitButton={handleExitButton} />
+        <EditorHeader />
         <EditorWorksInput />
+        <EditorDateSelect />
       </div>
     </section>
   );

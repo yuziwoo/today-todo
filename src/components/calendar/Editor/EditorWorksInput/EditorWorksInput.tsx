@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './editorWorksInput.css';
 import { updateEditorTaskWorks } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
+import { getRandomElement } from 'src/utills/getRandomElement';
+import { EDITOR } from 'src/constants/API';
 
 const EditorWorksInput = () => {
   const dispatch = useDispatch();
@@ -10,12 +12,15 @@ const EditorWorksInput = () => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateEditorTaskWorks({ text: e.target.value }));
   };
+
+  const randomPlaceHolder = getRandomElement<string>([...EDITOR.worksPlaceholder]);
+
   return (
     <div className="editor-works-box">
       <input
         className="editor-works-input"
         type="text"
-        placeholder="할 일을 입력해주세요."
+        placeholder={randomPlaceHolder}
         onChange={handleOnChange}
         value={state.task.works}
       />
