@@ -1,7 +1,7 @@
 .task-editor .editor-works-box {
   width: calc(100% - 5.6rem);
   background-color: var(--color-box-bg2);
-  border-radius: var(--borderRadius-button);
+  border-radius: var(--borderRadius-box);
   padding: 3.5rem 2.8rem;
   margin: auto;
 }

@@ -1,0 +1,15 @@
+.task-editor .editor-content .editor-date-selector {
+  padding: 4.2rem 2.8rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-editor .editor-content .editor-date-selector .white-highlight {
+  width: calc(100% - 5.6rem);
+  border-radius: var(--borderRadius-box);
+  height: 5.6rem;
+  position: absolute;
+  background-color: var(--color-box-bg3);
+}

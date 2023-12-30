@@ -146,6 +146,7 @@ q:before {
   --color-hover-default: #ffeeee;
   --color-box-bg: #d9d9d9;
   --color-box-bg2: #FFFFFF;
+  --color-box-bg3: #FFFFFF;
 
   --color-red: #eb4b67;
   --color-blue: #4b6eeb;
@@ -156,6 +157,7 @@ q:before {
   --color-line: rgba(244, 107, 107, 0.3);
 
   --borderRadius-button: 0.7em;
+  --borderRadius-box: 1.4em;
 }
 
 .darkmode {
@@ -167,6 +169,7 @@ q:before {
   --color-hover-default: #724a4a;
   --color-box-bg: #777777;
   --color-box-bg2: #444444;
+  --color-box-bg3: #4E4E4E;
   --color-currentDay: #fbcfd8;
   --color-today-bg: #F29DAC;
 }
