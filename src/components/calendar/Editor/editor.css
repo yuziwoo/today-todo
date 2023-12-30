@@ -1,0 +1,53 @@
+.task-editor {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: var(--zIndex-task-editor);
+  background-color: var(--color-bg2);
+  transform: translateY(110%);
+}
+
+.task-editor::before {
+  bottom: calc(100% - 5vh);
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  border-radius: 5vh;
+  background-color: var(--color-bg2);
+  content: '';
+  position: absolute;
+}
+
+.task-editor[class*='editor-closed'] {
+  animation: editor-off 0.35s 1 forwards;
+}
+
+.task-editor[class*='editing'] {
+  animation: editor-on 0.35s 1 forwards;
+}
+
+@keyframes editor-on {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes editor-off {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(110%);
+  }
+}
+
+@media screen and (max-width: 602px) {
+  .task-editor {
+    position: fixed;
+  }
+}

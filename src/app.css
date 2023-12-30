@@ -5,7 +5,7 @@
 .App {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-bg2);
+  background-color: var(--color-bg3);
 }
 
 .stage {
@@ -15,7 +15,6 @@
   max-width: 602px;
   margin: auto;
   font-size: 10px;
-  min-height: calc(100vh + 14rem);
 }
 
 @media screen and (max-width: 602px) {

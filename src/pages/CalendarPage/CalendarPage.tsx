@@ -1,25 +1,28 @@
+import './calendarPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHeader';
-import { RootState, AppDispatch } from '../../store/store';
 import { useEffect, useState } from 'react';
+
+import { RootState, AppDispatch } from '../../store/store';
+import { saveTodo, setTodo } from '../../store/slice/todoSlice';
+
+import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHeader';
+import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
+import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
+import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
+import Editor from '../../components/calendar/Editor/Editor';
+
 import { getMonthInfo } from '../../api/calendarAPI/getMonthInfo';
 import {
   setCalendarData,
   setLastMonthCalendarData,
   setNextMonthCalendarData,
 } from '../../api/calendarAPI/setCalendarData';
-import { saveTodo, setTodo } from '../../store/slice/todoSlice';
 import { ChangeMonthProps } from '../../types/calendarTypes';
-import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
-import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
-import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const todo = useSelector((state: RootState) => state.todo);
-
-  // target month 전후로 한 달씩 총 3달의 달력 정보를 저장한다.
   const calendar = useSelector((state: RootState) => state.calendarData);
 
   // CalendarHeader의 자연스러운 rotateNumber 이펙트를 위해 prevMonth 데이터를 사용
@@ -73,7 +76,7 @@ const CalendarPage = () => {
   }, [todo]);
 
   return (
-    <div className="calendar" style={{ position: 'relative', minHeight: '100vh' }}>
+    <div className="calendar" id='calendar'>
       <CalendarHeader
         calendar={calendar}
         prevMonth={prevMonth}
@@ -91,6 +94,7 @@ const CalendarPage = () => {
       />
       <CalendarDayInfo data={currentDayData} />
       <CalendarAside />
+      <Editor />
     </div>
   );
 };

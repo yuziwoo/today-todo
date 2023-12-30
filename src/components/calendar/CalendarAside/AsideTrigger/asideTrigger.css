@@ -1,5 +1,5 @@
 .calendar-aside-trigger {
-  position: absolute;
+  position: fixed;
   z-index: var(--zIndex-aside-trigger);
   right: 0;
   bottom: 0;
@@ -31,10 +31,4 @@
 
 .calendar-aside-trigger[class*='calendar-aside-on'] {
   transform: rotate(135deg);
-}
-
-@media screen and (max-width: 602px) {
-  .calendar-aside-trigger {
-    position: fixed;
-  }
 }

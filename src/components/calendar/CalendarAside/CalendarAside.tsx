@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './calendarAside.css';
 import ThemeButton from './ThemeButton/ThemeButton';
 import AsideTrigger from './AsideTrigger/AsideTrigger';
+import AsideEditButton from './AsideEditButton/AsideEditButton';
 
 const CalendarAside = () => {
   const [asideSwitch, setAsideSwitch] = useState('off');
@@ -40,13 +41,7 @@ const CalendarAside = () => {
           <ThemeButton />
         </div>
         <div className="section-division right-side">
-          <div className="button-wrap">
-            <button>
-              <img src="./assets/icons/png/icon-edit.png" alt="edit icon" />
-            </button>
-            <p>할 일 추가</p>
-          </div>
-
+          <AsideEditButton onClick={handleAsideTrigger}/>
           <div className="button-wrap">
             <button>
               <img src="./assets/icons/png/icon-calendar.png" alt="calendar icon" />

@@ -1,0 +1,13 @@
+.task-editor .editor-works-box {
+  width: calc(100% - 5.6rem);
+  background-color: var(--color-box-bg2);
+  border-radius: var(--borderRadius-button);
+  padding: 3.5rem 2.8rem;
+  margin: auto;
+}
+
+.task-editor .editor-works-box input {
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 2.52rem;
+}

@@ -1,4 +1,6 @@
-export const tasks = {
+import { Tasks } from 'src/types/todo';
+
+export const tasks: Tasks = {
   initialId: 1006,
   tasks: [
     {

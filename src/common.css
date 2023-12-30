@@ -133,16 +133,19 @@ q:before {
   --zIndex-header: 50;
   --zIndex-aside: 100;
   --zIndex-aside-trigger: 150;
+  --zIndex-task-editor: 300;
 
   --transition-hover-default: opacity 0.2s;
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
 
   --color-bg: #fefefe;
   --color-bg2: #f3f3f3;
+  --color-bg3: #ECECEC;
   --color-default: black;
   --color-reverse: white;
   --color-hover-default: #ffeeee;
   --color-box-bg: #d9d9d9;
+  --color-box-bg2: #FFFFFF;
 
   --color-red: #eb4b67;
   --color-blue: #4b6eeb;
@@ -158,10 +161,12 @@ q:before {
 .darkmode {
   --color-bg: #121316;
   --color-bg2: #393939;
+  --color-bg3: #505050;
   --color-default: white;
   --color-reverse: black;
   --color-hover-default: #724a4a;
   --color-box-bg: #777777;
+  --color-box-bg2: #444444;
   --color-currentDay: #fbcfd8;
   --color-today-bg: #F29DAC;
 }
@@ -199,6 +204,12 @@ img {
 
 .canHover:hover::before {
   opacity: 1;
+}
+
+@media screen and (max-width: 602px) {
+  .canHover:hover::before {
+    opacity: 0;
+  }
 }
 
 .canHover * {
