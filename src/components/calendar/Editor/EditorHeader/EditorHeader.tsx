@@ -9,6 +9,7 @@ import {
   addMonthRepeatTask,
   addSingleTask,
   addWeekRepeatTask,
+  addYearRepeatTask,
 } from 'src/store/slice/todoSlice';
 import { convertNumberToDateData } from 'src/utills/converter';
 import { requestChangeCalendarTodo } from 'src/store/slice/requestSlice';
@@ -22,31 +23,40 @@ const EditorHeader = () => {
     dispatch(resetEditorTask());
   };
 
-  const updateSingleTask = (works: string) => {
+  const handleAddSingleTask = (works: string) => {
     const { year, month, day } = convertNumberToDateData(editorState.startDay);
     dispatch(addSingleTask({ year, month, day, works }));
     dispatch(requestChangeCalendarTodo());
     exitEditor();
   };
 
-  const updateDayRepeatTask = (works: string) => {
+  const handleAddDayRepeatTask = (works: string) => {
     const { startDay, endDay, useEndDay } = editorState;
     dispatch(addDayRepeatTask({ startDay, works, endDay, useEndDay }));
     dispatch(requestChangeCalendarTodo());
     exitEditor();
   };
 
-  const updateWeekRepeatTask = (works: string) => {
+  const handleAddWeekRepeatTask = (works: string) => {
     const { startDay, endDay, useEndDay, repeatDayOfWeek } = editorState;
     dispatch(addWeekRepeatTask({ startDay, works, endDay, useEndDay, repeatDayOfWeek }));
     dispatch(requestChangeCalendarTodo());
     exitEditor();
   };
 
-  const updateMonthRepeatTask = (works: string) => {
+  const handleAddMonthRepeatTask = (works: string) => {
     const { startDay, endDay, useEndDay } = editorState;
     const repeatDay = startDay % 100;
     dispatch(addMonthRepeatTask({ startDay, works, endDay, useEndDay, repeatDay }));
+    dispatch(requestChangeCalendarTodo());
+    exitEditor();
+  };
+
+  const handleAddYearRepeatTask = (works: string) => {
+    const { startDay, endDay, useEndDay } = editorState;
+    const repeatDay = startDay % 100;
+    const repeatMonth = Math.floor((startDay % 10000) / 100);
+    dispatch(addYearRepeatTask({ startDay, works, endDay, useEndDay, repeatDay, repeatMonth }));
     dispatch(requestChangeCalendarTodo());
     exitEditor();
   };
@@ -65,19 +75,23 @@ const EditorHeader = () => {
 
     switch (editorState.repeatCycle) {
       case 'single': {
-        updateSingleTask(works);
+        handleAddSingleTask(works);
         break;
       }
       case 'day': {
-        updateDayRepeatTask(works);
+        handleAddDayRepeatTask(works);
         break;
       }
       case 'week': {
-        updateWeekRepeatTask(works);
+        handleAddWeekRepeatTask(works);
         break;
       }
       case 'month': {
-        updateMonthRepeatTask(works);
+        handleAddMonthRepeatTask(works);
+        break;
+      }
+      case 'year': {
+        handleAddYearRepeatTask(works);
         break;
       }
     }

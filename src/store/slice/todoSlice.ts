@@ -167,6 +167,10 @@ export const todoSlice = createSlice({
       const newTask = {
         id: initialId,
         start: startDay,
+        repeat: {
+          month: repeatMonth,
+          day: repeatDay,
+        },
         end: null,
         works,
         complete: [],
@@ -175,6 +179,10 @@ export const todoSlice = createSlice({
       if (useEndDay) {
         newTask.end = endDay;
       }
+
+      const newTasks = { ...state.repeatTasks };
+      newTasks.year.push(newTask);
+      state.repeatTasks = { ...newTasks };
     },
   },
 });
