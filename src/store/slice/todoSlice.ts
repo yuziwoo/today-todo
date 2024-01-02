@@ -71,8 +71,25 @@ export const todoSlice = createSlice({
 
       toggleNoRepeatTask({ state, id, complete });
     },
+
+    addSingleTask(state: Tasks, action) {
+      const initialId = state.initialId;
+      state.initialId = initialId + 1;
+
+      const { year, month, day, works } = action.payload;
+      const newTask = {
+        id: initialId,
+        year,
+        month,
+        day,
+        works,
+        complete: false,
+      };
+      const newTasks = [...state.tasks, newTask];
+      state.tasks = [...newTasks];
+    },
   },
 });
 
-export const { setTodo, saveTodo, toggleTask } = todoSlice.actions;
+export const { setTodo, saveTodo, toggleTask, addSingleTask } = todoSlice.actions;
 export default todoSlice.reducer;
