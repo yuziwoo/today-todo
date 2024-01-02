@@ -23,42 +23,36 @@ const EditorHeader = () => {
     dispatch(resetEditorTask());
   };
 
-  const handleAddSingleTask = (works: string) => {
-    const { year, month, day } = convertNumberToDateData(editorState.startDay);
-    dispatch(addSingleTask({ year, month, day, works }));
+  const exitEditorAndUpdate = () => {
     dispatch(requestChangeCalendarTodo());
     exitEditor();
   };
 
-  const handleAddDayRepeatTask = (works: string) => {
-    const { startDay, endDay, useEndDay } = editorState;
-    dispatch(addDayRepeatTask({ startDay, works, endDay, useEndDay }));
-    dispatch(requestChangeCalendarTodo());
-    exitEditor();
-  };
-
-  const handleAddWeekRepeatTask = (works: string) => {
+  const addTask = () => {
+    const works = editorState.task.works.trim();
     const { startDay, endDay, useEndDay, repeatDayOfWeek } = editorState;
-    dispatch(addWeekRepeatTask({ startDay, works, endDay, useEndDay, repeatDayOfWeek }));
-    dispatch(requestChangeCalendarTodo());
-    exitEditor();
-  };
-
-  const handleAddMonthRepeatTask = (works: string) => {
-    const { startDay, endDay, useEndDay } = editorState;
-    const repeatDay = startDay % 100;
-    dispatch(addMonthRepeatTask({ startDay, works, endDay, useEndDay, repeatDay }));
-    dispatch(requestChangeCalendarTodo());
-    exitEditor();
-  };
-
-  const handleAddYearRepeatTask = (works: string) => {
-    const { startDay, endDay, useEndDay } = editorState;
     const repeatDay = startDay % 100;
     const repeatMonth = Math.floor((startDay % 10000) / 100);
-    dispatch(addYearRepeatTask({ startDay, works, endDay, useEndDay, repeatDay, repeatMonth }));
-    dispatch(requestChangeCalendarTodo());
-    exitEditor();
+
+    switch (editorState.repeatCycle) {
+      case 'single':
+        const { year, month, day } = convertNumberToDateData(editorState.startDay);
+        dispatch(addSingleTask({ year, month, day, works }));
+        break;
+      case 'day':
+        dispatch(addDayRepeatTask({ startDay, works, endDay, useEndDay }));
+        break;
+      case 'week':
+        dispatch(addWeekRepeatTask({ startDay, works, endDay, useEndDay, repeatDayOfWeek }));
+        break;
+      case 'month':
+        dispatch(addMonthRepeatTask({ startDay, works, endDay, useEndDay, repeatDay }));
+        break;
+      case 'year':
+        dispatch(addYearRepeatTask({ startDay, works, endDay, useEndDay, repeatDay, repeatMonth }));
+    }
+    
+    exitEditorAndUpdate();
   };
 
   const handleSubmitButton = () => {
@@ -73,28 +67,7 @@ const EditorHeader = () => {
       return;
     }
 
-    switch (editorState.repeatCycle) {
-      case 'single': {
-        handleAddSingleTask(works);
-        break;
-      }
-      case 'day': {
-        handleAddDayRepeatTask(works);
-        break;
-      }
-      case 'week': {
-        handleAddWeekRepeatTask(works);
-        break;
-      }
-      case 'month': {
-        handleAddMonthRepeatTask(works);
-        break;
-      }
-      case 'year': {
-        handleAddYearRepeatTask(works);
-        break;
-      }
-    }
+    addTask();
   };
 
   return (
