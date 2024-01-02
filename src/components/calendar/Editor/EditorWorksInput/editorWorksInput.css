@@ -6,8 +6,10 @@
   margin: auto;
 }
 
-.task-editor .editor-works-box input {
+.task-editor .editor-works-box .editor-works-input {
   background-color: transparent;
   font-weight: 700;
   font-size: 2.52rem;
+  resize: none;
+  width: 100%;
 }

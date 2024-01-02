@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { BasicDateData, BasicMonthData, BasicTodoData } from '../../../../types/calendarTypes';
-import { IconCheck } from '../../../icons/icons';
 import './calendarTodoList.css';
 import { toggleTask } from '../../../../store/slice/todoSlice';
 import { toggleTaskInCalendar } from '../../../../store/slice/calendarSlice';
+import BasicCheckbox from '../../../common/BasicCheckbox/BasicCheckbox';
 
 interface CalendarTodoListProps extends BasicDateData {
   todoList: BasicTodoData[];
@@ -30,9 +30,7 @@ const CalendarTodoList = ({ year, month, day, todoList }: CalendarTodoListProps)
               onCheckboxClick({ year, month, task });
             }}
           >
-            <div className="checkbox">
-              <IconCheck color="white" />
-            </div>
+            <BasicCheckbox checked={task.complete} />
             <p>{task.works}</p>
           </button>
           <button className="canHover edit">

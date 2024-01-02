@@ -48,3 +48,11 @@ export const getTommorow = (): BasicDateData => {
 
   return { year, month, day };
 };
+
+export const getTommorowAsDate = (): Date => {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  return tomorrow;
+};

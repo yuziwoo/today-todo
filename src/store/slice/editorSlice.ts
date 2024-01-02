@@ -21,7 +21,7 @@ export const editorSlice = createSlice({
       state.startDay = initialState.startDay;
       state.endDay = initialState.endDay;
       state.useEndDay = false;
-      state.RepeatDayOfWeek = [];
+      state.repeatDayOfWeek = [];
       state.task = { ...initialState.task };
     },
 
@@ -36,6 +36,29 @@ export const editorSlice = createSlice({
     updateEditorTaskCycle(state, action) {
       state.repeatCycle = action.payload;
     },
+
+    updateEditorEndDay(state, action) {
+      state.endDay = action.payload;
+    },
+
+    toggleEditorUseEndDay(state) {
+      const newState = !state.useEndDay;
+      state.useEndDay = newState;
+    },
+
+    toggleEditorRepeatDayOfWeek(state, action) {
+      const newState = [...state.repeatDayOfWeek];
+      const newDayOfWeek = action.payload;
+
+      if (newState.includes(newDayOfWeek)) {
+        const index = newState.findIndex((dayOfWeek) => dayOfWeek === newDayOfWeek);
+        newState.splice(index, 1);
+        state.repeatDayOfWeek = [...newState];
+        return;
+      }
+
+      state.repeatDayOfWeek = [...newState, newDayOfWeek];
+    },
   },
 });
 
@@ -45,5 +68,8 @@ export const {
   updateEditorTaskWorks,
   updateEditorTaskStartDay,
   updateEditorTaskCycle,
+  updateEditorEndDay,
+  toggleEditorUseEndDay,
+  toggleEditorRepeatDayOfWeek,
 } = editorSlice.actions;
 export default editorSlice.reducer;

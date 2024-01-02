@@ -5,6 +5,12 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom-left-radius: var(--borderRadius-box);
+  border-bottom-right-radius: var(--borderRadius-box);
+  background-color: var(--color-bg2);
 }
 
 .task-editor .editor-header h1 {
@@ -27,5 +33,5 @@
 }
 
 .darkmode .task-editor .editor-header .check svg path {
-  fill: #3DCE77;
+  fill: #3dce77;
 }

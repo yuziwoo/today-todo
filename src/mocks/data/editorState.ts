@@ -19,7 +19,7 @@ export const editorState: EditorStateProps = {
   startDay,
   endDay,
   useEndDay: false,
-  RepeatDayOfWeek: [],
+  repeatDayOfWeek: [],
   task: {
     id: 0,
     year,

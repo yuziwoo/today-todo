@@ -5,16 +5,16 @@ export const tasks: Tasks = {
   tasks: [
     {
       id: 1000,
-      year: 2023,
-      month: 11,
+      year: 2024,
+      month: 0,
       day: 30,
       works: '공부하기',
       complete: false,
     },
     {
       id: 1005,
-      year: 2023,
-      month: 11,
+      year: 2024,
+      month: 0,
       day: 30,
       works: '공부하기2',
       complete: true,
@@ -24,8 +24,8 @@ export const tasks: Tasks = {
     day: [
       {
         id: 1001,
-        start: 20231119,
-        end: 20231126,
+        start: 20240019,
+        end: 20240026,
         works: '매일 책 읽기',
         complete: [
           {
@@ -44,19 +44,19 @@ export const tasks: Tasks = {
     week: [
       {
         id: 1002,
-        start: 20231119,
+        start: 20240019,
         repeat: [2, 4],
-        end: 20231130,
+        end: 20240030,
         works: '도서관 가기',
         complete: [
           {
-            year: 2023,
-            month: 11,
+            year: 2024,
+            month: 0,
             day: 19,
           },
           {
-            year: 2023,
-            month: 11,
+            year: 2024,
+            month: 0,
             day: 21,
           },
         ],
@@ -65,7 +65,7 @@ export const tasks: Tasks = {
     month: [
       {
         id: 1003,
-        start: 20231101,
+        start: 20240001,
         repeat: {
           day: 1,
         },
@@ -77,7 +77,7 @@ export const tasks: Tasks = {
     year: [
       {
         id: 1004,
-        start: 20231124,
+        start: 20240024,
         repeat: {
           month: 11,
           day: 24,

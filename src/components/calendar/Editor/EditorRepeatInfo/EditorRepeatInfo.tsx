@@ -5,12 +5,13 @@ import { convertNumberToDateData } from 'src/utills/converter';
 import EditorRepeatHeader from '../EditorRepeatHeader/EditorRepeatHeader';
 import EditorCycleButton from '../EditorCycleButton/EditorCycleButton';
 import { updateEditorTaskCycle } from 'src/store/slice/editorSlice';
+import EditorRepeatInfoBalloon from '../EditorRepeatInfoBalloon/EditorRepeatInfoBalloon';
 
 const EditorRepeatInfo = () => {
   const editorState = useSelector((state: RootState) => state.editor);
   const dispatch = useDispatch();
 
-  const { year, month, day } = convertNumberToDateData(editorState.startDay);
+  const { month, day } = convertNumberToDateData(editorState.startDay);
 
   const updateTaskCycle = (cycle: string) => {
     dispatch(updateEditorTaskCycle(cycle));
@@ -31,7 +32,7 @@ const EditorRepeatInfo = () => {
       {cycleArr.map(({ cycle, text }, index) => (
         <div className={`cycle-wrap cycle-${cycle}`} key={index}>
           <EditorCycleButton text={text} onClickHandler={updateTaskCycle} cycle={cycle} />
-          { cycle !== 'single' && <div>working</div>}
+          <EditorRepeatInfoBalloon cycle={cycle} />
         </div>
       ))}
     </div>

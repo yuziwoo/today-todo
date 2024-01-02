@@ -7,6 +7,14 @@
   z-index: var(--zIndex-task-editor);
   background-color: var(--color-bg2);
   transform: translateY(110%);
+  overflow-y: scroll;
+  padding-bottom: 15.4rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.task-editor::-webkit-scrollbar {
+  display: none;
 }
 
 .task-editor::before {

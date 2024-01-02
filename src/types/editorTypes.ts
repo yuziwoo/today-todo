@@ -7,6 +7,6 @@ export type EditorStateProps = {
   startDay: number;
   endDay: number;
   useEndDay: boolean;
-  RepeatDayOfWeek: string[];
+  repeatDayOfWeek: number[];
   task: Task | DayRepeatTask | WeekRepeatTask | MonthRepeatTask | YearRepeatTask;
 };

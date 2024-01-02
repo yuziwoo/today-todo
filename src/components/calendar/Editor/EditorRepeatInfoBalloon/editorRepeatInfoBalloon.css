@@ -1,0 +1,248 @@
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon {
+  background-color: var(--color-box-bg2);
+  border-radius: var(--borderRadius-box);
+  padding: 2.1rem 1.4rem;
+  margin-top: 1.4rem;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .endDay-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  opacity: 0.3;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .endDay-select::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon[class*='current-cycle']
+  .endDay-select::after {
+  display: none;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon[class*='current-cycle']
+  .endDay-select {
+  opacity: 1;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .endDay-select .switch {
+  display: flex;
+  align-items: center;
+  padding: 1.4rem;
+  border-radius: var(--borderRadius-button);
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .endDay-select .switch h3 {
+  margin-left: 2.1rem;
+  font-size: 2.52rem;
+  font-weight: 700;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .endDay-select[class*='active']
+  .switch
+  h3 {
+  opacity: 1;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .endDay-select .endDay h3 {
+  position: relative;
+  display: block;
+  font-size: 2.52rem;
+  font-weight: 700;
+  padding: 1.4rem;
+  word-spacing: 0.8rem;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .endDay-select[class*='active']
+  .endDay
+  h3 {
+  opacity: 1;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .endDay-select
+  .endDay
+  h3
+  input {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .endDay-select
+  .endDay
+  h3
+  input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .select-dayOfWeek {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon[class*='current-cycle']
+  .select-dayOfWeek {
+  opacity: 1;
+}
+
+.task-editor .editor-content .editor-repeat .cycle-wrap .edit-balloon .select-dayOfWeek button {
+  padding: 0.7rem;
+  border-radius: var(--borderRadius-box);
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button
+  .circle {
+  width: 4.9rem;
+  height: 4.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button
+  .circle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-today);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button[class*='active']
+  .circle::before {
+  opacity: 1;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button
+  .circle
+  span {
+  font-size: 2.52rem;
+  font-weight: 700;
+  display: block;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button:nth-child(1)
+  .circle
+  span {
+  color: var(--color-red);
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button:nth-child(7)
+  .circle
+  span {
+  color: var(--color-blue);
+}
+
+.task-editor
+  .editor-content
+  .editor-repeat
+  .cycle-wrap
+  .edit-balloon
+  .select-dayOfWeek
+  button[class*='active']
+  .circle
+  span {
+  color: white;
+}

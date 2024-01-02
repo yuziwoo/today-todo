@@ -20,6 +20,7 @@ const EditorWorksInput = () => {
         placeholder={EDITOR.worksPlaceholder[0]}
         onChange={handleOnChange}
         value={state.task.works}
+        maxLength={100}
       />
     </div>
   );

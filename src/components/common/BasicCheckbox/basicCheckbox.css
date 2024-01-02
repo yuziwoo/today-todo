@@ -1,0 +1,23 @@
+.basic-checkbox {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-checkbox);
+  border-radius: var(--borderRadius-button);
+  opacity: 0.3;
+  transition: opacity 0.15s;
+}
+
+.basic-checkbox svg {
+  width: 80%;
+  height: 80%;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.basic-checkbox[class*='checked'],
+.basic-checkbox[class*='checked'] svg {
+  opacity: 1;
+}
