@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetEditorTask, toggleEditor } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
 import { MESSAGE } from 'src/constants/MESSAGE';
-import { addDayRepeatTask, addSingleTask, addWeekRepeatTask } from 'src/store/slice/todoSlice';
+import {
+  addDayRepeatTask,
+  addMonthRepeatTask,
+  addSingleTask,
+  addWeekRepeatTask,
+} from 'src/store/slice/todoSlice';
 import { convertNumberToDateData } from 'src/utills/converter';
 import { requestChangeCalendarTodo } from 'src/store/slice/requestSlice';
 
@@ -33,8 +38,15 @@ const EditorHeader = () => {
 
   const updateWeekRepeatTask = (works: string) => {
     const { startDay, endDay, useEndDay, repeatDayOfWeek } = editorState;
-    console.log(editorState);
     dispatch(addWeekRepeatTask({ startDay, works, endDay, useEndDay, repeatDayOfWeek }));
+    dispatch(requestChangeCalendarTodo());
+    exitEditor();
+  };
+
+  const updateMonthRepeatTask = (works: string) => {
+    const { startDay, endDay, useEndDay } = editorState;
+    const repeatDay = startDay % 100;
+    dispatch(addMonthRepeatTask({ startDay, works, endDay, useEndDay, repeatDay }));
     dispatch(requestChangeCalendarTodo());
     exitEditor();
   };
@@ -62,6 +74,10 @@ const EditorHeader = () => {
       }
       case 'week': {
         updateWeekRepeatTask(works);
+        break;
+      }
+      case 'month': {
+        updateMonthRepeatTask(works);
         break;
       }
     }

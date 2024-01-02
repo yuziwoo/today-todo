@@ -142,7 +142,21 @@ export const todoSlice = createSlice({
       const newTask = {
         id: initialId,
         start: startDay,
+        repeat: {
+          day: repeatDay,
+        },
+        end: null,
+        works,
+        complete: [],
       };
+
+      if (useEndDay) {
+        newTask.end = endDay;
+      }
+
+      const newTasks = { ...state.repeatTasks };
+      newTasks.month.push(newTask);
+      state.repeatTasks = { ...newTasks };
     },
 
     addYearRepeatTask(state: Tasks, action) {
@@ -153,7 +167,14 @@ export const todoSlice = createSlice({
       const newTask = {
         id: initialId,
         start: startDay,
+        end: null,
+        works,
+        complete: [],
       };
+
+      if (useEndDay) {
+        newTask.end = endDay;
+      }
     },
   },
 });
