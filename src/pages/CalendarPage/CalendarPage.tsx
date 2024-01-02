@@ -19,11 +19,13 @@ import {
 } from '../../api/calendarAPI/setCalendarData';
 import { ChangeMonthProps } from '../../types/calendarTypes';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
+import { updateTaskInCalendar } from 'src/store/slice/calendarSlice';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const todo = useSelector((state: RootState) => state.todo);
   const calendar = useSelector((state: RootState) => state.calendarData);
+  const requester = useSelector((state: RootState) => state.request);
 
   // CalendarHeader의 자연스러운 rotateNumber 이펙트를 위해 prevMonth 데이터를 사용
   const [prevMonth, setPrevMonth] = useState({ year: 0, month: 0 });
@@ -75,8 +77,13 @@ const CalendarPage = () => {
     // eslint-disable-next-line
   }, [todo]);
 
+  useEffect(() => {
+    dispatch(updateTaskInCalendar(todo));
+    // eslint-disable-next-line
+  }, [requester.calendarTodo]);
+
   return (
-    <div className="calendar" id='calendar'>
+    <div className="calendar" id="calendar">
       <CalendarHeader
         calendar={calendar}
         prevMonth={prevMonth}

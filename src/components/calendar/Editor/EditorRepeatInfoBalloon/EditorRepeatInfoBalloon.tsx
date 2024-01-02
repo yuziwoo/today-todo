@@ -1,7 +1,11 @@
 import './editorRepeatInfoBalloon.css';
 import BasicCheckbox from '../../../common/BasicCheckbox/BasicCheckbox';
 import { CALENDAR_API } from 'src/constants/API';
-import { convertNumberToDateData } from 'src/utills/converter';
+import {
+  convertDateToNumber,
+  convertNumberToDateData,
+  convertToTwoDigitString,
+} from 'src/utills/converter';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/store/store';
 import {
@@ -9,6 +13,7 @@ import {
   toggleEditorUseEndDay,
   updateEditorEndDay,
 } from 'src/store/slice/editorSlice';
+import { getNextDay } from 'src/utills/calendarUtils';
 
 interface EditorRepeatInfoBalloonProps {
   cycle: string;
@@ -18,12 +23,22 @@ const EditorRepeatInfoBalloon = ({ cycle }: EditorRepeatInfoBalloonProps) => {
   const editorState = useSelector((state: RootState) => state.editor);
   const dispatch = useDispatch();
 
+  const startDay = convertNumberToDateData(editorState.startDay);
+  const minEndDay = getNextDay(startDay);
+  const formattedMinEndDay = `${minEndDay.year}-${convertToTwoDigitString(
+    minEndDay.month + 1
+  )}-${convertToTwoDigitString(minEndDay.day)}`;
+
   const { year, month, day } = convertNumberToDateData(editorState.endDay);
 
   const handleEndDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const dateArray = e.target.value.split('-');
     const endDay = +dateArray.join('');
-    dispatch(updateEditorEndDay(endDay));
+    const { year, month, day } = convertNumberToDateData(endDay);
+
+    const formattedEndDay = convertDateToNumber({ year, month: month - 1, day });
+
+    dispatch(updateEditorEndDay(formattedEndDay));
 
     if (!editorState.useEndDay) {
       dispatch(toggleEditorUseEndDay());
@@ -59,7 +74,7 @@ const EditorRepeatInfoBalloon = ({ cycle }: EditorRepeatInfoBalloonProps) => {
               {`${year}년 ${month + 1}월 ${day}일`}
               <input
                 type="date"
-                min={`${CALENDAR_API.minYear}-01-01`}
+                min={`${formattedMinEndDay}`}
                 max={`${CALENDAR_API.maxYear}-12-31`}
                 onChange={handleEndDayChange}
               />

@@ -3,6 +3,7 @@ import darkModeSlice from './slice/darkModeSlice';
 import todoSlice from './slice/todoSlice';
 import calendarSlice from './slice/calendarSlice';
 import editorSlice from './slice/editorSlice';
+import requestSlice from './slice/requestSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     todo: todoSlice,
     calendarData: calendarSlice,
     editor: editorSlice,
+    request: requestSlice,
   },
 });
 

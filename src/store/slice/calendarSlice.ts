@@ -81,6 +81,13 @@ export const calendarSlice = createSlice({
       const newTask = { ...state[1].datas[action.payload.day - 1].todo[index], complete: toggle };
       state[1].datas[action.payload.day - 1].todo[index] = newTask;
     },
+
+    updateTaskInCalendar(state: CalendarDataType[], action) {
+      const todo = action.payload;
+      const newState = addTodoData([...state], todo);
+
+      return [...newState];
+    },
   },
   extraReducers: (builder) => {
     // builder.addCase(setCalendarData.pending, (state, action) => {});
@@ -114,5 +121,5 @@ export const calendarSlice = createSlice({
   },
 });
 
-export const { toggleTaskInCalendar } = calendarSlice.actions;
+export const { toggleTaskInCalendar, updateTaskInCalendar } = calendarSlice.actions;
 export default calendarSlice.reducer;

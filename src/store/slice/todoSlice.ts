@@ -88,8 +88,72 @@ export const todoSlice = createSlice({
       const newTasks = [...state.tasks, newTask];
       state.tasks = [...newTasks];
     },
+
+    addDayRepeatTask(state: Tasks, action) {
+      const initialId = state.initialId;
+      state.initialId = initialId + 1;
+
+      const { startDay, works, endDay, useEndDay } = action.payload;
+      const newTask = {
+        id: initialId,
+        start: startDay,
+        end: null,
+        works,
+        complete: [],
+      };
+
+      if (useEndDay) {
+        newTask.end = endDay;
+      }
+
+      const newTasks = { ...state.repeatTasks };
+      newTasks.day.push(newTask);
+      state.repeatTasks = { ...newTasks };
+    },
+
+    addWeekRepeatTask(state: Tasks, action) {
+      const initialId = state.initialId;
+      state.initialId = initialId + 1;
+
+      const { startDay, works, endDay, useEndDay, repeatDayOfWeek } = action.payload;
+      const newTask = {
+        id: initialId,
+        start: startDay,
+      };
+    },
+
+    addMonthRepeatTask(state: Tasks, action) {
+      const initialId = state.initialId;
+      state.initialId = initialId + 1;
+
+      const { startDay, works, endDay, useEndDay, repeatDay } = action.payload;
+      const newTask = {
+        id: initialId,
+        start: startDay,
+      };
+    },
+
+    addYearRepeatTask(state: Tasks, action) {
+      const initialId = state.initialId;
+      state.initialId = initialId + 1;
+
+      const { startDay, works, endDay, useEndDay, repeatDay, repeatMonth } = action.payload;
+      const newTask = {
+        id: initialId,
+        start: startDay,
+      };
+    },
   },
 });
 
-export const { setTodo, saveTodo, toggleTask, addSingleTask } = todoSlice.actions;
+export const {
+  setTodo,
+  saveTodo,
+  toggleTask,
+  addSingleTask,
+  addDayRepeatTask,
+  addWeekRepeatTask,
+  addMonthRepeatTask,
+  addYearRepeatTask,
+} = todoSlice.actions;
 export default todoSlice.reducer;

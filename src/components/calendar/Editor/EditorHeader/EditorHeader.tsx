@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetEditorTask, toggleEditor } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
 import { MESSAGE } from 'src/constants/MESSAGE';
-import { addSingleTask } from 'src/store/slice/todoSlice';
+import { addDayRepeatTask, addSingleTask } from 'src/store/slice/todoSlice';
 import { convertNumberToDateData } from 'src/utills/converter';
+import { requestChangeCalendarTodo } from 'src/store/slice/requestSlice';
 
 const EditorHeader = () => {
   const editorState = useSelector((state: RootState) => state.editor);
@@ -16,6 +17,20 @@ const EditorHeader = () => {
     dispatch(resetEditorTask());
   };
 
+  const updateSingleTask = (works: string) => {
+    const { year, month, day } = convertNumberToDateData(editorState.startDay);
+    dispatch(addSingleTask({ year, month, day, works }));
+    dispatch(requestChangeCalendarTodo());
+    exitEditor();
+  };
+
+  const updateDayRepeatTask = (works: string) => {
+    const { startDay, endDay, useEndDay } = editorState;
+    dispatch(addDayRepeatTask({ startDay, works, endDay, useEndDay }));
+    dispatch(requestChangeCalendarTodo());
+    exitEditor();
+  };
+
   const handleSubmitButton = () => {
     const works = editorState.task.works.trim();
     if (works.length === 0) {
@@ -23,11 +38,19 @@ const EditorHeader = () => {
       return;
     }
 
-    if (editorState.repeatCycle === 'single') {
-      const { year, month, day } = convertNumberToDateData(editorState.startDay);
-      dispatch(addSingleTask({ year, month, day, works }));
-      exitEditor();
+    if (editorState.startDay >= editorState.endDay && editorState.useEndDay) {
+      alert(MESSAGE.editor.endDayIsSmall);
       return;
+    }
+
+    switch (editorState.repeatCycle) {
+      case 'single': {
+        updateSingleTask(works);
+        break;
+      }
+      case 'day': {
+        updateDayRepeatTask(works);
+      }
     }
   };
 

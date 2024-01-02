@@ -56,3 +56,15 @@ export const getTommorowAsDate = (): Date => {
 
   return tomorrow;
 };
+
+export const getNextDay = ({ year, month, day }: BasicDateData): BasicDateData => {
+  const beforeDay = new Date(year, month, day);
+  const nextDay = new Date(beforeDay);
+  nextDay.setDate(beforeDay.getDate() + 1);
+
+  const newYear = nextDay.getFullYear();
+  const newMonth = nextDay.getMonth();
+  const newDay = nextDay.getDate();
+
+  return { year: newYear, month: newMonth, day: newDay };
+};
