@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetEditorTask, toggleEditor } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
 import { MESSAGE } from 'src/constants/MESSAGE';
-import { addDayRepeatTask, addSingleTask } from 'src/store/slice/todoSlice';
+import { addDayRepeatTask, addSingleTask, addWeekRepeatTask } from 'src/store/slice/todoSlice';
 import { convertNumberToDateData } from 'src/utills/converter';
 import { requestChangeCalendarTodo } from 'src/store/slice/requestSlice';
 
@@ -31,6 +31,14 @@ const EditorHeader = () => {
     exitEditor();
   };
 
+  const updateWeekRepeatTask = (works: string) => {
+    const { startDay, endDay, useEndDay, repeatDayOfWeek } = editorState;
+    console.log(editorState);
+    dispatch(addWeekRepeatTask({ startDay, works, endDay, useEndDay, repeatDayOfWeek }));
+    dispatch(requestChangeCalendarTodo());
+    exitEditor();
+  };
+
   const handleSubmitButton = () => {
     const works = editorState.task.works.trim();
     if (works.length === 0) {
@@ -50,6 +58,11 @@ const EditorHeader = () => {
       }
       case 'day': {
         updateDayRepeatTask(works);
+        break;
+      }
+      case 'week': {
+        updateWeekRepeatTask(works);
+        break;
       }
     }
   };

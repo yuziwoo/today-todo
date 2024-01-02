@@ -119,7 +119,19 @@ export const todoSlice = createSlice({
       const newTask = {
         id: initialId,
         start: startDay,
+        repeat: repeatDayOfWeek,
+        end: null,
+        works,
+        complete: [],
       };
+
+      if (useEndDay) {
+        newTask.end = endDay;
+      }
+
+      const newTasks = { ...state.repeatTasks };
+      newTasks.week.push(newTask);
+      state.repeatTasks = { ...newTasks };
     },
 
     addMonthRepeatTask(state: Tasks, action) {
