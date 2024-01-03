@@ -170,6 +170,47 @@ export const todoSlice = createSlice({
       state.repeatTasks = { ...newTasks };
     },
 
+    addRepeatTask(state: Tasks, action) {
+      const initialId = state.initialId;
+      state.initialId = initialId + 1;
+
+      const { startDay, works, endDay, useEndDay, repeatDayOfWeek, repeatDay, repeatMonth, cycle } =
+        action.payload;
+
+      let newTask = {
+        id: initialId,
+        start: startDay,
+        end: useEndDay ? endDay : null,
+        works,
+        complete: [],
+      };
+
+      switch (cycle) {
+        case 'day':
+          state.repeatTasks.day.push(newTask);
+          break;
+        case 'week':
+          state.repeatTasks.week.push({ ...newTask, repeat: [...repeatDayOfWeek] });
+          break;
+        case 'month':
+          state.repeatTasks.month.push({
+            ...newTask,
+            repeat: {
+              day: repeatDay,
+            },
+          });
+          break;
+        case 'year':
+          state.repeatTasks.year.push({
+            ...newTask,
+            repeat: {
+              month: repeatMonth,
+              day: repeatDay,
+            },
+          });
+      }
+    },
+
     updateSingleTask(state: Tasks, action) {
       const { id, year, month, day, works } = action.payload;
       const currentTaskIndex = state.tasks.findIndex((task) => task.id === id);
@@ -248,6 +289,7 @@ export const {
   saveTodo,
   toggleTask,
   addSingleTask,
+  addRepeatTask,
   addDayRepeatTask,
   addWeekRepeatTask,
   addMonthRepeatTask,

@@ -5,11 +5,8 @@ import { resetEditorTask, toggleEditor } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
 import { MESSAGE } from 'src/constants/MESSAGE';
 import {
-  addDayRepeatTask,
-  addMonthRepeatTask,
+  addRepeatTask,
   addSingleTask,
-  addWeekRepeatTask,
-  addYearRepeatTask,
   updateRepeatTask,
   updateSingleTask,
 } from 'src/store/slice/todoSlice';
@@ -43,25 +40,27 @@ const EditorHeader = () => {
   const addTask = () => {
     const { works, startDay, endDay, useEndDay, repeatDayOfWeek, repeatDay, repeatMonth } =
       getTaskData(editorState);
+    const cycle = editorState.repeatCycle;
 
-    switch (editorState.repeatCycle) {
-      case 'single':
-        const { year, month, day } = convertNumberToDateData(editorState.startDay);
-        dispatch(addSingleTask({ year, month, day, works }));
-        break;
-      case 'day':
-        dispatch(addDayRepeatTask({ startDay, works, endDay, useEndDay }));
-        break;
-      case 'week':
-        dispatch(addWeekRepeatTask({ startDay, works, endDay, useEndDay, repeatDayOfWeek }));
-        break;
-      case 'month':
-        dispatch(addMonthRepeatTask({ startDay, works, endDay, useEndDay, repeatDay }));
-        break;
-      case 'year':
-        dispatch(addYearRepeatTask({ startDay, works, endDay, useEndDay, repeatDay, repeatMonth }));
+    if (cycle === 'single') {
+      const { year, month, day } = convertNumberToDateData(editorState.startDay);
+      dispatch(addSingleTask({ year, month, day, works }));
+      exitEditorAndUpdate();
+      return;
     }
 
+    dispatch(
+      addRepeatTask({
+        startDay,
+        works,
+        endDay,
+        useEndDay,
+        repeatDayOfWeek,
+        repeatDay,
+        repeatMonth,
+        cycle,
+      })
+    );
     exitEditorAndUpdate();
   };
 
