@@ -20,6 +20,7 @@ import {
 import { ChangeMonthProps } from '../../types/calendarTypes';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
 import { updateTaskInCalendar } from 'src/store/slice/calendarSlice';
+import CalendarLoading from 'src/components/effect/CalendarLoading';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,6 +36,8 @@ const CalendarPage = () => {
     year: calendar[1].year,
     month: calendar[1].month,
   };
+
+  const [loading, setLoading] = useState(true);
 
   const handleChangeMonth = ({ year, month, todo }: ChangeMonthProps) => {
     dispatch(setCalendarData({ year, month, todo }));
@@ -57,7 +60,9 @@ const CalendarPage = () => {
     const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
     const initialTodo = todoInStorage === null ? todo : JSON.parse(todoInStorage);
 
-    dispatch(setCalendarData({ year, month, todo: initialTodo }));
+    await dispatch(setCalendarData({ year, month, todo: initialTodo }));
+
+    setLoading(false);
   };
 
   // 어플리케이션 기본값 세팅
@@ -92,14 +97,20 @@ const CalendarPage = () => {
         onChangeToNextMonth={handleChangeToNextMonth}
         todo={todo}
       />
-      <CalendarBody
-        calendar={calendar}
-        onChangeToLastMonth={handleChangeToLastMonth}
-        onChangeToNextMonth={handleChangeToNextMonth}
-        setCurrentDay={setCurrentDay}
-        currentDay={currentDay}
-      />
-      <CalendarDayInfo data={currentDayData} />
+      {loading ? (
+        <CalendarLoading minHeight={250} />
+      ) : (
+        <>
+          <CalendarBody
+            calendar={calendar}
+            onChangeToLastMonth={handleChangeToLastMonth}
+            onChangeToNextMonth={handleChangeToNextMonth}
+            setCurrentDay={setCurrentDay}
+            currentDay={currentDay}
+          />
+          <CalendarDayInfo data={currentDayData} />
+        </>
+      )}
       <CalendarAside currentDay={currentDayData} />
       <Editor />
     </div>
