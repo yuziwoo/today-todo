@@ -1,7 +1,7 @@
 import { IconCheck, IconExit } from 'src/components/icons/icons';
 import './editorHeader.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetEditorTask, toggleEditor } from 'src/store/slice/editorSlice';
+import { toggleEditor } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
 import { MESSAGE } from 'src/constants/MESSAGE';
 import {
@@ -21,7 +21,6 @@ const EditorHeader = () => {
 
   const exitEditor = () => {
     dispatch(toggleEditor());
-    dispatch(resetEditorTask());
   };
 
   const exitEditorAndUpdate = () => {

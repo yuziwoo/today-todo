@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './editorDateSelect.css';
 import { RootState } from 'src/store/store';
 import { convertDateToNumber, convertNumberToDateData } from 'src/utills/converter';
-import YearSelector from '../../DateSelector/YearSelector';
+import YearSelector from '../../calendar/DateSelector/YearSelector';
 import { useEffect, useState } from 'react';
 import { updateEditorTaskStartDay } from 'src/store/slice/editorSlice';
-import MonthSelector from '../../DateSelector/MonthSelector';
-import DaySelector from '../../DateSelector/DaySelector';
+import MonthSelector from '../../calendar/DateSelector/MonthSelector';
+import DaySelector from '../../calendar/DateSelector/DaySelector';
 
 const EditorDateSelect = () => {
   const editorState = useSelector((state: RootState) => state.editor);

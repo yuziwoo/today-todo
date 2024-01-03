@@ -1,5 +1,5 @@
 import './editorRepeatInfoBalloon.css';
-import BasicCheckbox from '../../../common/BasicCheckbox/BasicCheckbox';
+import BasicCheckbox from '../../common/BasicCheckbox/BasicCheckbox';
 import { CALENDAR_API } from 'src/constants/API';
 import {
   convertDateToNumber,

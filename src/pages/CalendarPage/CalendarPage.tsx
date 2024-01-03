@@ -9,7 +9,7 @@ import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHea
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
 import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
 import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
-import Editor from '../../components/calendar/Editor/Editor';
+import Editor from '../../components/Editor/Editor';
 
 import { getMonthInfo } from '../../api/calendarAPI/getMonthInfo';
 import {
