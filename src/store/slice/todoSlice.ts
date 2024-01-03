@@ -90,86 +90,6 @@ export const todoSlice = createSlice({
       state.tasks = [...newTasks];
     },
 
-    addDayRepeatTask(state: Tasks, action) {
-      const initialId = state.initialId;
-      state.initialId = initialId + 1;
-
-      const { startDay, works, endDay, useEndDay } = action.payload;
-      const newTask = {
-        id: initialId,
-        start: startDay,
-        end: useEndDay ? endDay : null,
-        works,
-        complete: [],
-      };
-
-      const newTasks = { ...state.repeatTasks };
-      newTasks.day.push(newTask);
-      state.repeatTasks = { ...newTasks };
-    },
-
-    addWeekRepeatTask(state: Tasks, action) {
-      const initialId = state.initialId;
-      state.initialId = initialId + 1;
-
-      const { startDay, works, endDay, useEndDay, repeatDayOfWeek } = action.payload;
-      const newTask = {
-        id: initialId,
-        start: startDay,
-        repeat: repeatDayOfWeek,
-        end: useEndDay ? endDay : null,
-        works,
-        complete: [],
-      };
-
-      const newTasks = { ...state.repeatTasks };
-      newTasks.week.push(newTask);
-      state.repeatTasks = { ...newTasks };
-    },
-
-    addMonthRepeatTask(state: Tasks, action) {
-      const initialId = state.initialId;
-      state.initialId = initialId + 1;
-
-      const { startDay, works, endDay, useEndDay, repeatDay } = action.payload;
-      const newTask = {
-        id: initialId,
-        start: startDay,
-        repeat: {
-          day: repeatDay,
-        },
-        end: useEndDay ? endDay : null,
-        works,
-        complete: [],
-      };
-
-      const newTasks = { ...state.repeatTasks };
-      newTasks.month.push(newTask);
-      state.repeatTasks = { ...newTasks };
-    },
-
-    addYearRepeatTask(state: Tasks, action) {
-      const initialId = state.initialId;
-      state.initialId = initialId + 1;
-
-      const { startDay, works, endDay, useEndDay, repeatDay, repeatMonth } = action.payload;
-      const newTask = {
-        id: initialId,
-        start: startDay,
-        repeat: {
-          month: repeatMonth,
-          day: repeatDay,
-        },
-        end: useEndDay ? endDay : null,
-        works,
-        complete: [],
-      };
-
-      const newTasks = { ...state.repeatTasks };
-      newTasks.year.push(newTask);
-      state.repeatTasks = { ...newTasks };
-    },
-
     addRepeatTask(state: Tasks, action) {
       const initialId = state.initialId;
       state.initialId = initialId + 1;
@@ -290,10 +210,6 @@ export const {
   toggleTask,
   addSingleTask,
   addRepeatTask,
-  addDayRepeatTask,
-  addWeekRepeatTask,
-  addMonthRepeatTask,
-  addYearRepeatTask,
   updateSingleTask,
   updateRepeatTask,
 } = todoSlice.actions;

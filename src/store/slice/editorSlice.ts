@@ -24,6 +24,14 @@ export const editorSlice = createSlice({
       return newState;
     },
 
+    triggerEditorWithDateNumber(state, action) {
+      if (state.firstEdit) state.firstEdit = false;
+
+      const date = action.payload;
+      state.editing = true;
+      state.startDay = date;
+    },
+
     resetEditorTask(state) {
       state.repeatCycle = 'single';
       state.startDay = initialState.startDay;
@@ -79,6 +87,7 @@ export const editorSlice = createSlice({
 export const {
   toggleEditor,
   triggerEditorWithTask,
+  triggerEditorWithDateNumber,
   resetEditorTask,
   updateEditorTaskWorks,
   updateEditorTaskStartDay,

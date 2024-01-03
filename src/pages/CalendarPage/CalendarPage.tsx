@@ -100,7 +100,7 @@ const CalendarPage = () => {
         currentDay={currentDay}
       />
       <CalendarDayInfo data={currentDayData} />
-      <CalendarAside />
+      <CalendarAside currentDay={currentDayData} />
       <Editor />
     </div>
   );
