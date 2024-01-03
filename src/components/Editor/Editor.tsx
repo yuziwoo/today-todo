@@ -8,6 +8,7 @@ import EditorRepeatInfo from './EditorRepeatInfo/EditorRepeatInfo';
 import { initialEditorState } from 'src/mocks/data/editorState';
 import { useEffect } from 'react';
 import { resetEditorTask } from 'src/store/slice/editorSlice';
+import EditorTrashButton from './EditorTrashButton/EditorTrashButton';
 
 const Editor = () => {
   const dispatch = useDispatch();
@@ -22,19 +23,21 @@ const Editor = () => {
   }, [editorState.editing]);
 
   return (
-    <section
-      className={`task-editor${editorState.editing ? ' editing' : ''}${
-        editorState.firstEdit ? '' : ' editor-closed'
-      }`}
-    >
-      <div className="editor-content">
-        <EditorHeader />
-        <EditorWorksInput />
-        <EditorDateSelect />
-        <EditorRepeatInfo />
-        {isUpdating && <div>VVV</div>}
-      </div>
-    </section>
+    <>
+      <section
+        className={`task-editor${editorState.editing ? ' editing' : ''}${
+          editorState.firstEdit ? '' : ' editor-closed'
+        }`}
+      >
+        <div className="editor-content">
+          <EditorHeader />
+          <EditorWorksInput />
+          <EditorDateSelect />
+          <EditorRepeatInfo />
+        </div>
+      </section>
+      {isUpdating && <EditorTrashButton />}
+    </>
   );
 };
 

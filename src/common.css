@@ -134,6 +134,7 @@ q:before {
   --zIndex-aside: 100;
   --zIndex-aside-trigger: 150;
   --zIndex-task-editor: 300;
+  --zIndex-task-editor-trash-button: 310;
 
   --transition-hover-default: opacity 0.2s;
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
@@ -147,6 +148,7 @@ q:before {
   --color-box-bg: #d9d9d9;
   --color-box-bg2: #ffffff;
   --color-box-bg3: #ffffff;
+  --color-button-bg: #d3d3d3;
 
   --color-red: #eb4b67;
   --color-blue: #4b6eeb;
@@ -172,6 +174,7 @@ q:before {
   --color-box-bg: #777777;
   --color-box-bg2: #444444;
   --color-box-bg3: #4e4e4e;
+  --color-button-bg: #474747;
   --color-currentDay: #fbcfd8;
   --color-today-bg: #f29dac;
   --color-radio-bg: #8d4c4c;

@@ -201,6 +201,46 @@ export const todoSlice = createSlice({
           };
       }
     },
+
+    removeSingleTask(state, action) {
+      const id = action.payload;
+      const idx = state.tasks.findIndex((task) => task.id === id);
+
+      const newTasks = [...state.tasks];
+      newTasks.splice(idx, 1);
+
+      state.tasks = [...newTasks];
+    },
+
+    removeRepeatTask(state, action) {
+      const { id, cycle } = action.payload;
+
+      switch (cycle) {
+        case 'day': {
+          const newTasks = [...state.repeatTasks.day].filter((task) => task.id !== id);
+          state.repeatTasks.day = newTasks;
+          break;
+        }
+
+        case 'week': {
+          const newTasks = [...state.repeatTasks.week].filter((task) => task.id !== id);
+          state.repeatTasks.week = newTasks;
+          break;
+        }
+
+        case 'month': {
+          const newTasks = [...state.repeatTasks.month].filter((task) => task.id !== id);
+          state.repeatTasks.month = newTasks;
+          break;
+        }
+
+        case 'year': {
+          const newTasks = [...state.repeatTasks.year].filter((task) => task.id !== id);
+          state.repeatTasks.day = newTasks;
+          break;
+        }
+      }
+    },
   },
 });
 
@@ -212,5 +252,7 @@ export const {
   addRepeatTask,
   updateSingleTask,
   updateRepeatTask,
+  removeSingleTask,
+  removeRepeatTask,
 } = todoSlice.actions;
 export default todoSlice.reducer;
