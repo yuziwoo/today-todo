@@ -10,9 +10,16 @@ import { triggerEditorWithTask } from 'src/store/slice/editorSlice';
 
 interface CalendarTodoListProps extends BasicDateData {
   todoList: BasicTodoData[];
+  setFirstVisitFalse: () => void;
 }
 
-const CalendarTodoList = ({ year, month, day, todoList }: CalendarTodoListProps) => {
+const CalendarTodoList = ({
+  year,
+  month,
+  day,
+  todoList,
+  setFirstVisitFalse,
+}: CalendarTodoListProps) => {
   // todoList가 undefined인 경우가 있어 오류 방지를 위해 list 변수 사용
   const list = Array.isArray(todoList) ? todoList : [];
 
@@ -22,6 +29,7 @@ const CalendarTodoList = ({ year, month, day, todoList }: CalendarTodoListProps)
   const onCheckboxClick = ({ year, month, task }: BasicMonthData & { task: BasicTodoData }) => {
     dispatch(toggleTask({ year, month, ...task }));
     dispatch(toggleTaskInCalendar(task));
+    setFirstVisitFalse();
   };
 
   const onEditButtonClick = ({ id }: Pick<BasicTodoData, 'id'>) => {

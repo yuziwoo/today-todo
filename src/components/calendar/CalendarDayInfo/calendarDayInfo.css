@@ -20,6 +20,22 @@
 
 .calendar-dayInfo .complete-animation[class*='play'] {
   display: block;
+  animation: calendar-complete-animation 1.8s 1 forwards;
+}
+
+@keyframes calendar-complete-animation {
+  from {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .calendar-dayInfo .about-day {

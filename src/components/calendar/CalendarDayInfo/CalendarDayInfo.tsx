@@ -27,14 +27,19 @@ const CalendarDayInfo = ({ data }: CalendarDayInfoProps) => {
     setPlayAnimation(false);
   };
 
+  const setFirstVisitFalse = () => {
+    setFirstVisit(false);
+  };
+
   useEffect(() => {
-    if (todo?.some((task) => !task.complete)) {
-      setFirstVisit(false);
-    }
+    setFirstVisit(true);
+  }, [year, month, day]);
+
+  useEffect(() => {
     if (todo?.every((task) => task.complete) && !firstVisit) {
       setPlayAnimation(true);
+      setFirstVisit(true);
     }
-
     // eslint-disable-next-line
   }, [todo]);
 
@@ -56,7 +61,13 @@ const CalendarDayInfo = ({ data }: CalendarDayInfoProps) => {
         </div>
       </div>
 
-      <CalendarTodoList year={year} month={month} day={day} todoList={todo} />
+      <CalendarTodoList
+        year={year}
+        month={month}
+        day={day}
+        todoList={todo}
+        setFirstVisitFalse={setFirstVisitFalse}
+      />
     </section>
   );
 };

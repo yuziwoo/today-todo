@@ -24,5 +24,3 @@ export const getRestDayData = async ({ year, month }: BasicMonthData) => {
 
   return restDayDatas;
 };
-
-console.log(getRestDayData);

@@ -16,7 +16,7 @@ const CompleteEffect = ({ trigger, setTriggerOff }: CompleteEffectProps) => {
       setTimeout(() => {
         setTriggerOff();
         setPlayState(false);
-      }, 2000);
+      }, 1800);
     }
 
     // eslint-disable-next-line
