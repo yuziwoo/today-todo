@@ -1,19 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { editorState } from 'src/mocks/data/editorState';
+import { getEditorDataWithTask } from 'src/api/editorAPI/getEditorDataWithTask';
+import { initialEditorState } from 'src/mocks/data/editorState';
+import { getNextDayNumber } from 'src/utills/calendarUtils';
 
-const initialState = { ...editorState };
+const initialState = { ...initialEditorState };
 
 export const editorSlice = createSlice({
   name: 'editor',
   initialState,
   reducers: {
     toggleEditor(state) {
-      if (state.firstEdit) {
-        state.firstEdit = false;
-      }
+      if (state.firstEdit) state.firstEdit = false;
 
       const newState = !state.editing;
       state.editing = newState;
+    },
+
+    triggerEditorWithTask(state, action) {
+      const { task, cycle } = action.payload;
+      const editorData = getEditorDataWithTask({ task, cycle });
+
+      const newState = { ...state, firstEdit: false, editing: true, ...editorData };
+      return newState;
     },
 
     resetEditorTask(state) {
@@ -30,7 +38,13 @@ export const editorSlice = createSlice({
     },
 
     updateEditorTaskStartDay(state, action) {
-      state.startDay = action.payload;
+      const startDay = action.payload;
+      state.startDay = startDay;
+
+      if (startDay >= state.endDay) {
+        const endDay = getNextDayNumber(startDay);
+        state.endDay = endDay;
+      }
     },
 
     updateEditorTaskCycle(state, action) {
@@ -64,6 +78,7 @@ export const editorSlice = createSlice({
 
 export const {
   toggleEditor,
+  triggerEditorWithTask,
   resetEditorTask,
   updateEditorTaskWorks,
   updateEditorTaskStartDay,

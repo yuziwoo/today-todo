@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { tasks } from '../../mocks/data/tasks';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
-import { saveLocalStorage } from '../../api/todo/saveLocalStorage';
+import { saveLocalStorage } from '../../api/todoAPI/saveLocalStorage';
 import { Task, Tasks } from '../../types/todo';
-import { findRepeatTask } from '../../api/todo/findRepeatTask';
+import { findRepeatTask } from '../../api/todoAPI/findRepeatTask';
 import { MESSAGE } from '../../constants/MESSAGE';
 
 const toggleNoRepeatTask = ({
@@ -85,6 +85,7 @@ export const todoSlice = createSlice({
         works,
         complete: false,
       };
+
       const newTasks = [...state.tasks, newTask];
       state.tasks = [...newTasks];
     },
@@ -97,14 +98,10 @@ export const todoSlice = createSlice({
       const newTask = {
         id: initialId,
         start: startDay,
-        end: null,
+        end: useEndDay ? endDay : null,
         works,
         complete: [],
       };
-
-      if (useEndDay) {
-        newTask.end = endDay;
-      }
 
       const newTasks = { ...state.repeatTasks };
       newTasks.day.push(newTask);
@@ -120,14 +117,10 @@ export const todoSlice = createSlice({
         id: initialId,
         start: startDay,
         repeat: repeatDayOfWeek,
-        end: null,
+        end: useEndDay ? endDay : null,
         works,
         complete: [],
       };
-
-      if (useEndDay) {
-        newTask.end = endDay;
-      }
 
       const newTasks = { ...state.repeatTasks };
       newTasks.week.push(newTask);
@@ -145,14 +138,10 @@ export const todoSlice = createSlice({
         repeat: {
           day: repeatDay,
         },
-        end: null,
+        end: useEndDay ? endDay : null,
         works,
         complete: [],
       };
-
-      if (useEndDay) {
-        newTask.end = endDay;
-      }
 
       const newTasks = { ...state.repeatTasks };
       newTasks.month.push(newTask);
@@ -171,18 +160,85 @@ export const todoSlice = createSlice({
           month: repeatMonth,
           day: repeatDay,
         },
-        end: null,
+        end: useEndDay ? endDay : null,
         works,
         complete: [],
       };
 
-      if (useEndDay) {
-        newTask.end = endDay;
-      }
-
       const newTasks = { ...state.repeatTasks };
       newTasks.year.push(newTask);
       state.repeatTasks = { ...newTasks };
+    },
+
+    updateSingleTask(state: Tasks, action) {
+      const { id, year, month, day, works } = action.payload;
+      const currentTaskIndex = state.tasks.findIndex((task) => task.id === id);
+      const currentTask = state.tasks[currentTaskIndex];
+      const newTask = {
+        id,
+        year,
+        month,
+        day,
+        works,
+        complete: currentTask.complete,
+      };
+
+      state.tasks[currentTaskIndex] = { ...newTask };
+    },
+
+    updateRepeatTask(state: Tasks, action) {
+      const {
+        id,
+        startDay,
+        works,
+        endDay,
+        useEndDay,
+        cycle,
+        repeatDayOfWeek,
+        repeatDay,
+        repeatMonth,
+      } = action.payload;
+      const repeatTasksKey = cycle as keyof typeof state.repeatTasks;
+      const currentTaskIndex = state.repeatTasks[repeatTasksKey].findIndex(
+        (task) => task.id === id
+      );
+      const currentTask = state.repeatTasks[repeatTasksKey][currentTaskIndex];
+
+      let newTask = {
+        id,
+        start: startDay,
+        end: useEndDay ? endDay : null,
+        works,
+        complete: currentTask.complete,
+      };
+
+      switch (cycle) {
+        case 'day':
+          state.repeatTasks.day[currentTaskIndex] = { ...newTask };
+          break;
+        case 'week':
+          state.repeatTasks.week[currentTaskIndex] = {
+            ...newTask,
+            repeat: [...repeatDayOfWeek],
+          };
+          break;
+        case 'month':
+          state.repeatTasks.month[currentTaskIndex] = {
+            ...newTask,
+            repeat: {
+              day: repeatDay,
+            },
+          };
+          break;
+        case 'year':
+          state.repeatTasks.year[currentTaskIndex] = {
+            ...newTask,
+            repeat: {
+              month: repeatMonth,
+              day: repeatDay,
+            },
+          };
+      }
     },
   },
 });
@@ -196,5 +252,7 @@ export const {
   addWeekRepeatTask,
   addMonthRepeatTask,
   addYearRepeatTask,
+  updateSingleTask,
+  updateRepeatTask,
 } = todoSlice.actions;
 export default todoSlice.reducer;

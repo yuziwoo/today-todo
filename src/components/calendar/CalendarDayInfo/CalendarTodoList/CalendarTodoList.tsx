@@ -1,9 +1,12 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BasicDateData, BasicMonthData, BasicTodoData } from '../../../../types/calendarTypes';
 import './calendarTodoList.css';
 import { toggleTask } from '../../../../store/slice/todoSlice';
 import { toggleTaskInCalendar } from '../../../../store/slice/calendarSlice';
 import BasicCheckbox from '../../../common/BasicCheckbox/BasicCheckbox';
+import { RootState } from 'src/store/store';
+import { findTaskWithID } from 'src/api/todoAPI/findTaskWithID';
+import { triggerEditorWithTask } from 'src/store/slice/editorSlice';
 
 interface CalendarTodoListProps extends BasicDateData {
   todoList: BasicTodoData[];
@@ -14,10 +17,16 @@ const CalendarTodoList = ({ year, month, day, todoList }: CalendarTodoListProps)
   const list = Array.isArray(todoList) ? todoList : [];
 
   const dispatch = useDispatch();
+  const todo = useSelector((state: RootState) => state.todo);
 
   const onCheckboxClick = ({ year, month, task }: BasicMonthData & { task: BasicTodoData }) => {
     dispatch(toggleTask({ year, month, ...task }));
     dispatch(toggleTaskInCalendar(task));
+  };
+
+  const onEditButtonClick = ({ id }: Pick<BasicTodoData, 'id'>) => {
+    const { task, cycle } = findTaskWithID({ id, todo });
+    dispatch(triggerEditorWithTask({ task, cycle }));
   };
 
   return (
@@ -33,7 +42,12 @@ const CalendarTodoList = ({ year, month, day, todoList }: CalendarTodoListProps)
             <BasicCheckbox checked={task.complete} />
             <p>{task.works}</p>
           </button>
-          <button className="canHover edit">
+          <button
+            className="canHover edit"
+            onClick={() => {
+              onEditButtonClick({ id: task.id });
+            }}
+          >
             <div className="circle">
               <span></span>
               <span></span>

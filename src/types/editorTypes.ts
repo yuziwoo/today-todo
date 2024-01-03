@@ -10,3 +10,30 @@ export type EditorStateProps = {
   repeatDayOfWeek: number[];
   task: Task | DayRepeatTask | WeekRepeatTask | MonthRepeatTask | YearRepeatTask;
 };
+
+export type EditorTaskData = Pick<
+  EditorStateProps,
+  'repeatCycle' | 'startDay' | 'endDay' | 'useEndDay' | 'repeatDayOfWeek' | 'task'
+>;
+
+export type EditorTaskPayload =
+  | {
+      task: Task;
+      cycle: 'single';
+    }
+  | {
+      task: DayRepeatTask;
+      cycle: 'day';
+    }
+  | {
+      task: WeekRepeatTask;
+      cycle: 'week';
+    }
+  | {
+      task: MonthRepeatTask;
+      cycle: 'month';
+    }
+  | {
+      task: YearRepeatTask;
+      cycle: 'year';
+    };

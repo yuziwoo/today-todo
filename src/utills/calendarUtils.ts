@@ -1,4 +1,5 @@
 import { BasicDateData, BasicMonthData } from '../types/calendarTypes';
+import { convertDateToNumber, convertNumberToDateData } from './converter';
 
 export const getMaximumDate = ({ year, month }: BasicMonthData): number => {
   return new Date(year, month + 1, 0).getDate();
@@ -67,4 +68,12 @@ export const getNextDay = ({ year, month, day }: BasicDateData): BasicDateData =
   const newDay = nextDay.getDate();
 
   return { year: newYear, month: newMonth, day: newDay };
+};
+
+export const getNextDayNumber = (startDay: number): number => {
+  const prevDay = convertNumberToDateData(startDay);
+  const nextDay = getNextDay(prevDay);
+  const nextDayNumber = convertDateToNumber(nextDay);
+
+  return nextDayNumber;
 };

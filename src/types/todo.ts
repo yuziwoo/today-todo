@@ -20,12 +20,14 @@ type RepeatTask<T> = DayRepeatTask & {
 export type WeekRepeatTask = RepeatTask<number[]>;
 export type MonthRepeatTask = RepeatTask<{ day: number }>;
 export type YearRepeatTask = RepeatTask<{ month: number; day: number }>;
+
 type RepeatTasksProps = {
   day: DayRepeatTask[];
   week: WeekRepeatTask[];
   month: MonthRepeatTask[];
   year: YearRepeatTask[];
 };
+
 export type Tasks = {
   initialId: number;
   tasks: Task[];
@@ -37,3 +39,7 @@ export type CompiledTask = Pick<Task, 'id' | 'day' | 'works' | 'complete'> & {
 };
 
 export type RepeatCycle = 'day' | 'week' | 'month' | 'year' | null;
+
+export type RandomTask = Task | DayRepeatTask | WeekRepeatTask | MonthRepeatTask | YearRepeatTask;
+
+export type Cycle = 'single' | 'day' | 'week' | 'month' | 'year';

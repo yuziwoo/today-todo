@@ -12,7 +12,7 @@ const endDay = convertDateToNumber({
   day: tommorow.day,
 });
 
-export const editorState: EditorStateProps = {
+export const initialEditorState: EditorStateProps = {
   editing: false,
   firstEdit: true,
   repeatCycle: 'single',
