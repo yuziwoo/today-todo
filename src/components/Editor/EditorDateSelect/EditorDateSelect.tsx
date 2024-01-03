@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { updateEditorTaskStartDay } from 'src/store/slice/editorSlice';
 import MonthSelector from '../../calendar/DateSelector/MonthSelector';
 import DaySelector from '../../calendar/DateSelector/DaySelector';
+import { vibrater } from 'src/utills/vibrater';
 
 const EditorDateSelect = () => {
   const editorState = useSelector((state: RootState) => state.editor);
@@ -22,12 +23,15 @@ const EditorDateSelect = () => {
 
   const setYear = (newYear: number) => {
     setDate({ ...date, year: newYear });
+    vibrater(50);
   };
   const setMonth = (newMonth: number) => {
     setDate({ ...date, month: newMonth });
+    vibrater(50);
   };
   const setDay = (newDay: number) => {
     setDate({ ...date, day: newDay });
+    vibrater(50);
   };
 
   useEffect(() => {
