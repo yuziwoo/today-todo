@@ -1,5 +1,6 @@
 .todo-list {
   width: 100%;
+  position: relative;
 }
 
 .todo-list li {

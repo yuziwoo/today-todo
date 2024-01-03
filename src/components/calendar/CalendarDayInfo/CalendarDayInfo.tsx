@@ -3,6 +3,8 @@ import { BasicDateData, BasicMonthData, OneDayData } from '../../../types/calend
 import { calcDday } from '../../../utills/calendarUtils';
 import CalendarTodoList from './CalendarTodoList/CalendarTodoList';
 import './calendarDayInfo.css';
+import CompleteEffect from '../../effect/CompleteEffect';
+import { useEffect, useState } from 'react';
 
 interface CalendarDayInfoProps {
   data: OneDayData & BasicMonthData;
@@ -19,8 +21,29 @@ const CalendarDayInfo = ({ data }: CalendarDayInfoProps) => {
     return dday < 0 ? `D - ${Math.abs(dday)}` : dday > 0 ? `D + ${dday}` : `오늘`;
   };
 
+  const [playAnimation, setPlayAnimation] = useState(false);
+  const [firstVisit, setFirstVisit] = useState(true);
+  const setPlayAnimationOff = () => {
+    setPlayAnimation(false);
+  };
+
+  useEffect(() => {
+    if (todo?.some((task) => !task.complete)) {
+      setFirstVisit(false);
+    }
+    if (todo?.every((task) => task.complete) && !firstVisit) {
+      setPlayAnimation(true);
+    }
+
+    // eslint-disable-next-line
+  }, [todo]);
+
   return (
     <section className="calendar-dayInfo">
+      <div className={`complete-animation${playAnimation ? ' play' : ''}`}>
+        <CompleteEffect trigger={playAnimation} setTriggerOff={setPlayAnimationOff} />
+      </div>
+
       <div className="about-day">
         <div className={`info${dayColor}`}>
           <h1 className="date">

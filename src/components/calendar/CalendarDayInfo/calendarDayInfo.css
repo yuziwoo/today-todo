@@ -2,6 +2,24 @@
   width: 100%;
   padding: 0 2.8rem 20rem;
   border-top: 1px solid var(--color-line);
+  position: relative;
+}
+
+.calendar-dayInfo .complete-animation {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+}
+
+.calendar-dayInfo .complete-animation[class*='play'] {
+  display: block;
 }
 
 .calendar-dayInfo .about-day {
