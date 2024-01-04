@@ -12,6 +12,19 @@
   margin-bottom: 1.4rem;
   position: relative;
   overflow: hidden;
+  animation: calendar-todo-list-open 0.3s 1 forwards;
+  opacity: 0;
+}
+
+@keyframes calendar-todo-list-open {
+  from {
+    transform: translateY(1.4rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .darkmode .calendar-todo-list ul li {
