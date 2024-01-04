@@ -236,7 +236,7 @@ export const todoSlice = createSlice({
 
         case 'year': {
           const newTasks = [...state.repeatTasks.year].filter((task) => task.id !== id);
-          state.repeatTasks.day = newTasks;
+          state.repeatTasks.year = newTasks;
           break;
         }
       }

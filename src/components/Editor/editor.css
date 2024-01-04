@@ -1,28 +1,36 @@
 .task-editor {
   width: 100%;
   height: 100%;
-  position: absolute;
-  left: 0;
+  max-width: 602px;
+  position: fixed;
+  left: 50%;
   top: 0;
   z-index: var(--zIndex-task-editor);
+  transform: translate(-50%, 110%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   background-color: var(--color-bg2);
-  transform: translateY(110%);  
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 .task-editor .editor-content {
+  background-color: var(--color-bg2);
   padding-bottom: 15.4rem;
+  width: 100%;
   height: 100%;
+  max-width: 602px;
   overflow-y: scroll;
   position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .task-editor .editor-content::-webkit-scrollbar {
   display: none;
 }
 
-.task-editor::before {
+.task-editor .editor-content::before {
   bottom: calc(100% - 5vh);
   left: 0;
   width: 100%;
@@ -35,28 +43,35 @@
 }
 
 .task-editor[class*='editor-closed'] {
-  animation: editor-off 0.35s 1 forwards;
+  animation: editor-off 0.5s 1 forwards;
 }
 
 .task-editor[class*='editing'] {
   animation: editor-on 0.5s 1 forwards;
 }
 
+.task-editor[class*='editing'] .editor-content {
+  animation: fadeIn 0.5s forwards;
+  opacity: 0;
+}
+
 @keyframes editor-on {
   from {
-    transform: translateY(110%);
+    transform: translate(-50%, 110%);
+    opacity: 1;
   }
   to {
-    transform: translateY(0);
+    transform: translate(-50%, 0%);
+    opacity: 1;
   }
 }
 
 @keyframes editor-off {
   from {
-    transform: translateY(0);
+    transform: translate(-50%, 0%);
   }
   to {
-    transform: translateY(110%);
+    transform: translate(-50%, -110%);
   }
 }
 
