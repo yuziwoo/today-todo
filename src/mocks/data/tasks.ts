@@ -77,13 +77,13 @@ export const tasks: Tasks = {
     year: [
       {
         id: 1004,
-        start: 20240024,
+        start: 20240001,
         repeat: {
-          month: 11,
-          day: 24,
+          month: 0,
+          day: 1,
         },
-        end: 20261124,
-        works: '크리스마스 케익 준비하기',
+        end: 20260001,
+        works: '새 해 다짐 적기',
         complete: [],
       },
     ],
