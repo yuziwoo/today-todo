@@ -6,14 +6,19 @@
   top: 0;
   z-index: var(--zIndex-task-editor);
   background-color: var(--color-bg2);
-  transform: translateY(110%);
-  overflow-y: scroll;
-  padding-bottom: 15.4rem;
+  transform: translateY(110%);  
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.task-editor::-webkit-scrollbar {
+.task-editor .editor-content {
+  padding-bottom: 15.4rem;
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.task-editor .editor-content::-webkit-scrollbar {
   display: none;
 }
 
@@ -26,6 +31,7 @@
   background-color: var(--color-bg2);
   content: '';
   position: absolute;
+  display: block;
 }
 
 .task-editor[class*='editor-closed'] {
@@ -33,7 +39,7 @@
 }
 
 .task-editor[class*='editing'] {
-  animation: editor-on 0.35s 1 forwards;
+  animation: editor-on 0.5s 1 forwards;
 }
 
 @keyframes editor-on {
