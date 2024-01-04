@@ -135,6 +135,7 @@ q:before {
   --zIndex-aside-trigger: 150;
   --zIndex-task-editor: 300;
   --zIndex-task-editor-trash-button: 310;
+  --zIndex-year-month-selector: 350;
 
   --transition-hover-default: opacity 0.2s;
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
@@ -160,8 +161,9 @@ q:before {
   --color-radio-highlight: #f46b6b;
   --color-line: rgba(244, 107, 107, 0.3);
 
-  --borderRadius-button: 0.7em;
-  --borderRadius-box: 1.4em;
+  --borderRadius-button: 0.7rem;
+  --borderRadius-box: 1.4rem;
+  --borderRadius-section: 2.8rem;
 }
 
 .darkmode {

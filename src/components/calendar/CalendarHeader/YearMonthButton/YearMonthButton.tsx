@@ -2,6 +2,8 @@ import './yearMonthButton.css';
 import { BasicMonthData, CalendarDataType } from '../../../../types/calendarTypes';
 import RotateNumber from '../RotateNumber/RotateNumber';
 import { getMonthDigits, getYearDigits } from '../../../../api/calendarAPI/getDateDigits';
+import { useDispatch } from 'react-redux';
+import { toggleCalendarYearMonthSelector } from 'src/store/slice/requestSlice';
 
 interface YearMonthButtonProps {
   calendar: CalendarDataType[];
@@ -17,8 +19,13 @@ const YearMonthButton = ({ calendar, prevMonth }: YearMonthButtonProps) => {
   const monthDigits = getMonthDigits(month);
   const prevMonthDigits = getMonthDigits(prevMonth.month);
 
+  const dispatch = useDispatch();
+  const toggleSelector = () => {
+    dispatch(toggleCalendarYearMonthSelector());
+  };
+
   return (
-    <button className="year-month-button canHover">
+    <button className="year-month-button canHover" onClick={toggleSelector}>
       <RotateNumber prev={prevYearDigits[0]} current={yearDigits[0]} />
       <RotateNumber prev={prevYearDigits[1]} current={yearDigits[1]} />
       <RotateNumber prev={prevYearDigits[2]} current={yearDigits[2]} />

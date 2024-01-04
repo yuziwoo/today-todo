@@ -21,6 +21,7 @@ import { ChangeMonthProps } from '../../types/calendarTypes';
 import { LOCAL_STORAGE_KEY } from '../../constants/API';
 import { updateTaskInCalendar } from 'src/store/slice/calendarSlice';
 import CalendarLoading from 'src/components/effect/CalendarLoading';
+import CalendarYearMonthSelector from '../../components/calendar/CalendarYearMonthSelector/CalendarYearMonthSelector';
 
 const CalendarPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -113,6 +114,12 @@ const CalendarPage = () => {
       )}
       <CalendarAside currentDay={currentDayData} />
       <Editor />
+      <CalendarYearMonthSelector
+        year={calendar[1].year}
+        month={calendar[1].month}
+        onChangeMonth={handleChangeMonth}
+        todo={todo}
+      />
     </div>
   );
 };
