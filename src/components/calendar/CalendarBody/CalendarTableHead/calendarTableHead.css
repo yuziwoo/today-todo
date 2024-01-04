@@ -1,13 +1,13 @@
 .calendar-table .calendar-table-head {
   width: 100%;
-  padding: 1.4rem 0;
+  padding-bottom: 2.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .calendar-table .calendar-table-head .calendar-th {
-  width: 7.4rem;
+  width: 6.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,8 +15,8 @@
 
 .calendar-table .calendar-table-head .calendar-th span {
   text-align: center;
-  font-weight: 500;
-  font-size: 1.54rem;
+  font-weight: 700;
+  font-size: 1.96rem;
 }
 
 .calendar-table .calendar-table-head .calendar-th:first-child span {

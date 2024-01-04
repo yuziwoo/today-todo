@@ -31,16 +31,16 @@ const CalendarTableCell = ({
 
   return (
     <div className={className}>
-      <button className="canHover" onClick={onClickHandler}>
+      <button className="event-hover hover-soft" onClick={onClickHandler}>
         <div className="date">
           <span>{day}</span>
         </div>
         <div className="todo">
           {completeTask.map((task) => (
-            <span className="task complete" key={task.id}></span>
+            <span className={`task complete${task.repeat ? ' repeat' : ''}`} key={task.id}></span>
           ))}
           {unCompleteTask.map((task) => (
-            <span className="task" key={task.id}></span>
+            <span className={`task ${task.repeat ? ' repeat' : ''}`} key={task.id}></span>
           ))}
         </div>
       </button>

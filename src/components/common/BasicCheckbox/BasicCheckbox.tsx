@@ -3,11 +3,15 @@ import './basicCheckbox.css';
 
 interface BasicCheckboxProps {
   checked: boolean;
+  color?: string;
 }
 
-const BasicCheckbox = ({ checked }: BasicCheckboxProps) => {
+const BasicCheckbox = ({ checked, color }: BasicCheckboxProps) => {
   return (
-    <div className={`basic-checkbox${checked ? ' checked' : ''}`}>
+    <div
+      className={`basic-checkbox${checked ? ' checked' : ''}`}
+      style={{ backgroundColor: `${color}` }}
+    >
       <IconCheck color="white" />
     </div>
   );

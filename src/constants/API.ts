@@ -12,6 +12,7 @@ export const CALENDAR_API = {
   minYear: 1900,
   maxYear: 2100,
   dayOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+  dayOfWeekEng: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
   month: [
     'JANUARY',
     'FEBRUARY',

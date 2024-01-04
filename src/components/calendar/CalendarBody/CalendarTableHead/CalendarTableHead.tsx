@@ -2,12 +2,12 @@ import { CALENDAR_API } from '../../../../constants/API';
 import './calendarTableHead.css';
 
 const CalendarTableHead = () => {
-  const dayOfWeeks = CALENDAR_API.dayOfWeek;
+  const dayOfWeeks = CALENDAR_API.dayOfWeekEng;
 
   return (
     <div className="calendar-table-head">
-      {dayOfWeeks.map((dayOfWeek) => (
-        <div className="calendar-th" key={dayOfWeek}>
+      {dayOfWeeks.map((dayOfWeek, index) => (
+        <div className="calendar-th" key={index}>
           <span>{dayOfWeek}</span>
         </div>
       ))}

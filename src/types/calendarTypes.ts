@@ -13,7 +13,7 @@ export type DetailedMonthData = BasicMonthData & {
 
 export type ChangeMonthProps = BasicMonthData & {
   todo: Tasks;
-}
+};
 
 export type BasicTodoData = {
   id: number;
@@ -28,10 +28,12 @@ type BasicOneDayData = {
 
 export type BasicDateData = BasicMonthData & BasicOneDayData;
 
-export type RestDayData = BasicOneDayData & {
+export type RestData = {
   restDay: null | boolean;
   dateName: null | string;
 };
+
+export type RestDayData = BasicOneDayData & RestData;
 
 export type OneDayData = RestDayData & {
   todo: BasicTodoData[];

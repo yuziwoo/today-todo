@@ -7,7 +7,6 @@ import { saveTodo, setTodo } from '../../store/slice/todoSlice';
 
 import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHeader';
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
-import CalendarDayInfo from '../../components/calendar/CalendarDayInfo/CalendarDayInfo';
 import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
 import Editor from '../../components/Editor/Editor';
 
@@ -107,16 +106,14 @@ const CalendarPage = () => {
         {loading ? (
           <CalendarLoading minHeight={250} />
         ) : (
-          <>
-            <CalendarBody
-              calendar={calendar}
-              onChangeToLastMonth={handleChangeToLastMonth}
-              onChangeToNextMonth={handleChangeToNextMonth}
-              setCurrentDay={setCurrentDay}
-              currentDay={currentDay}
-            />
-            <CalendarDayInfo data={currentDayData} />
-          </>
+          <CalendarBody
+            calendar={calendar}
+            onChangeMonth={handleChangeMonth}
+            onChangeToLastMonth={handleChangeToLastMonth}
+            onChangeToNextMonth={handleChangeToNextMonth}
+            setCurrentDay={setCurrentDay}
+            currentDay={currentDay}
+          />
         )}
       </div>
       <CalendarAside currentDay={currentDayData} />

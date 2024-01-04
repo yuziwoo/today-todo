@@ -22,11 +22,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: var(--transition-transform-2)
+  transition: var(--transition-transform-2);
 }
 
-.calendar-header-title button .month[class*="current-0 prev-11"] .wrap {
+.calendar-header-title button .month[class*='current-0 prev-11'] .wrap {
   animation: calendar-header-title-month1 0.3s 1 none;
+  transition: transform 0s 0.3s;
+  transform: translateY(-100%);
 }
 
 @keyframes calendar-header-title-month1 {
@@ -38,8 +40,10 @@
   }
 }
 
-.calendar-header-title button .month[class*="current-11 prev-0"] .wrap {
+.calendar-header-title button .month[class*='current-11 prev-0'] .wrap {
   animation: calendar-header-title-month2 0.3s 1 none;
+  transition: transform 0s 0.3s;
+  transform: translateY(-1200%);
 }
 
 @keyframes calendar-header-title-month2 {

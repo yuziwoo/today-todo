@@ -1,5 +1,5 @@
 .calendar-table-cell {
-  width: 7.4rem;
+  width: 6.8rem;
   margin-bottom: 1rem;
   opacity: 0.1;
   transition: opacity 0.25s;
@@ -24,17 +24,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 0 1.8rem 0;
+  padding: 0.35rem 0.7rem 1.05rem;
+}
+
+.calendar-table-cell button::before {
+  background-color: #7B9FB3;
 }
 
 .calendar-table-cell button .date {
   border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
+  width: 5.25rem;
+  height: 5.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
   box-sizing: border-box;
   position: relative;
 }
@@ -43,38 +47,39 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 5em;
-  height: 5em;
+  width: 5.25em;
+  height: 5.25em;
   border-radius: 50%;
   content: '';
-  border: 0.21em solid var(--color-today);
   opacity: 0;
   transform: scale(1.2);
-  transition: all 0.15s;
+  transition: all 0.2s;
+  background-color: var(--color-calendar-current);
   box-sizing: border-box;
 }
 
-.calendar-table-cell[class*='today'] button .date {
-  background-color: var(--color-today-bg);
+.calendar-table-cell[class*='today'] button .date::before {
+  background-color: var(--color-calendar-today);
+  transform: scale(1);
+  opacity: 1;
 }
 
-.calendar-table-cell[class*='today'] button .date span {
-  color: white;
+.calendar-table-cell[class*='current-day'] button .date span {
+  color: white!important;
 }
 
 .calendar-table-cell[class*='current-day'] button .date::before {
-  opacity: 1;
+  background-color: var(--color-calendar-current);
   transform: scale(1);
-}
-
-.calendar-table-cell[class*='today'] button .date::before {
-  border: 0.21em solid white;
-  transform: scale(0.9);
+  opacity: 1;
 }
 
 .calendar-table-cell button .date span {
   font-size: 2.52rem;
-  font-weight: 700;
+  font-weight: 500;
+  position: relative;
+  display: block;
+  text-align: center;
 }
 
 .calendar-table-cell button .todo {
@@ -88,9 +93,13 @@
   width: 0.56rem;
   height: 0.56rem;
   border-radius: 50%;
-  background-color: var(--color-red);
+  background-color: var(--color-calendar-singleTask);
   margin-right: 0.21rem;
-  opacity: 0.3;
+  opacity: 1;
+}
+
+.calendar-table-cell button .todo .task[class*='repeat'] {
+  background-color: var(--color-calendar-repeatTask);
 }
 
 .calendar-table-cell button .todo .task:last-child {
@@ -98,5 +107,5 @@
 }
 
 .calendar-table-cell button .todo .task[class*='complete'] {
-  opacity: 1;
+  opacity: 0.3;
 }

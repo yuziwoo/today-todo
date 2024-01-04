@@ -2,18 +2,29 @@
 :root {
   --color-default: black;
   --color-reverse: white;
+  --color-red: #df5d5d;
+  --color-blue: #4b9edb;
 
   --color-bg-1: white;
 
+  --color-box-bg-1: white;
+
   --color-header-title: white;
+  --color-calendar-today: #e9f2f9;
+  --color-calendar-current: #4b90c3;
+  --color-calendar-singleTask: #fa998b;
+  --color-calendar-repeatTask: #66cb4c;
+  --color-calendar-dday: #34388c;
+  --color-calendar-todolist-repeat: #878787;
 
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
 
-  --transition-opacity-1: opacity 0.2s var(--timingFunction-easeOut);
-  --transition-opacity-2: opacity 0.3s var(--timingFunction-easeOut);
+  --transition-opacity-1: opacity 0.2s;
+  --transition-opacity-2: opacity 0.3s;
 
-  --transition-transform-1: transform 0.2s var(--timingFunction-easeOut);
-  --transition-transform-2: transform 0.3s var(--timingFunction-easeOut);
+  --transition-transform-1: transform 0.2s;
+  --transition-transform-2: transform 0.3s;
+  --transition-transform-3: transform 0.5s;
 
   --borderRadius-1: 0.7rem;
   --borderRadius-2: 1.4rem;
@@ -28,9 +39,15 @@
   --color-default: white;
   --color-reverse: black;
 
-  --color-bg-1: #1A1C1C;
+  --color-bg-1: #1a1c1c;
+
+  --color-box-bg-1: #2a2b2b;
 
   --color-header-title: #1d3344;
+  --color-calendar-today: #3c4d5a;
+  --color-calendar-current: #9cb5c8;
+  --color-calendar-singleTask: #e96042;
+  --color-calendar-dday: #797def;
 }
 
 /* Size */
@@ -95,6 +112,10 @@
   opacity: 0.3;
 }
 
+.event-hover[class*='hover-soft']:hover::before {
+  opacity: 0.1;
+}
+
 @media screen and (max-width: 602px) {
   .event-hover:hover::before {
     animation: event-hover 0.6s 1 forwards;
@@ -106,10 +127,7 @@
     opacity: 0;
   }
   50% {
-    opacity: 0.3;
-  }
-  80% {
-    opacity: 0.3;
+    opacity: 0.1;
   }
   to {
     opacity: 0;

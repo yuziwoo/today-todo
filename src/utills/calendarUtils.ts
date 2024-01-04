@@ -22,6 +22,11 @@ export const calcDday = ({ year, month, day }: BasicDateData): number => {
   return dday;
 };
 
+export const getDday = ({ year, month, day }: BasicDateData): string => {
+  const dday = calcDday({ year, month, day });
+  return dday < 0 ? `D - ${Math.abs(dday)}` : dday > 0 ? `D + ${dday}` : `오늘`;
+};
+
 export const isToday = ({ year, month, day }: BasicDateData): boolean => {
   const today = new Date();
   let isSame =

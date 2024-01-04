@@ -1,0 +1,63 @@
+.calendar-day-info {
+  padding: 2.8rem 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-day-info .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.calendar-day-info .left .date {
+  font-size: 3.36rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.calendar-day-info .left .name {
+  font-size: 1.68rem;
+  font-weight: 500;
+  margin-left: 1.4rem;
+  line-height: 1;
+}
+
+.calendar-day-info[class*='red'] .left .date,
+.calendar-day-info[class*='red'] .left .name {
+  color: var(--color-red);
+}
+
+.calendar-day-info[class*='blue'] .left .date,
+.calendar-day-info[class*='blue'] .left .name {
+  color: var(--color-blue);
+}
+
+.calendar-day-info .right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.calendar-day-info .right .today {
+  padding: 1.4rem 0.7rem;
+  margin-left: 2.1rem;
+}
+
+.calendar-day-info .right .today span {
+  font-size: 1.68rem;
+  font-weight: 700;
+}
+
+.calendar-day-info .right .dday {
+  padding: 0.7rem 1.4rem;
+  border-radius: 1.876rem;
+  background-color: var(--color-calendar-dday);
+}
+
+.calendar-day-info .right .dday span {
+  color: white;
+  font-weight: 700;
+  font-size: 1.68rem;
+}
