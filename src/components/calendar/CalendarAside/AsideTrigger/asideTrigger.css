@@ -8,9 +8,10 @@
   width: 8.4rem;
   height: 8.4rem;
   border-radius: 50%;
-  background-color: var(--color-checkbox);
+  background: var(--gradient-aside-button);
   transition: transform 0.3s;
   overflow: hidden;
+  box-shadow: 0 0.28rem 0.7rem rgba(0, 0, 0, 0.25);
 }
 
 .calendar-aside-trigger::before {
@@ -30,5 +31,5 @@
 }
 
 .calendar-aside-trigger[class*='calendar-aside-on'] {
-  transform: rotate(135deg);
+  transform: rotate(315deg);
 }

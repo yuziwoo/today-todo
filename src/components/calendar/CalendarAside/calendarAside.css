@@ -83,7 +83,8 @@
   width: 8.4rem;
   height: 8.4rem;
   border-radius: 50%;
-  background-color: var(--color-checkbox);
+  background: var(--gradient-aside-button);
+  box-shadow: 0 0.28rem 0.7rem rgba(0, 0, 0, 0.25);
   overflow: hidden;
   position: relative;
 }

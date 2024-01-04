@@ -1,5 +1,12 @@
 /* Variable */
 :root {
+  --zIndex-header: 50;
+  --zIndex-aside: 100;
+  --zIndex-aside-trigger: 150;
+  --zIndex-task-editor: 300;
+  --zIndex-task-editor-trash-button: 310;
+  --zIndex-year-month-selector: 350;
+
   --color-default: black;
   --color-reverse: white;
   --color-red: #df5d5d;
@@ -16,6 +23,8 @@
   --color-calendar-repeatTask: #66cb4c;
   --color-calendar-dday: #34388c;
   --color-calendar-todolist-repeat: #878787;
+
+  --gradient-aside-button: linear-gradient(to bottom, #ff7272, #de4e4e);
 
   --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
 
