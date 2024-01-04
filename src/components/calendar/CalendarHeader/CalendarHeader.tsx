@@ -1,16 +1,14 @@
 import './calendarHeader.css';
-
-import YearMonthButton from './YearMonthButton/YearMonthButton';
 import { IconArrowLeft, IconArrowRight } from '../../icons/icons';
 import { BasicMonthData, CalendarDataType, ChangeMonthProps } from '../../../types/calendarTypes';
 import { Tasks } from '../../../types/todo';
 import { calcLastMonth } from '../../../api/calendarAPI/calcLastMonth';
 import { calcNextMonth } from '../../../api/calendarAPI/calcNextMonth';
+import CalendarHeaderTitle from './CalendarHeaderTitle/CalendarHeaderTitle';
 
 interface CalendarHeaderProps {
   calendar: CalendarDataType[];
   prevMonth: BasicMonthData;
-  onChangeMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   onChangeToNextMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   onChangeToLastMonth: ({ year, month, todo }: ChangeMonthProps) => void;
   todo: Tasks;
@@ -19,7 +17,6 @@ interface CalendarHeaderProps {
 const CalendarHeader = ({
   calendar,
   prevMonth,
-  onChangeMonth,
   onChangeToNextMonth,
   onChangeToLastMonth,
   todo,
@@ -28,25 +25,25 @@ const CalendarHeader = ({
 
   return (
     <section className="calendar-header">
-      <YearMonthButton calendar={calendar} prevMonth={prevMonth} />
-
-      <button
-        className="last-month-button arrow-button canHover"
-        onClick={() => {
-          onChangeToLastMonth({ ...calcLastMonth({ year, month }), todo });
-        }}
-      >
-        <IconArrowLeft color="black" />
-      </button>
-
-      <button
-        className="next-month-button arrow-button canHover"
-        onClick={() => {
-          onChangeToNextMonth({ ...calcNextMonth({ year, month }), todo });
-        }}
-      >
-        <IconArrowRight color="black" />
-      </button>
+      <div className="content">
+        <button
+          className="left event-hover color-reverse"
+          onClick={() => {
+            onChangeToLastMonth({ ...calcLastMonth({ year, month }), todo });
+          }}
+        >
+          <IconArrowLeft color="white" />
+        </button>
+        <CalendarHeaderTitle currentMonth={{ year, month }} prevMonth={prevMonth} />
+        <button
+          className="right event-hover color-reverse"
+          onClick={() => {
+            onChangeToNextMonth({ ...calcNextMonth({ year, month }), todo });
+          }}
+        >
+          <IconArrowRight color="white" />
+        </button>
+      </div>
     </section>
   );
 };

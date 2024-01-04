@@ -1,0 +1,75 @@
+.calendar-header-title {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-header-title button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-header-title button .month {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.calendar-header-title button .month .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-transform-2)
+}
+
+.calendar-header-title button .month[class*="current-0 prev-11"] .wrap {
+  animation: calendar-header-title-month1 0.3s 1 none;
+}
+
+@keyframes calendar-header-title-month1 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.calendar-header-title button .month[class*="current-11 prev-0"] .wrap {
+  animation: calendar-header-title-month2 0.3s 1 none;
+}
+
+@keyframes calendar-header-title-month2 {
+  from {
+    transform: translateY(-1300%);
+  }
+  to {
+    transform: translateY(-1200%);
+  }
+}
+
+.calendar-header-title button .month .wrap h1 {
+  display: block;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  color: var(--color-header-title);
+  font-weight: 200;
+  font-size: 6.8rem;
+  letter-spacing: -0.2rem;
+  line-height: 1;
+}
+
+.calendar-header-title button .month .wrap h1:nth-child(1) {
+  width: 37.5rem;
+  position: relative;
+}
+
+.calendar-header-title button .year h2 {
+  font-size: 3.6rem;
+  color: var(--color-header-title);
+  font-weight: 700;
+}

@@ -90,28 +90,35 @@ const CalendarPage = () => {
 
   return (
     <div className="calendar" id="calendar">
+      <div className="calendar-bg">
+        <img src="./assets/img/main-bg.jpg" alt="background-img" />
+        <div className="effect-blur"></div>
+      </div>
+
       <CalendarHeader
         calendar={calendar}
         prevMonth={prevMonth}
-        onChangeMonth={handleChangeMonth}
         onChangeToLastMonth={handleChangeToLastMonth}
         onChangeToNextMonth={handleChangeToNextMonth}
         todo={todo}
       />
-      {loading ? (
-        <CalendarLoading minHeight={250} />
-      ) : (
-        <>
-          <CalendarBody
-            calendar={calendar}
-            onChangeToLastMonth={handleChangeToLastMonth}
-            onChangeToNextMonth={handleChangeToNextMonth}
-            setCurrentDay={setCurrentDay}
-            currentDay={currentDay}
-          />
-          <CalendarDayInfo data={currentDayData} />
-        </>
-      )}
+
+      <div className="calendar-content">
+        {loading ? (
+          <CalendarLoading minHeight={250} />
+        ) : (
+          <>
+            <CalendarBody
+              calendar={calendar}
+              onChangeToLastMonth={handleChangeToLastMonth}
+              onChangeToNextMonth={handleChangeToNextMonth}
+              setCurrentDay={setCurrentDay}
+              currentDay={currentDay}
+            />
+            <CalendarDayInfo data={currentDayData} />
+          </>
+        )}
+      </div>
       <CalendarAside currentDay={currentDayData} />
       <Editor />
       <CalendarYearMonthSelector

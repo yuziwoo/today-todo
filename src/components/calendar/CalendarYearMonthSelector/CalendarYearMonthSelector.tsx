@@ -67,8 +67,12 @@ const CalendarYearMonthSelector = ({
         </div> */}
         <div className="body">
           <div className="white-highlight"></div>
-          <YearSelector initialYear={year} onYearChange={setYear} />
-          <MonthSelector initialMonth={month} onMonthChange={setMonth} />
+          {year > 0 && (
+            <>
+              <YearSelector initialYear={year} onYearChange={setYear} />
+              <MonthSelector initialMonth={month} onMonthChange={setMonth} />
+            </>
+          )}
         </div>
       </div>
     </section>
