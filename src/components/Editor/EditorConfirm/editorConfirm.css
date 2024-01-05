@@ -1,0 +1,70 @@
+.editor-confirm {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  max-width: 602px;
+  padding: 2.8rem 2.8rem 4.2rem;
+  background-color: rgba(200, 222, 236, 0.1);
+  backdrop-filter: blur(2.8rem);
+  z-index: 10;
+  border-top-right-radius: var(--borderRadius-3);
+  border-top-left-radius: var(--borderRadius-3);
+  box-shadow: var(--shadow-editor);
+}
+
+.editor-confirm button {
+  padding: 3.5rem;
+  width: calc(50% - 0.7rem);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--borderRadius-3);
+  box-shadow: var(--shadow-editor);
+}
+
+.editor-confirm button::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background-color: var(--color-blue);
+  opacity: 0;
+  transition: var(--transition-opacity-1);
+}
+
+.editor-confirm button:hover::before {
+  opacity: 0.1;
+}
+
+.editor-confirm .cancel {
+  background-color: var(--color-box-bg-3);
+}
+
+.editor-confirm button p {
+  font-size: 2.52rem;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.editor-confirm .cancel p {
+  color: var(--color-editor-cancel)
+}
+
+.editor-confirm .confirm::before {
+  background-color: white;
+}
+
+.editor-confirm .confirm {
+  background-color: var(--color-active);
+}
+
+.editor-confirm .confirm p {
+  color: white;
+}

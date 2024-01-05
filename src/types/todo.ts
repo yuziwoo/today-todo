@@ -7,10 +7,12 @@ export type Task = {
   complete: boolean;
 };
 
+export type RepeatTaskCompleteElement = Pick<Task, 'year' | 'month' | 'day'>;
+
 export type DayRepeatTask = Pick<Task, 'id' | 'works'> & {
   start: number;
   end: null | number;
-  complete: Pick<Task, 'year' | 'month' | 'day'>[];
+  complete: RepeatTaskCompleteElement[];
 };
 
 type RepeatTask<T> = DayRepeatTask & {
@@ -21,7 +23,7 @@ export type WeekRepeatTask = RepeatTask<number[]>;
 export type MonthRepeatTask = RepeatTask<{ day: number }>;
 export type YearRepeatTask = RepeatTask<{ month: number; day: number }>;
 
-type RepeatTasksProps = {
+export type RepeatTasksProps = {
   day: DayRepeatTask[];
   week: WeekRepeatTask[];
   month: MonthRepeatTask[];

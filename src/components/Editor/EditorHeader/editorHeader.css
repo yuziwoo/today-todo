@@ -35,3 +35,37 @@
 .darkmode .task-editor .editor-header .check svg path {
   fill: #3dce77;
 }
+
+.editor-header {
+  display: block;
+  padding: 8.4rem 2.8rem 4.2rem;
+}
+
+.editor-header .title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-header .title h1 {
+  color: var(--color-header-title);
+  font-weight: 200;
+  font-size: 6.8rem;
+  letter-spacing: -0.2rem;
+  line-height: 1;
+}
+
+.editor-header .title button {
+  position: absolute;
+  padding: 2.1rem;
+  left: 0;
+}
+
+.editor-header .title button svg {
+  width: 1.61rem;
+}
+
+.darkmode .editor-header .title button svg path {
+  stroke: var(--color-header-title);
+}

@@ -20,7 +20,13 @@ export const editorSlice = createSlice({
       const { task, cycle } = action.payload;
       const editorData = getEditorDataWithTask({ task, cycle });
 
-      const newState = { ...state, firstEdit: false, editing: true, ...editorData };
+      const newState = {
+        ...state,
+        firstEdit: false,
+        editing: true,
+        ...editorData,
+        originCycle: cycle,
+      };
       return newState;
     },
 
@@ -33,6 +39,7 @@ export const editorSlice = createSlice({
     },
 
     resetEditorTask(state) {
+      state.originCycle = 'single';
       state.repeatCycle = 'single';
       state.startDay = initialState.startDay;
       state.endDay = initialState.endDay;

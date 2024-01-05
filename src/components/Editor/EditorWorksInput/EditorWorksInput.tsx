@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import './editorWorksInput.css';
 import { updateEditorTaskWorks } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
 import { EDITOR } from 'src/constants/API';
+import './editorWorksInput.css';
 
 const EditorWorksInput = () => {
   const dispatch = useDispatch();
@@ -13,9 +13,8 @@ const EditorWorksInput = () => {
   };
 
   return (
-    <div className="editor-works-box">
+    <div className="editor-works">
       <input
-        className="editor-works-input"
         type="text"
         placeholder={EDITOR.worksPlaceholder[0]}
         onChange={handleOnChange}

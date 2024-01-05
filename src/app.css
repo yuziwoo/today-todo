@@ -1,20 +1,23 @@
 /* Variable */
 :root {
-  --zIndex-header: 50;
   --zIndex-aside: 100;
   --zIndex-aside-trigger: 150;
-  --zIndex-task-editor: 300;
-  --zIndex-task-editor-trash-button: 310;
+  --zIndex-editor: 300;
+
   --zIndex-year-month-selector: 350;
 
   --color-default: black;
   --color-reverse: white;
+  --color-active: #61aaff;
   --color-red: #df5d5d;
   --color-blue: #4b9edb;
 
   --color-bg-1: white;
+  --color-bg-2: #EBF2F7;
 
   --color-box-bg-1: white;
+  --color-box-bg-2: white;
+  --color-box-bg-3: white;
 
   --color-header-title: white;
   --color-calendar-today: #e9f2f9;
@@ -23,6 +26,10 @@
   --color-calendar-repeatTask: #66cb4c;
   --color-calendar-dday: #34388c;
   --color-calendar-todolist-repeat: #878787;
+  --color-editor-delete: #CD4B38;
+  --color-editor-cancel: #707070;
+
+  --shadow-editor: 0 0.28rem 0.7rem rgba(40, 72, 94, 25%);
 
   --gradient-aside-button: linear-gradient(to bottom, #ff7272, #de4e4e);
 
@@ -34,6 +41,8 @@
   --transition-transform-1: transform 0.2s;
   --transition-transform-2: transform 0.3s;
   --transition-transform-3: transform 0.5s;
+
+  --transition-opacity-transform-2: opacity 0.3s, transform 0.3s;
 
   --borderRadius-1: 0.7rem;
   --borderRadius-2: 1.4rem;
@@ -47,23 +56,35 @@
 .darkmode {
   --color-default: white;
   --color-reverse: black;
+  --color-active: #3585e2;
 
   --color-bg-1: #1a1c1c;
 
   --color-box-bg-1: #2a2b2b;
+  --color-box-bg-2: #2e373e;
+  --color-box-bg-3: #606060;
 
   --color-header-title: #1d3344;
   --color-calendar-today: #3c4d5a;
   --color-calendar-current: #9cb5c8;
   --color-calendar-singleTask: #e96042;
   --color-calendar-dday: #797def;
+  --color-editor-cancel: white;
+}
+
+body {
+  background-color: var(--color-bg-1);
+}
+
+* {
+  color: var(--color-default);
 }
 
 /* Size */
 .App {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-bg3);
+  background-color: var(--color-bg-2);
 }
 
 .stage {

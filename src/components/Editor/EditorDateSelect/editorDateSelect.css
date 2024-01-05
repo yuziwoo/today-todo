@@ -1,4 +1,4 @@
-.task-editor .editor-content .editor-date-selector {
+.editor-date-selector {
   padding: 4.2rem 2.8rem;
   position: relative;
   display: flex;
@@ -6,10 +6,11 @@
   align-items: center;
 }
 
-.task-editor .editor-content .editor-date-selector .white-highlight {
+.editor-date-selector .highlight {
   width: calc(100% - 5.6rem);
-  border-radius: var(--borderRadius-box);
+  border-radius: 5.6rem;
   height: 5.6rem;
   position: absolute;
-  background-color: var(--color-box-bg3);
+  background-color: var(--color-box-bg-2);
+  box-shadow: var(--shadow-editor);
 }

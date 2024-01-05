@@ -1,8 +1,6 @@
+import { BasicDateData } from 'src/types/calendarTypes';
 import { convertToTwoDigitString } from './converter';
 
-export const formatDateToInputDateString = (date: Date): string => {
-  const year = date.getFullYear();
-  const month = convertToTwoDigitString(date.getMonth() + 1);
-  const day = convertToTwoDigitString(date.getDate());
-  return `${year}-${month}-${day}`;
+export const formatDateToInputString = ({ year, month, day }: BasicDateData): string => {
+  return `${year}-${convertToTwoDigitString(month + 1)}-${convertToTwoDigitString(day)}`;
 };

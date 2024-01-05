@@ -1,15 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './editorDateSelect.css';
-import { RootState } from 'src/store/store';
-import { convertDateToNumber, convertNumberToDateData } from 'src/utills/converter';
-import YearSelector from '../../calendar/DateSelector/YearSelector';
 import { useEffect, useState } from 'react';
-import { updateEditorTaskStartDay } from 'src/store/slice/editorSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'src/store/store';
+
+import YearSelector from '../../calendar/DateSelector/YearSelector';
 import MonthSelector from '../../calendar/DateSelector/MonthSelector';
 import DaySelector from '../../calendar/DateSelector/DaySelector';
-import { vibrater } from 'src/utills/vibrater';
 
-const EditorDateSelect = () => {
+import { convertDateToNumber, convertNumberToDateData } from 'src/utills/converter';
+import { updateEditorTaskStartDay } from 'src/store/slice/editorSlice';
+import { vibrater } from 'src/utills/vibrater';
+import './editorDateSelect.css';
+
+interface EditorDateSelectProps {
+  editing: boolean;
+}
+
+const EditorDateSelect = ({ editing }: EditorDateSelectProps) => {
   const editorState = useSelector((state: RootState) => state.editor);
   const dispatch = useDispatch();
 
@@ -23,15 +29,15 @@ const EditorDateSelect = () => {
 
   const setYear = (newYear: number) => {
     setDate({ ...date, year: newYear });
-    vibrater(50);
+    if (editing) vibrater(50);
   };
   const setMonth = (newMonth: number) => {
     setDate({ ...date, month: newMonth });
-    vibrater(50);
+    if (editing) vibrater(50);
   };
   const setDay = (newDay: number) => {
     setDate({ ...date, day: newDay });
-    vibrater(50);
+    if (editing) vibrater(50);
   };
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const EditorDateSelect = () => {
 
   return (
     <div className="editor-date-selector">
-      <div className="white-highlight"></div>
+      <div className="highlight"></div>
       <YearSelector initialYear={year} onYearChange={setYear} />
       <MonthSelector initialMonth={month} onMonthChange={setMonth} />
       <DaySelector year={year} month={month} initialDay={day} onDayChange={setDay} />

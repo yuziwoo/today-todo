@@ -1,0 +1,36 @@
+.editor-manage-task {
+  padding: 6.4rem 2.8rem 4.2rem;
+  display: none;
+}
+
+.editor-manage-task[class*="updating"] {
+  display: block;
+}
+
+.editor-manage-task .heading {
+  font-size: 3.78rem;
+  font-weight: 700;
+  padding-bottom: 2.1rem;
+}
+
+.editor-manage-task button {
+  width: 100%;
+  padding: 3.5rem 2.8rem;
+  border-radius: var(--borderRadius-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.7rem;
+  box-shadow: var(--shadow-editor);
+  background-color: var(--color-box-bg-1);
+}
+
+.editor-manage-task button::before {
+  background-color: var(--color-editor-delete);
+}
+
+.editor-manage-task button h2 {
+  font-size: 2.52rem;
+  font-weight: 700;
+  color: var(--color-editor-delete);
+}

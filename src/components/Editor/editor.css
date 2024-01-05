@@ -1,82 +1,81 @@
-.task-editor {
-  width: 100%;
-  height: 100%;
-  max-width: 602px;
-  position: fixed;
-  left: 50%;
-  top: 0;
-  z-index: var(--zIndex-task-editor);
-  transform: translate(-50%, 110%);
-  display: flex;
+.editor {
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: var(--color-bg2);
-}
-
-.task-editor .editor-content {
-  background-color: var(--color-bg2);
-  padding-bottom: 15.4rem;
+  position: fixed;
   width: 100%;
   height: 100%;
-  max-width: 602px;
-  overflow-y: scroll;
-  position: relative;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.task-editor .editor-content::-webkit-scrollbar {
-  display: none;
-}
-
-.task-editor .editor-content::before {
-  bottom: calc(100% - 5vh);
   left: 0;
-  width: 100%;
-  height: 10vh;
-  border-radius: 5vh;
-  background-color: var(--color-bg2);
-  content: '';
-  position: absolute;
-  display: block;
-}
-
-.task-editor[class*='editor-closed'] {
-  animation: editor-off 0.5s 1 forwards;
-}
-
-.task-editor[class*='editing'] {
-  animation: editor-on 0.5s 1 forwards;
-}
-
-.task-editor[class*='editing'] .editor-content {
-  animation: fadeIn 0.5s forwards;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  z-index: var(--zIndex-editor);
+  transform: translateY(100%);
   opacity: 0;
+}
+
+.editor[class*='closed'] {
+  animation: editor-off 0.5556s 1 forwards;
+}
+
+.editor[class*='editing'] {
+  animation: editor-on 0.5556s 1 forwards;
 }
 
 @keyframes editor-on {
   from {
-    transform: translate(-50%, 110%);
-    opacity: 1;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 0;
   }
   to {
-    transform: translate(-50%, 0%);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes editor-off {
   from {
-    transform: translate(-50%, 0%);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 0;
   }
   to {
-    transform: translate(-50%, -110%);
+    transform: translateY(100%);
+    opacity: 0;
   }
 }
 
-@media screen and (max-width: 602px) {
-  .task-editor {
-    position: fixed;
-  }
+.editor .editor-content {
+  width: 100%;
+  height: 100%;
+  max-width: 602px;
+  position: relative;
+}
+
+.editor .editor-content .content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 21rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  opacity: 0;
+  display: none;
+}
+
+.editor .editor-content .content::-webkit-scrollbar {
+  display: none;
+}
+
+.editor[class*='editing'] .editor-content .content {
+  display: block;
+  animation: fadeUp 0.4s 0.4s 1 forwards;
 }

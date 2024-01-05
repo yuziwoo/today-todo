@@ -1,9 +1,17 @@
-import { DayRepeatTask, MonthRepeatTask, Task, WeekRepeatTask, YearRepeatTask } from './todo';
+import {
+  Cycle,
+  DayRepeatTask,
+  MonthRepeatTask,
+  Task,
+  WeekRepeatTask,
+  YearRepeatTask,
+} from './todo';
 
 export type EditorStateProps = {
   editing: boolean;
   firstEdit: boolean;
-  repeatCycle: 'single' | 'day' | 'week' | 'month' | 'year';
+  originCycle: Cycle;
+  repeatCycle: Cycle;
   startDay: number;
   endDay: number;
   useEndDay: boolean;

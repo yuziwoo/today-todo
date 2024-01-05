@@ -15,6 +15,7 @@ const endDay = convertDateToNumber({
 export const initialEditorState: EditorStateProps = {
   editing: false,
   firstEdit: true,
+  originCycle: 'single',
   repeatCycle: 'single',
   startDay,
   endDay,

@@ -1,123 +1,19 @@
-import { IconCheck, IconExit } from 'src/components/icons/icons';
 import './editorHeader.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleEditor } from 'src/store/slice/editorSlice';
-import { RootState } from 'src/store/store';
-import { MESSAGE } from 'src/constants/MESSAGE';
-import {
-  addRepeatTask,
-  addSingleTask,
-  updateRepeatTask,
-  updateSingleTask,
-} from 'src/store/slice/todoSlice';
-import { convertNumberToDateData } from 'src/utills/converter';
-import { requestChangeCalendarTodo } from 'src/store/slice/requestSlice';
-import { initialEditorState } from 'src/mocks/data/editorState';
-import { EditorStateProps } from 'src/types/editorTypes';
+import { IconArrowLeft } from '../../icons/icons';
 
-const EditorHeader = () => {
-  const editorState = useSelector((state: RootState) => state.editor);
-  const dispatch = useDispatch();
+interface EditorHeaderProps {
+  onCancelEditor: () => void;
+}
 
-  const exitEditor = () => {
-    dispatch(toggleEditor());
-  };
-
-  const exitEditorAndUpdate = () => {
-    dispatch(requestChangeCalendarTodo());
-    exitEditor();
-  };
-
-  const getTaskData = (state: EditorStateProps) => {
-    const works = state.task.works.trim();
-    const { startDay, endDay, useEndDay, repeatDayOfWeek } = state;
-    const repeatDay = startDay % 100;
-    const repeatMonth = Math.floor((startDay % 10000) / 100);
-    return { works, startDay, endDay, useEndDay, repeatDayOfWeek, repeatDay, repeatMonth };
-  };
-
-  const addTask = () => {
-    const { works, startDay, endDay, useEndDay, repeatDayOfWeek, repeatDay, repeatMonth } =
-      getTaskData(editorState);
-    const cycle = editorState.repeatCycle;
-
-    if (cycle === 'single') {
-      const { year, month, day } = convertNumberToDateData(editorState.startDay);
-      dispatch(addSingleTask({ year, month, day, works }));
-      exitEditorAndUpdate();
-      return;
-    }
-
-    dispatch(
-      addRepeatTask({
-        startDay,
-        works,
-        endDay,
-        useEndDay,
-        repeatDayOfWeek,
-        repeatDay,
-        repeatMonth,
-        cycle,
-      })
-    );
-    exitEditorAndUpdate();
-  };
-
-  const updateTask = () => {
-    const { works, startDay, endDay, useEndDay, repeatDayOfWeek, repeatDay, repeatMonth } =
-      getTaskData(editorState);
-
-    const id = editorState.task.id;
-    const cycle = editorState.repeatCycle;
-
-    if (editorState.repeatCycle === 'single') {
-      const { year, month, day } = convertNumberToDateData(editorState.startDay);
-      dispatch(updateSingleTask({ id, year, month, day, works }));
-      exitEditorAndUpdate();
-      return;
-    }
-
-    dispatch(
-      updateRepeatTask({
-        id,
-        startDay,
-        works,
-        endDay,
-        useEndDay,
-        cycle,
-        repeatDayOfWeek,
-        repeatDay,
-        repeatMonth,
-      })
-    );
-    exitEditorAndUpdate();
-  };
-
-  const handleSubmitButton = () => {
-    const works = editorState.task.works.trim();
-    if (works.length === 0) {
-      alert(MESSAGE.editor.emptyWorks);
-      return;
-    }
-
-    const isUpdate = editorState.task.id !== initialEditorState.task.id;
-    if (isUpdate) {
-      updateTask();
-      return;
-    }
-
-    addTask();
-  };
-
+const EditorHeader = ({ onCancelEditor }: EditorHeaderProps) => {
   return (
     <div className="editor-header">
-      <button className="canHover close" onClick={exitEditor}>
-        <IconExit color="black" />
-      </button>
-      <h1>할 일</h1>
-      <button className="canHover check" onClick={handleSubmitButton}>
-        <IconCheck color="#148140" />
-      </button>
+      <div className="title">
+        <button className="close event-hover color-reverse" onClick={onCancelEditor}>
+          <IconArrowLeft color="white" />
+        </button>
+        <h1>EDIT TASK</h1>
+      </div>
     </div>
   );
 };
