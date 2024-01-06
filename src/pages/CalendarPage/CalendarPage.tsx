@@ -1,67 +1,63 @@
-import './calendarPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-
 import { RootState, AppDispatch } from '../../store/store';
 import { saveTodo, setTodo } from '../../store/slice/todoSlice';
-
-import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHeader';
-import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
-import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
-import Editor from '../../components/Editor/Editor';
-
-import { getMonthInfo } from '../../api/calendarAPI/getMonthInfo';
+import { updateTaskInCalendar } from 'src/store/slice/calendarSlice';
+import { ChangeMonthProps } from '../../types/calendarTypes';
+import { getInitialTodo } from 'src/api/todoAPI/getInitialTodo';
 import {
   setCalendarData,
   setLastMonthCalendarData,
   setNextMonthCalendarData,
 } from '../../api/calendarAPI/setCalendarData';
-import { ChangeMonthProps } from '../../types/calendarTypes';
-import { LOCAL_STORAGE_KEY } from '../../constants/API';
-import { updateTaskInCalendar } from 'src/store/slice/calendarSlice';
-import CalendarLoading from 'src/components/effect/CalendarLoading';
+import CalendarBg from '../../components/calendar/CalendarBg/CalendarBg';
+import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHeader';
+import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
+import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
+import Editor from '../../components/Editor/Editor';
 import CalendarYearMonthSelector from '../../components/calendar/CalendarYearMonthSelector/CalendarYearMonthSelector';
+import './calendarPage.css';
 
 const CalendarPage = () => {
+  // redux
   const dispatch = useDispatch<AppDispatch>();
   const todo = useSelector((state: RootState) => state.todo);
-  const calendar = useSelector((state: RootState) => state.calendarData);
   const requester = useSelector((state: RootState) => state.request);
+  const calendar = useSelector((state: RootState) => state.calendarData);
 
-  // CalendarHeader의 자연스러운 rotateNumber 이펙트를 위해 prevMonth 데이터를 사용
+  // useState
   const [prevMonth, setPrevMonth] = useState({ year: 0, month: 0 });
   const [currentDay, setCurrentDay] = useState(new Date().getDate());
-  const currentDayData = {
-    ...calendar[1].datas[currentDay - 1],
-    year: calendar[1].year,
-    month: calendar[1].month,
-  };
-
   const [loading, setLoading] = useState(true);
 
+  // 데이터 활용
+  const { year, month } = calendar[1];
+  const currentDate = { year, month, day: currentDay };
+
+  // event hanlder
   const handleChangeMonth = ({ year, month, todo }: ChangeMonthProps) => {
     dispatch(setCalendarData({ year, month, todo }));
     setCurrentDay(1);
   };
-
   const handleChangeToNextMonth = ({ year, month, todo }: ChangeMonthProps) => {
     dispatch(setNextMonthCalendarData({ year, month, todo }));
     setCurrentDay(1);
   };
-
   const handleChangeToLastMonth = ({ year, month, todo }: ChangeMonthProps) => {
     dispatch(setLastMonthCalendarData({ year, month, todo }));
     setCurrentDay(1);
   };
 
   const initialize = async () => {
+    const initialTodo = getInitialTodo(todo);
     await dispatch(setTodo());
-    const { year, month } = getMonthInfo(new Date());
-    const todoInStorage = localStorage.getItem(LOCAL_STORAGE_KEY.todo);
-    const initialTodo = todoInStorage === null ? todo : JSON.parse(todoInStorage);
-
-    await dispatch(setCalendarData({ year, month, todo: initialTodo }));
-
+    await dispatch(
+      setCalendarData({
+        year: new Date().getFullYear(),
+        month: new Date().getMonth(),
+        todo: initialTodo,
+      })
+    );
     setLoading(false);
   };
 
@@ -71,17 +67,20 @@ const CalendarPage = () => {
     // eslint-disable-next-line
   }, []);
 
+  // 이전 날짜 저장
   useEffect(() => {
     return () => {
       setPrevMonth({ year: calendar[1].year, month: calendar[1].month });
     };
   }, [calendar]);
 
+  // 로컬스토리지에 데이터 저장
   useEffect(() => {
     dispatch(saveTodo());
     // eslint-disable-next-line
   }, [todo]);
 
+  // 캘린더에 기록된 할 일들을 새로 업데이트
   useEffect(() => {
     dispatch(updateTaskInCalendar(todo));
     // eslint-disable-next-line
@@ -89,40 +88,30 @@ const CalendarPage = () => {
 
   return (
     <div className="calendar" id="calendar">
-      <div className="calendar-bg">
-        <img src="./assets/img/main-bg.jpg" alt="background-img" />
-        <div className="effect-blur"></div>
-      </div>
-
+      <CalendarBg />
       <CalendarHeader
         calendar={calendar}
         prevMonth={prevMonth}
+        todo={todo}
         onChangeToLastMonth={handleChangeToLastMonth}
         onChangeToNextMonth={handleChangeToNextMonth}
-        todo={todo}
       />
-
-      <div className="calendar-content">
-        {loading ? (
-          <CalendarLoading minHeight={250} />
-        ) : (
-          <CalendarBody
-            calendar={calendar}
-            onChangeMonth={handleChangeMonth}
-            onChangeToLastMonth={handleChangeToLastMonth}
-            onChangeToNextMonth={handleChangeToNextMonth}
-            setCurrentDay={setCurrentDay}
-            currentDay={currentDay}
-          />
-        )}
-      </div>
-      <CalendarAside currentDay={currentDayData} />
+      <CalendarBody
+        calendar={calendar}
+        currentDay={currentDay}
+        loading={loading}
+        setCurrentDay={setCurrentDay}
+        onChangeMonth={handleChangeMonth}
+        onChangeToLastMonth={handleChangeToLastMonth}
+        onChangeToNextMonth={handleChangeToNextMonth}
+      />
+      <CalendarAside currentDate={currentDate} />
       <Editor />
       <CalendarYearMonthSelector
-        year={calendar[1].year}
-        month={calendar[1].month}
-        onChangeMonth={handleChangeMonth}
+        year={year}
+        month={month}
         todo={todo}
+        onChangeMonth={handleChangeMonth}
       />
     </div>
   );

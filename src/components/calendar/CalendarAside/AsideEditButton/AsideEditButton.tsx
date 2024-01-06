@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleEditor, triggerEditorWithDateNumber } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
-import { BasicMonthData, OneDayData } from 'src/types/calendarTypes';
+import { BasicDateData } from 'src/types/calendarTypes';
 import { convertDateToNumber } from 'src/utills/converter';
 
 interface AsideEditButtonProps {
   onClick: () => void;
-  currentDay: OneDayData & BasicMonthData;
+  currentDate: BasicDateData;
 }
 
-const AsideEditButton = ({ onClick, currentDay }: AsideEditButtonProps) => {
+const AsideEditButton = ({ onClick, currentDate }: AsideEditButtonProps) => {
   const editorState = useSelector((state: RootState) => state.editor);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const AsideEditButton = ({ onClick, currentDay }: AsideEditButtonProps) => {
       return;
     }
 
-    const { year, month, day } = currentDay;
+    const { year, month, day } = currentDate;
     const startDay = convertDateToNumber({ year, month, day });
     dispatch(triggerEditorWithDateNumber(startDay));
     onClick();

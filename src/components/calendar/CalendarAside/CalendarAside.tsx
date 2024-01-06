@@ -3,13 +3,13 @@ import './calendarAside.css';
 import ThemeButton from './ThemeButton/ThemeButton';
 import AsideTrigger from './AsideTrigger/AsideTrigger';
 import AsideEditButton from './AsideEditButton/AsideEditButton';
-import { BasicMonthData, OneDayData } from 'src/types/calendarTypes';
+import { BasicDateData } from 'src/types/calendarTypes';
 
 interface CalendarAsideProps {
-  currentDay: OneDayData & BasicMonthData;
+  currentDate: BasicDateData;
 }
 
-const CalendarAside = ({ currentDay }: CalendarAsideProps) => {
+const CalendarAside = ({ currentDate }: CalendarAsideProps) => {
   const [asideSwitch, setAsideSwitch] = useState('off');
   const isTurningOff = useRef(false);
   const asideTransitionTime = 300;
@@ -46,7 +46,7 @@ const CalendarAside = ({ currentDay }: CalendarAsideProps) => {
           <ThemeButton />
         </div>
         <div className="section-division right-side">
-          <AsideEditButton onClick={handleAsideTrigger} currentDay={currentDay} />
+          <AsideEditButton onClick={handleAsideTrigger} currentDate={currentDate} />
           <div className="button-wrap">
             <button>
               <img src="./assets/icons/png/icon-calendar.png" alt="calendar icon" />
