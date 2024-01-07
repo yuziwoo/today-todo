@@ -33,9 +33,11 @@ export const setCalendarData = createAsyncThunk(
 export const setNextMonthCalendarData = createAsyncThunk(
   'calendarSlice/setNextMonthCalendarData',
   async ({ year, month, todo }: SetCalendarDataProps): Promise<RestDayOneMonthPayloadData> => {
-    // const nextMonthData = await getRestDayData(calcNextMonth({ year, month }));
-    // const restDayData = nextMonthData;
-    const restDayData: RestDayData[] = [{ day: 25, restDay: true, dateName: '기독탄신일' }];
+    const nextMonthData = await getRestDayData(calcNextMonth({ year, month }));
+    const restDayData = nextMonthData;
+
+    // mock data
+    // const restDayData: RestDayData[] = [{ day: 25, restDay: true, dateName: '기독탄신일' }];
 
     const nextMonth = calcNextMonth({ year, month });
     return { year: nextMonth.year, month: nextMonth.month, restDayData, todo };
@@ -45,9 +47,11 @@ export const setNextMonthCalendarData = createAsyncThunk(
 export const setLastMonthCalendarData = createAsyncThunk(
   'calendarSlice/setLastMonthCalendarData',
   async ({ year, month, todo }: SetCalendarDataProps): Promise<RestDayOneMonthPayloadData> => {
-    // const lastMonthData = await getRestDayData(calcLastMonth({ year, month }));
-    // const restDayData = nextMonthData;
-    const restDayData: RestDayData[] = [{ day: 25, restDay: true, dateName: '기독탄신일' }];
+    const lastMonthData = await getRestDayData(calcLastMonth({ year, month }));
+    const restDayData = lastMonthData;
+
+    // mock data
+    // const restDayData: RestDayData[] = [{ day: 25, restDay: true, dateName: '기독탄신일' }];
 
     const lastMonth = calcLastMonth({ year, month });
     return { year: lastMonth.year, month: lastMonth.month, restDayData, todo };
