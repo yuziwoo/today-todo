@@ -1,7 +1,7 @@
 # Today Todo
 
 - 오늘 할 일, 있었던 일을 Today Todo를 통해 더 편리하고 예쁘게 기록해보세요!
-- [어플리케이션 보러가기 👉](http://yuziwoo1.dothome.co.kr/)
+- [어플리케이션 보러가기 👉](http://yuziwoo1.dothome.co.kr/) 모바일 환경에서 확인하면 더 좋아요.
 - [프로젝트 정보 노션 방문하기 👉](https://www.notion.so/yuziwoo2/Today-Todo-e09c2d28321740529ceca1b5ee510b80?pvs=4)
 
 ## About
