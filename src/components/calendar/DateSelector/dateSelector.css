@@ -1,0 +1,21 @@
+.date-selector {
+  height: 27.3rem;
+  padding: 0 1.4rem;
+  cursor: pointer;
+}
+
+.date-selector .swiper {
+  height: 100%;
+}
+
+.date-selector .swiper .swiper-slide h6 {
+  font-size: 3.78rem;
+  font-weight: 700;
+  text-align: left;
+  opacity: 0.2;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.date-selector .swiper .swiper-slide-active h6 {
+  opacity: 1;
+}

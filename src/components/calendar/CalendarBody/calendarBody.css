@@ -1,0 +1,25 @@
+.calendar-body {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-bg-1);
+  padding: 7.7rem 2.1rem 18rem;
+  border-top-right-radius: var(--borderRadius-4);
+  border-top-left-radius: var(--borderRadius-4);
+  box-shadow: 0 0 3.5rem rgba(40, 72, 94, 0.3);
+  animation: calendar-body-open 0.5s 1 forwards;
+}
+
+@keyframes calendar-body-open {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.darkmode .calendar-body {
+  box-shadow: 0 0 3.5rem rgba(40, 72, 94, 0.5);
+}

@@ -1,0 +1,125 @@
+.calendar-todo-list {
+  padding: 0.7rem;
+}
+
+.calendar-todo-list ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-box-bg-1);
+  border-radius: var(--borderRadius-3);
+  box-shadow: 0 0.28rem 1rem rgba(183, 191, 199, 0.3);
+  margin-bottom: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  animation: calendar-todo-list-open 0.3s 1 forwards;
+  opacity: 0;
+}
+
+@keyframes calendar-todo-list-open {
+  from {
+    transform: translateY(1.4rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.darkmode .calendar-todo-list ul li {
+  box-shadow: 0 0.28rem 1rem rgba(42, 48, 55, 0.3);
+}
+
+.calendar-todo-list ul li::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-default);
+  transition: var(--transition-opacity-2);
+  opacity: 0;
+}
+
+.calendar-todo-list ul li:hover::before {
+  opacity: 0.03;
+}
+
+.calendar-todo-list ul li .task {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3.15rem 2.8rem;
+  box-sizing: border-box;
+  width: 45.9rem;
+  max-width: 45.9rem;
+}
+
+.calendar-todo-list ul li .task .basic-checkbox {
+  background-color: var(--color-calendar-singleTask);
+  margin-right: 2.8rem;
+}
+
+.calendar-todo-list ul li .task .basic-checkbox::before {
+  transition: var(--transition-opacity-1)
+}
+
+.calendar-todo-list ul li[class*='task-repeat'] .task .basic-checkbox {
+  background-color: var(--color-calendar-repeatTask);
+}
+
+.calendar-todo-list ul li .task .info .repeat-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-todo-list ul li .task .info .repeat-info .circle {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background-color: var(--color-calendar-singleTask);
+  margin-right: 0.7rem;
+}
+
+.calendar-todo-list ul li[class*='task-repeat'] .task .info .repeat-info .circle {
+  background-color: var(--color-calendar-repeatTask);
+}
+
+.calendar-todo-list ul li .task .info .repeat-info p {
+  font-size: 1.68rem;
+  font-weight: 500;
+  color: var(--color-calendar-todolist-repeat);
+}
+
+.calendar-todo-list ul li .task .info .name {
+  font-weight: 700;
+  font-size: 2.52rem;
+  max-width: 34rem;
+  text-align: left;
+}
+
+.calendar-todo-list ul li .edit {
+  position: relative;
+  padding: 5.25rem 4.2rem 5.25rem 2.8rem;
+  height: 100%;
+  overflow: visible;
+}
+
+.calendar-todo-list ul li .edit svg {
+  width: 1.61rem;
+  transition: var(--transition-transform-1);
+}
+
+.darkmode .calendar-todo-list ul li .edit svg path {
+  stroke: #5c5c5c;
+}
+
+.calendar-todo-list ul li .edit:hover svg {
+  transform: scale(1.3);
+}

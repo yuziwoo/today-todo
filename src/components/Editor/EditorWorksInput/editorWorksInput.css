@@ -1,0 +1,14 @@
+.editor-works {
+  width: 100%;
+  padding: 0 2.8rem;
+}
+
+.editor-works input {
+  width: 100%;
+  padding: 4.76rem 5.6rem;
+  background-color: var(--color-box-bg-2);
+  border-radius: var(--borderRadius-2);
+  box-shadow: var(--shadow-editor);
+  font-weight: 700;
+  font-size: 2.52rem;
+}

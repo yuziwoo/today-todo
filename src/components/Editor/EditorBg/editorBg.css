@@ -1,0 +1,122 @@
+.editor-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: var(--max-width);
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-bg .cube {
+  position: absolute;
+  width: 150%;
+  left: -25%;
+  top: 0;
+  transform: translateY(-100%);
+  animation: editor-off-bg-cube 0.5s 1 forwards;
+  z-index: 1;
+}
+
+@keyframes editor-off-bg-cube {
+  from {
+    transform: translateY(-20%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.editor-bg .cube .img-wrap {
+  width: 100%;
+  position: relative;
+  transition: transform 5s 0.3s cubic-bezier(0.7, 0.14, 0.49, 1.6);
+}
+
+.editor-bg .cube .img-wrap img {
+  display: block;
+  width: 100%;
+  animation: editor-bg-cube 10s infinite alternate;
+  filter: drop-shadow(var(--shadow-editor));
+}
+
+@keyframes editor-bg-cube {
+  from {
+    transform: rotate(5deg);
+  }
+  to {
+    transform: rotate(-10deg);
+  }
+}
+
+.editor-bg .cube .img-wrap img:nth-child(2) {
+  display: none;
+}
+
+.darkmode .editor-bg .cube .img-wrap img:nth-child(1) {
+  display: none;
+}
+
+.darkmode .editor-bg .cube .img-wrap img:nth-child(2) {
+  display: block;
+}
+
+.editor-bg[class*='on'] .cube {
+  animation: editor-on-bg-cube 0.5s 1 forwards;
+}
+
+@keyframes editor-on-bg-cube {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(-20%);
+  }
+}
+
+.editor-bg .background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-1);
+  transform: translateY(100%);
+  animation: editor-off-bg-background 0.5s 1 forwards;
+}
+
+@keyframes editor-off-bg-background {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.editor-bg .background::before {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  content: '';
+  background-color: var(--color-bg-1);
+  left: 0;
+  top: 0;
+  transform: translateY(-50%);
+  border-radius: var(--borderRadius-4);
+}
+
+.editor-bg[class*='on'] .background {
+  animation: editor-on-bg-background 0.5s 1 forwards;
+}
+
+@keyframes editor-on-bg-background {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

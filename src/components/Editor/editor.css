@@ -1,0 +1,81 @@
+.editor {
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  z-index: var(--zIndex-editor);
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.editor[class*='closed'] {
+  animation: editor-off 0.5556s 1 forwards;
+}
+
+.editor[class*='editing'] {
+  animation: editor-on 0.5556s 1 forwards;
+}
+
+@keyframes editor-on {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes editor-off {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.editor .editor-content {
+  width: 100%;
+  height: 100%;
+  max-width: var(--max-width);
+  position: relative;
+}
+
+.editor .editor-content .content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 21rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  opacity: 0;
+  display: none;
+}
+
+.editor .editor-content .content::-webkit-scrollbar {
+  display: none;
+}
+
+.editor[class*='editing'] .editor-content .content {
+  display: block;
+  animation: fadeUp 0.4s 0.4s 1 forwards;
+}

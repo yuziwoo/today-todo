@@ -1,0 +1,26 @@
+/* UI UPDATE */
+.calendar-header {
+  width: 100%;
+  position: relative;
+}
+
+.calendar-header .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 23.52rem;
+  padding: 0 2.8rem;
+}
+
+.calendar-header .content button {
+  padding: 2.1rem;
+}
+
+.calendar-header .content button svg {
+  width: 1.61rem;
+}
+
+.darkmode .calendar-header .content button svg path {
+  stroke: var(--color-header-title);
+}

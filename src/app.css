@@ -1,0 +1,239 @@
+/* Variable */
+:root {
+  --zIndex-aside: 100;
+  --zIndex-aside-trigger: 150;
+  --zIndex-month-select: 200;
+  --zIndex-editor: 300;
+
+  --zIndex-year-month-selector: 350;
+
+  --color-default: black;
+  --color-reverse: white;
+  --color-active: #61aaff;
+  --color-red: #df5d5d;
+  --color-blue: #4b9edb;
+
+  --color-bg-1: white;
+  --color-bg-2: #ebf2f7;
+
+  --color-box-bg-1: white;
+  --color-box-bg-2: white;
+  --color-box-bg-3: white;
+  --color-box-bg-4: white;
+
+  --color-header-title: white;
+  --color-calendar-today: #e9f2f9;
+  --color-calendar-current: #4b90c3;
+  --color-calendar-singleTask: #fa998b;
+  --color-calendar-repeatTask: #66cb4c;
+  --color-calendar-dday: #34388c;
+  --color-calendar-todolist-repeat: #878787;
+  --color-editor-delete: #cd4b38;
+  --color-editor-cancel: #707070;
+
+  --shadow-editor: 0 0.28rem 0.7rem rgba(40, 72, 94, 25%);
+
+  --gradient-aside-button: linear-gradient(to bottom, #ff7272, #de4e4e);
+
+  --timingFunction-easeOut: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --transition-opacity-1: opacity 0.2s;
+  --transition-opacity-2: opacity 0.3s;
+
+  --transition-transform-1: transform 0.2s;
+  --transition-transform-2: transform 0.3s;
+  --transition-transform-3: transform 0.5s;
+
+  --transition-opacity-transform-2: opacity 0.3s, transform 0.3s;
+
+  --borderRadius-1: 0.7rem;
+  --borderRadius-2: 1.4rem;
+  --borderRadius-3: 2.8rem;
+  --borderRadius-4: 4.2rem;
+  --borderRadius-5: 5.6rem;
+
+  --max-width: 602px;
+  font-size: 10px;
+}
+
+.darkmode {
+  --color-default: white;
+  --color-reverse: black;
+  --color-active: #3585e2;
+
+  --color-bg-1: #1a1c1c;
+
+  --color-box-bg-1: #2a2b2b;
+  --color-box-bg-2: #2e373e;
+  --color-box-bg-3: #606060;
+  --color-box-bg-4: #5d6269;
+
+  --color-header-title: #1d3344;
+  --color-calendar-today: #3c4d5a;
+  --color-calendar-current: #9cb5c8;
+  --color-calendar-singleTask: #e96042;
+  --color-calendar-dday: #797def;
+  --color-editor-cancel: white;
+}
+
+body {
+  background-color: var(--color-bg-1);
+}
+
+* {
+  color: var(--color-default);
+}
+
+/* Size */
+.App {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg-2);
+}
+
+.stage {
+  background-color: var(--color-bg);
+  position: relative;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: auto;
+  font-size: 10px;
+}
+
+@media screen and (max-width: 602px) {
+  :root,
+  .stage {
+    font-size: 1.661vw;
+  }
+}
+
+/* css class */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* event css */
+.event-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.event-hover::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  content: '';
+  background-color: var(--color-default);
+  opacity: 0;
+  transition: var(--transition-opacity-2);
+  box-sizing: border-box;
+  border-radius: var(--borderRadius-1);
+}
+
+.event-hover > * {
+  position: relative;
+}
+
+.event-hover[class*='color-reverse']::before {
+  background-color: var(--color-reverse);
+}
+
+.event-hover:hover::before {
+  opacity: 0.3;
+}
+
+.event-hover[class*='hover-soft']:hover::before {
+  opacity: 0.1;
+}
+
+@media screen and (max-width: 602px) {
+  .event-hover:hover::before {
+    animation: event-hover 0.6s 1 forwards;
+  }
+}
+
+@keyframes event-hover {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* common animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+@keyframes comeUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes comeDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

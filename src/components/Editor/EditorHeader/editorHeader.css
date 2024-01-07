@@ -1,0 +1,71 @@
+.task-editor .editor-header {
+  width: 100%;
+  padding: 2.8rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom-left-radius: var(--borderRadius-box);
+  border-bottom-right-radius: var(--borderRadius-box);
+  background-color: var(--color-bg2);
+}
+
+.task-editor .editor-header h1 {
+  font-size: 2.52rem;
+  font-weight: 700;
+}
+
+.task-editor .editor-header button {
+  padding: 1.4rem;
+  border-radius: var(--borderRadius-button);
+}
+
+.task-editor .editor-header button svg {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.darkmode .task-editor .editor-header .close svg line {
+  stroke: white;
+}
+
+.darkmode .task-editor .editor-header .check svg path {
+  fill: #3dce77;
+}
+
+.editor-header {
+  display: block;
+  padding: 8.4rem 2.8rem 4.2rem;
+}
+
+.editor-header .title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-header .title h1 {
+  color: var(--color-header-title);
+  font-weight: 200;
+  font-size: 6.8rem;
+  letter-spacing: -0.2rem;
+  line-height: 1;
+}
+
+.editor-header .title button {
+  position: absolute;
+  padding: 2.1rem;
+  left: 0;
+}
+
+.editor-header .title button svg {
+  width: 1.61rem;
+}
+
+.darkmode .editor-header .title button svg path {
+  stroke: var(--color-header-title);
+}

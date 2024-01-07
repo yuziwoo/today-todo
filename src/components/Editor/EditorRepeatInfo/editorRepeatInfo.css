@@ -1,0 +1,17 @@
+.editor-repeat {
+  padding: 6.2rem 2.8rem 0rem;
+}
+
+.editor-repeat .heading {
+  font-size: 3.78rem;
+  font-weight: 700;
+  padding: 1.4rem 0;
+}
+
+.editor-repeat .box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.7rem 0;
+}
