@@ -1,21 +1,19 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { EffectCoverflow, Mousewheel } from 'swiper/modules';
-import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperType } from 'swiper';
+import 'swiper/swiper-bundle.css';
 
-import './dateSelector.css';
 import { CALENDAR_API } from 'src/constants/API';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/store/store';
 import { useEffect, useRef } from 'react';
+import './dateSelector.css';
 
 interface YearSelectorProps {
   initialYear: number;
   onYearChange: (newYear: number) => void;
+  resetTrigger: boolean;
 }
 
-const YearSelector = ({ initialYear, onYearChange }: YearSelectorProps) => {
-  const editorState = useSelector((state: RootState) => state.editor);
+const YearSelector = ({ initialYear, onYearChange, resetTrigger }: YearSelectorProps) => {
   const swiperRef = useRef(useSwiper());
   const initialIndex = initialYear - CALENDAR_API.minYear;
 
@@ -24,7 +22,7 @@ const YearSelector = ({ initialYear, onYearChange }: YearSelectorProps) => {
       swiperRef.current.slideTo(initialIndex);
     }
     // eslint-disable-next-line
-  }, [editorState.editing]);
+  }, [resetTrigger]);
 
   const yearArr = Array.from(
     { length: CALENDAR_API.maxYear - CALENDAR_API.minYear },

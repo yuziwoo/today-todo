@@ -1,20 +1,17 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { EffectCoverflow, Mousewheel } from 'swiper/modules';
-import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperType } from 'swiper';
-
-import './dateSelector.css';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/store/store';
 import { useEffect, useRef } from 'react';
+import 'swiper/swiper-bundle.css';
+import './dateSelector.css';
 
 interface MonthSelectorProps {
   initialMonth: number;
   onMonthChange: (newMonth: number) => void;
+  resetTrigger: boolean;
 }
 
-const MonthSelector = ({ initialMonth, onMonthChange }: MonthSelectorProps) => {
-  const editorState = useSelector((state: RootState) => state.editor);
+const MonthSelector = ({ initialMonth, onMonthChange, resetTrigger }: MonthSelectorProps) => {
   const swiperRef = useRef(useSwiper());
   const initialIndex = initialMonth;
 
@@ -23,7 +20,7 @@ const MonthSelector = ({ initialMonth, onMonthChange }: MonthSelectorProps) => {
       swiperRef.current.slideTo(initialIndex);
     }
     // eslint-disable-next-line
-  }, [editorState.editing]);
+  }, [resetTrigger]);
 
   const MonthArr = Array.from({ length: 12 }, (_, index) => index);
 

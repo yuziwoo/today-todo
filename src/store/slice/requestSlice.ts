@@ -4,7 +4,7 @@ export const requestSlice = createSlice({
   name: 'request',
   initialState: {
     calendarTodo: 0,
-    calendarYearMonthSelector: false,
+    calendarMonthSelectEditing: false,
   },
   reducers: {
     requestChangeCalendarTodo(state) {
@@ -12,11 +12,11 @@ export const requestSlice = createSlice({
       state.calendarTodo = newState;
     },
 
-    toggleCalendarYearMonthSelector(state) {
-      state.calendarYearMonthSelector = !state.calendarYearMonthSelector;
+    toggleCalendarMonthSelector(state) {
+      state.calendarMonthSelectEditing = !state.calendarMonthSelectEditing;
     },
   },
 });
 
-export const { requestChangeCalendarTodo, toggleCalendarYearMonthSelector } = requestSlice.actions;
+export const { requestChangeCalendarTodo, toggleCalendarMonthSelector } = requestSlice.actions;
 export default requestSlice.reducer;

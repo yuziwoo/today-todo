@@ -42,20 +42,6 @@ body {
   overflow-wrap: break-word;
 }
 
-/* 최소 디바이스 */
-@media screen and (max-width: 602px) {
-  /* html {
-    -moz-text-size-adjust: 100%;
-    -o-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
-
-  body {
-    min-width: 602px;
-  } */
-}
-
 article,
 aside,
 details,
@@ -164,35 +150,4 @@ img {
 
 .canHover * {
   position: relative;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(15px);
-  }
 }

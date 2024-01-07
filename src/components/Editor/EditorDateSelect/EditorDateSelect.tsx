@@ -49,9 +49,19 @@ const EditorDateSelect = ({ editing }: EditorDateSelectProps) => {
   return (
     <div className="editor-date-selector">
       <div className="highlight"></div>
-      <YearSelector initialYear={year} onYearChange={setYear} />
-      <MonthSelector initialMonth={month} onMonthChange={setMonth} />
-      <DaySelector year={year} month={month} initialDay={day} onDayChange={setDay} />
+      <YearSelector initialYear={year} onYearChange={setYear} resetTrigger={editorState.editing} />
+      <MonthSelector
+        initialMonth={month}
+        onMonthChange={setMonth}
+        resetTrigger={editorState.editing}
+      />
+      <DaySelector
+        year={year}
+        month={month}
+        initialDay={day}
+        onDayChange={setDay}
+        resetTrigger={editorState.editing}
+      />
     </div>
   );
 };

@@ -1,23 +1,21 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { EffectCoverflow, Mousewheel } from 'swiper/modules';
-import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperType } from 'swiper';
+import 'swiper/swiper-bundle.css';
 
-import './dateSelector.css';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/store/store';
 import { useEffect, useRef } from 'react';
 import { getMaximumDate } from 'src/utills/calendarUtils';
+import './dateSelector.css';
 
 interface DaySelectorProps {
   year: number;
   month: number;
   initialDay: number;
   onDayChange: (newDay: number) => void;
+  resetTrigger: boolean;
 }
 
-const DaySelector = ({ year, month, initialDay, onDayChange }: DaySelectorProps) => {
-  const editorState = useSelector((state: RootState) => state.editor);
+const DaySelector = ({ year, month, initialDay, onDayChange, resetTrigger }: DaySelectorProps) => {
   const swiperRef = useRef(useSwiper());
   const initialIndex = initialDay - 1;
 
@@ -26,7 +24,7 @@ const DaySelector = ({ year, month, initialDay, onDayChange }: DaySelectorProps)
       swiperRef.current.slideTo(initialIndex);
     }
     // eslint-disable-next-line
-  }, [editorState.editing]);
+  }, [resetTrigger]);
 
   const maxDate = getMaximumDate({ year, month });
   const DayArr = Array.from({ length: maxDate }, (_, index) => index);

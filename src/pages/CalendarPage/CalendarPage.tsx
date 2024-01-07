@@ -14,7 +14,7 @@ import CalendarHeader from '../../components/calendar/CalendarHeader/CalendarHea
 import CalendarBody from '../../components/calendar/CalendarBody/CalendarBody';
 import CalendarAside from '../../components/calendar/CalendarAside/CalendarAside';
 import Editor from '../../components/Editor/Editor';
-import CalendarYearMonthSelector from '../../components/calendar/CalendarYearMonthSelector/CalendarYearMonthSelector';
+import CalendarMonthSelect from '../../components/calendar/CalendarMonthSelect/CalendarMonthSelect';
 
 interface CalendarPageProps {
   todo: Tasks;
@@ -83,12 +83,7 @@ const CalendarPage = ({ todo, loading }: CalendarPageProps) => {
       />
       <CalendarAside currentDate={currentDate} />
       <Editor />
-      <CalendarYearMonthSelector
-        year={year}
-        month={month}
-        todo={todo}
-        onChangeMonth={handleChangeMonth}
-      />
+      <CalendarMonthSelect date={{ year, month }} todo={todo} onChangeMonth={handleChangeMonth} />
     </div>
   );
 };

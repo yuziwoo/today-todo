@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import './calendarAside.css';
+import { BasicDateData } from 'src/types/calendarTypes';
 import ThemeButton from './ThemeButton/ThemeButton';
 import AsideTrigger from './AsideTrigger/AsideTrigger';
 import AsideEditButton from './AsideEditButton/AsideEditButton';
-import { BasicDateData } from 'src/types/calendarTypes';
+import './calendarAside.css';
 
 interface CalendarAsideProps {
   currentDate: BasicDateData;

@@ -2,6 +2,7 @@
 :root {
   --zIndex-aside: 100;
   --zIndex-aside-trigger: 150;
+  --zIndex-month-select: 200;
   --zIndex-editor: 300;
 
   --zIndex-year-month-selector: 350;
@@ -13,11 +14,12 @@
   --color-blue: #4b9edb;
 
   --color-bg-1: white;
-  --color-bg-2: #EBF2F7;
+  --color-bg-2: #ebf2f7;
 
   --color-box-bg-1: white;
   --color-box-bg-2: white;
   --color-box-bg-3: white;
+  --color-box-bg-4: white;
 
   --color-header-title: white;
   --color-calendar-today: #e9f2f9;
@@ -26,7 +28,7 @@
   --color-calendar-repeatTask: #66cb4c;
   --color-calendar-dday: #34388c;
   --color-calendar-todolist-repeat: #878787;
-  --color-editor-delete: #CD4B38;
+  --color-editor-delete: #cd4b38;
   --color-editor-cancel: #707070;
 
   --shadow-editor: 0 0.28rem 0.7rem rgba(40, 72, 94, 25%);
@@ -50,6 +52,7 @@
   --borderRadius-4: 4.2rem;
   --borderRadius-5: 5.6rem;
 
+  --max-width: 602px;
   font-size: 10px;
 }
 
@@ -63,6 +66,7 @@
   --color-box-bg-1: #2a2b2b;
   --color-box-bg-2: #2e373e;
   --color-box-bg-3: #606060;
+  --color-box-bg-4: #5d6269;
 
   --color-header-title: #1d3344;
   --color-calendar-today: #3c4d5a;
@@ -91,7 +95,7 @@ body {
   background-color: var(--color-bg);
   position: relative;
   width: 100%;
-  max-width: 602px;
+  max-width: var(--max-width);
   margin: auto;
   font-size: 10px;
 }
@@ -171,5 +175,65 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+@keyframes comeUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes comeDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }

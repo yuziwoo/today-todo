@@ -2,7 +2,7 @@ import { BasicMonthData } from 'src/types/calendarTypes';
 import './calendarHeaderTitle.css';
 import { CALENDAR_API } from 'src/constants/API';
 import { useDispatch } from 'react-redux';
-import { toggleCalendarYearMonthSelector } from 'src/store/slice/requestSlice';
+import { toggleCalendarMonthSelector } from 'src/store/slice/requestSlice';
 
 interface CalendarHeaderTitleProps {
   currentMonth: BasicMonthData;
@@ -14,7 +14,7 @@ const monthArr = ['DECEMBER', ...CALENDAR_API.month, 'JANUARY'];
 const CalendarHeaderTitle = ({ currentMonth, prevMonth }: CalendarHeaderTitleProps) => {
   const dispatch = useDispatch();
   const triggerSelector = () => {
-    dispatch(toggleCalendarYearMonthSelector());
+    dispatch(toggleCalendarMonthSelector());
   };
 
   return (

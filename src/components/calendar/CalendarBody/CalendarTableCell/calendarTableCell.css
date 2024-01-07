@@ -14,7 +14,7 @@
 }
 
 .calendar-table-cell[class*='restday'] .date span {
-  color: var(--color-red);
+  color: var(--color-red)!important;
 }
 
 .calendar-table-cell button {
