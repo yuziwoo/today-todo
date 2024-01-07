@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/today-todo/static/css/main.d78df30d.css",
+    "main.js": "/today-todo/static/js/main.4c4c6a5f.js",
+    "index.html": "/today-todo/index.html",
+    "main.d78df30d.css.map": "/today-todo/static/css/main.d78df30d.css.map",
+    "main.4c4c6a5f.js.map": "/today-todo/static/js/main.4c4c6a5f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d78df30d.css",
+    "static/js/main.4c4c6a5f.js"
+  ]
+}
