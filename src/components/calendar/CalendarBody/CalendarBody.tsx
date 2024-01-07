@@ -24,8 +24,7 @@ const CalendarBody = ({
   onChangeToLastMonth,
   setCurrentDay,
 }: CalendarBodyProps) => {
-  if (loading) return <CalendarLoading minHeight={250} />;
-
+  if (loading || calendar[1].year === 0) return <CalendarLoading minHeight={250} />;
   const { year, month } = calendar[1];
   const { dateName, restDay } = calendar[1].datas[currentDay - 1];
   const currentDayTasks = [...calendar[1].datas[currentDay - 1].todo];

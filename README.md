@@ -1,8 +1,17 @@
 # Today Todo
 
-- Todo List Application
-- with React, @reduxjs/toolkit, TypeScript, Lottie
-- project developed by yuziwoo
+- 오늘 할 일, 있었던 일을 Today Todo를 통해 더 편리하고 예쁘게 기록해보세요!
+- [어플리케이션 보러가기 👉](http://yuziwoo1.dothome.co.kr/)
+- [프로젝트 정보 노션 방문하기 👉](https://www.notion.so/yuziwoo2/Today-Todo-e09c2d28321740529ceca1b5ee510b80?pvs=4)
+
+## About
+
+- 진행 날짜 : 2023.12.24 - 2024.01.07 (2주간)
+- 개발 정보
+  - 사용 언어 : React, TypeScript
+  - 상태 관리 : redux toolkit
+  - API : 공공기관 공휴일 데이터 API (공휴일 정보)
+  - 도움을 준 라이브러리 : Swiper, LottieFiles
 
 ## 폴더 규칙
 
@@ -14,22 +23,22 @@
  ├─ constants           공통 상수
  ├─ api                 api 관련 로직 모듈
  ├─ utils               공통 함수
+ ├─ store               상태 관리 정보
+ ├─ types               타입 저장
+ ├─ mocks               목업 데이터 관리
  ├─ App.tsx
  └─ index.tsx
 ```
 
 ## 커밋 컨벤션
 
-- Feat: 새로운 기능 추가
-- Fix: 버그를 고침
-- Design: CSS 등 디자인 변경
-- !BRAEAKING CHANGE: API변경 (API의 매개변수, 반환값 변경 등)
+- feat: 새로운 기능 추가
+- fix: 버그를 고침
+- design: 디자인 변경
+- style: 코드 포맷 변경, 세미 콜론 누락 등 (코드 수정 X)
+- refactor: 프로덕션 코드 리팩토링
+- comment: 필요한 주석 추가 및 변경
+- docs: 문서를 수정 (README.md 등)
+- test: 테스트 추가, 테스트 리팩토링 (프로덕션 코드 변경 X)
+- chore: 기타 업데이트
 - !HOTFIX: 급하게 버그를 고침
-- Style: 코드 포맷 변경, 세미 콜론 누락 등 (코드 수정 X)
-- Refactor: 프로덕션 코드 리팩토링
-- Comment: 필요한 주석 추가 및 변경
-- Docs: 문서를 수정 (README.md 등)
-- Test: 테스트 추가, 테스트 리팩토링 (프로덕션 코드 변경 X)
-- Chore: 빌드 테스트 업데이트, 패키지 매니저를 설정 (프로덕션 코드 변경 X)
-- Rename: 파일 혹은 폴더명을 수정하거나 옮김
-- Remove: 파일을 삭제하는 작업

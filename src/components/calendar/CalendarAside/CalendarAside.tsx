@@ -48,7 +48,9 @@ const CalendarAside = ({ currentDate }: CalendarAsideProps) => {
         <div className="section-division right-side">
           <AsideEditButton onClick={handleAsideTrigger} currentDate={currentDate} />
           <div className="button-wrap">
-            <button>
+            <button onClick={() => {
+              window.alert("전체 일정 관리 기능은 준비 중입니다. 🚀")
+            }}>
               <img src="./assets/icons/png/icon-calendar.png" alt="calendar icon" />
             </button>
             <p>일정 관리</p>
