@@ -1,5 +1,6 @@
 .calendar-body {
   width: 100%;
+  min-height: 100vh;
   position: relative;
   background-color: var(--color-bg-1);
   padding: 7.7rem 2.1rem 18rem;
