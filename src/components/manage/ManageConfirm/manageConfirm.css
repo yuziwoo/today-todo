@@ -19,20 +19,8 @@
 }
 
 .manage-confirm[class*='active'] {
-  animation: manage-confirm-on 0.3s 1;
   transform: translate(-50%, 0);
   opacity: 1;
-}
-
-@keyframes manage-confirm-on {
-  from {
-    transform: translate(-50%, 100%);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
 }
 
 .manage-confirm button {
