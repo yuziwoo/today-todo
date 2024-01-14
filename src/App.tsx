@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store/store';
+import { Routes, Route } from 'react-router-dom';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
+
 import { setDarkMode } from './store/slice/darkModeSlice';
 import { saveTodo, setTodo } from './store/slice/todoSlice';
-import CalendarPage from './pages/CalendarPage/CalendarPage';
-import './common.css';
-import './app.css';
 import { getInitialTodo } from './api/todoAPI/getInitialTodo';
 import { setCalendarData } from './api/calendarAPI/setCalendarData';
+import './common.css';
+import './app.css';
+import ManagePage from './pages/ManagePage/ManagePage';
+import Editor from './components/Editor/Editor';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -40,10 +44,22 @@ const App = () => {
     // eslint-disable-next-line
   }, [todo]);
 
+  const handleSetLoading = (state: boolean) => {
+    setLoading(state);
+  };
+
   return (
     <div className={`App${darkMode ? ' darkmode' : ''}`}>
       <main className="stage">
-        <CalendarPage todo={todo} loading={loading} />
+        <Routes>
+          <Route
+            path="/"
+            element={<CalendarPage todo={todo} loading={loading} setLoading={handleSetLoading} />}
+          ></Route>
+          <Route path="/managetask" element={<ManagePage todo={todo} loading={loading} />}></Route>
+        </Routes>
+
+        <Editor />
       </main>
     </div>
   );

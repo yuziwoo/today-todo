@@ -1,0 +1,29 @@
+.manage-header {
+  padding: 5.6rem 2.8rem 2.8rem;
+}
+
+.manage-header .title {
+  width: 100%;
+  position: relative;
+}
+
+.manage-header .title h1 {
+  font-size: 3.78rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.manage-header .title button {
+  padding: 1.4rem;
+  position: absolute;
+  left: 0;
+}
+
+.manage-header .title button svg {
+  width: 1.61rem;
+  height: 1.61rem;
+}
+
+.darkmode .manage-header .title button svg path {
+  stroke: white;
+}

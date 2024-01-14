@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEditorTaskWorks } from 'src/store/slice/editorSlice';
 import { RootState } from 'src/store/store';
-import { EDITOR } from 'src/constants/API';
 import './editorWorksInput.css';
 
 const EditorWorksInput = () => {
@@ -16,7 +15,7 @@ const EditorWorksInput = () => {
     <div className="editor-works">
       <input
         type="text"
-        placeholder={EDITOR.worksPlaceholder[0]}
+        placeholder='할일을 입력해주세요.'
         onChange={handleOnChange}
         value={state.task.works}
         maxLength={100}

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { tasks } from '../../mocks/data/tasks';
-import { LOCAL_STORAGE_KEY } from '../../constants/API';
+import { LOCAL_STORAGE_KEY, TODO_API } from '../../constants/API';
 import { saveLocalStorage } from '../../api/todoAPI/saveLocalStorage';
 import { Tasks } from '../../types/todo';
 import { toggleSingleTask } from 'src/api/todoAPI/toggleSingleTask';
@@ -8,6 +8,10 @@ import { toggleRepeatTask } from 'src/api/todoAPI/toggleRepeatTask';
 import { EditorStateProps } from '../../types/editorTypes';
 import { getTaskRemovedState } from 'src/api/todoAPI/getTaskRemovedState';
 import { getTaskAddedState } from 'src/api/todoAPI/getTaskAddedState';
+import { getTodoCount } from 'src/api/todoAPI/getTodoCount';
+import { MESSAGE } from 'src/constants/MESSAGE';
+import { ManageStateProps } from 'src/types/manageTypes';
+import { getFewTasksRemovedTodo } from 'src/api/todoAPI/getFewTasksRemovedTodo';
 
 export const todoSlice = createSlice({
   name: 'todo',
@@ -41,6 +45,12 @@ export const todoSlice = createSlice({
 
     addTask(state, { payload }: { payload: EditorStateProps }) {
       const id = state.initialId;
+
+      if (getTodoCount(state) >= TODO_API.maxLength) {
+        alert(MESSAGE.todo.todoIsFull);
+        return;
+      }
+
       const newState = getTaskAddedState({
         todoState: state,
         editorState: payload,
@@ -73,8 +83,17 @@ export const todoSlice = createSlice({
       });
       return newState;
     },
+
+    removeFewTasks(state, { payload }: { payload: ManageStateProps }) {
+      const newState = getFewTasksRemovedTodo({
+        todoState: { ...state },
+        manageState: { ...payload },
+      });
+      return newState;
+    },
   },
 });
 
-export const { setTodo, saveTodo, toggleTask, addTask, updateTask, removeTask } = todoSlice.actions;
+export const { setTodo, saveTodo, toggleTask, addTask, updateTask, removeTask, removeFewTasks } =
+  todoSlice.actions;
 export default todoSlice.reducer;

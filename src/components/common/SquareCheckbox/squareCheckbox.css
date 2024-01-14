@@ -1,0 +1,21 @@
+.square-checkbox {
+  width: 2.24rem;
+  height: 2.24rem;
+  border-radius: var(--borderRadius-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.square-checkbox svg {
+  width: 80%;
+  opacity: 0;
+  transition: var(--transition-opacity-2);
+}
+
+.square-checkbox[class*='checked'] svg {
+  opacity: 1;
+}

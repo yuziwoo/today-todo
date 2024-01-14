@@ -1,0 +1,95 @@
+.manage-options {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 2.8rem;
+  background-color: var(--color-bg-1);
+  z-index: 1;
+}
+
+.manage-options .wrap {
+  width: 66%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.manage-options .wrap button {
+  background-color: var(--color-active);
+  position: relative;
+  padding: 1.4rem 2.1rem;
+  border-radius: 5rem;
+  margin-right: 1.4rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  overflow: hidden;
+}
+
+.manage-options .wrap button[class*='active'] {
+  opacity: 1;
+}
+
+.manage-options .wrap button::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: white;
+  opacity: 0;
+  transition: var(--transition-opacity-2);
+}
+
+.manage-options .wrap button:hover::before {
+  opacity: 0.15;
+}
+
+@media screen and (max-width: 602px) {
+  .manage-options .wrap button:hover::before {
+    animation: event-hover 0.6s 1 forwards;
+  }
+}
+
+.manage-options .wrap button[class*='active']::before {
+  opacity: 0;
+}
+
+.manage-options .wrap button p {
+  color: white;
+  font-weight: 700;
+  font-size: 2.24rem;
+  line-height: 1;
+  position: relative;
+}
+
+.manage-options .select .select-all {
+  padding: 1.4rem 2.1rem;
+  border-radius: 5rem;
+  border: 1px solid var(--color-active);
+  opacity: 0.5;
+  transition: var(--transition-opacity-2);
+}
+
+.manage-options .select .select-all[class*='active'] {
+  opacity: 1;
+}
+
+.manage-options .select .select-all svg {
+  width: 1.54rem;
+  height: 1.54rem;
+  margin-right: 1.05rem;
+}
+
+.manage-options .select .select-all p {
+  color: var(--color-active);
+  font-weight: 700;
+  font-size: 2.24rem;
+  line-height: 1;
+}

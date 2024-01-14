@@ -9,9 +9,11 @@ export type Task = {
 
 export type RepeatTaskCompleteElement = Pick<Task, 'year' | 'month' | 'day'>;
 
+export type RepeatTaskEndProps = null | number;
+
 export type DayRepeatTask = Pick<Task, 'id' | 'works'> & {
   start: number;
-  end: null | number;
+  end: RepeatTaskEndProps;
   complete: RepeatTaskCompleteElement[];
 };
 
@@ -44,4 +46,8 @@ export type RepeatCycle = 'day' | 'week' | 'month' | 'year' | null;
 
 export type RandomTask = Task | DayRepeatTask | WeekRepeatTask | MonthRepeatTask | YearRepeatTask;
 
+export type RandomRepeatTask = DayRepeatTask | WeekRepeatTask | MonthRepeatTask | YearRepeatTask;
+
 export type Cycle = 'single' | 'day' | 'week' | 'month' | 'year';
+
+export type RepeatCycleString = 'day' | 'week' | 'month' | 'year';

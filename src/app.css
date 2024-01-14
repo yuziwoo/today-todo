@@ -10,6 +10,7 @@
   --color-default: black;
   --color-reverse: white;
   --color-active: #61aaff;
+  --color-active-soft: #b5cce7;
   --color-red: #df5d5d;
   --color-blue: #4b9edb;
 
@@ -30,8 +31,10 @@
   --color-calendar-todolist-repeat: #878787;
   --color-editor-delete: #cd4b38;
   --color-editor-cancel: #707070;
+  --color-icon-arrow-right: #e5e5e5;
 
   --shadow-editor: 0 0.28rem 0.7rem rgba(40, 72, 94, 25%);
+  --shadow-manage: 0 0.28rem 0.7rem rgba(26, 28, 28, 0.15);
 
   --gradient-aside-button: linear-gradient(to bottom, #ff7272, #de4e4e);
 
@@ -82,6 +85,11 @@ body {
 
 * {
   color: var(--color-default);
+}
+
+img {
+  width: 100%;
+  display: block;
 }
 
 /* Size */
@@ -140,6 +148,10 @@ body {
 
 .event-hover[class*='color-reverse']::before {
   background-color: var(--color-reverse);
+}
+
+.event-hover[class*='color-active']::before {
+  background-color: var(--color-active);
 }
 
 .event-hover:hover::before {

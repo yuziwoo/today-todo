@@ -1,0 +1,86 @@
+.manage-tasks {
+  width: 100%;
+  padding: 1.4rem;
+}
+
+.manage-tasks .heading button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.4rem;
+}
+
+.manage-tasks .heading button h3 {
+  padding-left: 1.4rem;
+  font-size: 2.24rem;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.manage-tasks .heading[class*='active'] button h3 {
+  color: var(--color-active);
+}
+
+.manage-tasks .box {
+  margin: 1.4rem;
+  padding: 2.1rem 1.4em;
+  background-color: var(--color-box-bg-1);
+  border-radius: var(--borderRadius-3);
+  box-shadow: var(--shadow-manage);
+}
+
+.manage-tasks .box li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.manage-tasks .box li .button-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.4rem;
+  width: 80%;
+}
+
+.manage-tasks .box li .button-checkbox .info {
+  padding-left: 1.4rem;
+  width: 100%;
+}
+
+.manage-tasks .box li .button-checkbox .info .end-date {
+  font-size: 1.68rem;
+  font-weight: 500;
+  color: var(--color-calendar-todolist-repeat);
+  transition: color 0.3s;
+  text-align: left;
+}
+
+.manage-tasks .box li[class*='active'] .button-checkbox .info .end-date {
+  color: var(--color-active-soft);
+}
+
+.manage-tasks .box li .button-checkbox .info h4 {
+  font-size: 2.52rem;
+  font-weight: 700;
+  text-align: left;
+  transition: color 0.3s;
+  width: 100%;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.manage-tasks .box li[class*='active'] .button-checkbox .info h4 {
+  color: var(--color-active);
+}
+
+.manage-tasks .box li .button-edit {
+  padding: 1.4rem;
+}
+
+.manage-tasks .box li .button-edit svg {
+  width: 1.4rem;
+}

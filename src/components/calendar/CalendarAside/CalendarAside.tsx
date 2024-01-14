@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BasicDateData } from 'src/types/calendarTypes';
 import ThemeButton from './ThemeButton/ThemeButton';
 import AsideTrigger from './AsideTrigger/AsideTrigger';
@@ -48,11 +49,11 @@ const CalendarAside = ({ currentDate }: CalendarAsideProps) => {
         <div className="section-division right-side">
           <AsideEditButton onClick={handleAsideTrigger} currentDate={currentDate} />
           <div className="button-wrap">
-            <button onClick={() => {
-              window.alert("전체 일정 관리 기능은 준비 중입니다. 🚀")
-            }}>
-              <img src="./assets/icons/png/icon-calendar.png" alt="calendar icon" />
-            </button>
+            <Link to={'/managetask'}>
+              <button>
+                <img src="./assets/icons/png/icon-calendar.png" alt="calendar icon" />
+              </button>
+            </Link>
             <p>일정 관리</p>
           </div>
         </div>

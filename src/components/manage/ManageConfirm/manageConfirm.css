@@ -1,0 +1,85 @@
+.manage-confirm {
+  width: 100%;
+  max-width: var(--max-width);
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  transition: opacity 0.3s, transform 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.8rem 2.8rem 5.6rem;
+  background-color: rgba(200, 222, 236, 0.1);
+  backdrop-filter: blur(2.8rem);
+  border-top-right-radius: var(--borderRadius-3);
+  border-top-left-radius: var(--borderRadius-3);
+  box-shadow: var(--shadow-manage);
+  z-index: 10;
+}
+
+.manage-confirm[class*='active'] {
+  animation: manage-confirm-on 0.3s 1;
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+@keyframes manage-confirm-on {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.manage-confirm button {
+  padding: 3.5rem;
+  width: calc(50% - 0.7rem);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--borderRadius-3);
+  box-shadow: var(--shadow-editor);
+  background-color: var(--color-box-bg-3);
+}
+
+.manage-confirm button::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background-color: var(--color-bg-1);
+  transition: var(--transition-opacity-1);
+  opacity: 0;
+}
+
+.manage-confirm button:hover::before {
+  opacity: 0.1;
+}
+
+.manage-confirm .cancel::before {
+  background-color: #dddddd;
+}
+
+.manage-confirm button p {
+  font-size: 2.52rem;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.manage-confirm .cancel p {
+  color: var(--color-editor-cancel);
+}
+
+.manage-confirm .delete {
+  background-color: var(--color-editor-delete);
+}
+
+.manage-confirm .delete p {
+  color: white;
+}
